@@ -61,10 +61,15 @@
 
 :root[data-theme='dark'] {
   --bg-page: #0E1113;
-  --bg-sunken: #14181B;
-  --surface: #171B1E;
-  --border: #262C30;
-  --border-strong: #3A4147;
+  --bg-sunken: #15191D;
+  /* Noticeably lighter than bg-page (not just +1-2 luminance steps) — equal-
+     ratio gray differences read as far less distinct on dark backgrounds
+     than light ones, so "surface on page" needs more separation in dark
+     mode to pop the way a white card on an off-white page does in light
+     mode. Was #171B1E, nearly indistinguishable from bg-page. */
+  --surface: #1E242A;
+  --border: #2B323A;
+  --border-strong: #414B55;
 
   --text-ink: #E8EBED;
   --text-muted: #9AA3AC;
@@ -86,10 +91,10 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --bg-page: #0E1113;
-    --bg-sunken: #14181B;
-    --surface: #171B1E;
-    --border: #262C30;
-    --border-strong: #3A4147;
+    --bg-sunken: #15191D;
+    --surface: #1E242A;
+    --border: #2B323A;
+    --border-strong: #414B55;
 
     --text-ink: #E8EBED;
     --text-muted: #9AA3AC;

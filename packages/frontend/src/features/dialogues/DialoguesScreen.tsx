@@ -215,8 +215,8 @@ function MessageBubble({ message }: { message: Message }) {
 
   return (
     <div className="msg-row" style={{ justifyContent: justify }}>
-      <div>
-        <div className={`msg-bubble ${cls}`}>{message.text}</div>
+      <div className={`msg-wrap ${cls}`}>
+        <div className="msg-bubble">{message.text}</div>
         {message.senderType === MessageSenderType.Ai && (
           <div className="msg-tag" style={{ textAlign: 'right', color: tagColor }}>
             {escalated ? `⚑ эскалация` : '✦ Айым'}
