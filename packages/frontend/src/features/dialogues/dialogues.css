@@ -16,15 +16,27 @@
 .dlg-thread-footer { padding: 14px 20px; border-top: 1px solid var(--border); background: var(--surface); }
 
 .msg-row { display: flex; }
-.msg-bubble { max-width: 70%; border-radius: 18px; padding: 10px 14px; font: 400 13.5px/1.5 var(--font-ui); border: 1px solid transparent; animation: msg-in 180ms var(--motion-ease); }
+/* max-width belongs on this wrapper (a direct flex item of .msg-row, whose
+   own container has a real resolved width), not on .msg-bubble itself —
+   .msg-bubble's parent was an unconstrained plain div, so "70%" had no
+   well-defined base and the browser fell back to near-minimum-content
+   wrapping (this is why the takeover/return system message was breaking
+   one word per line). Matches the prototype's wrapper/bubble split. */
+.msg-wrap { max-width: 70%; }
+.msg-bubble { border-radius: 18px; padding: 10px 14px; font: 400 13.5px/1.5 var(--font-ui); border: 1px solid transparent; animation: msg-in 180ms var(--motion-ease); }
 .msg-tag { margin-top: 3px; font: 500 10px var(--font-mono); }
 @keyframes msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-.msg-patient .msg-bubble { background: var(--surface); border-color: var(--border); border-radius: 18px 18px 18px 4px; }
+.msg-patient .msg-bubble { background: var(--surface); border-color: var(--border); border-radius: 18px 18px 18px 4px; box-shadow: var(--elevation-1); }
 .msg-ai .msg-bubble { background: var(--accent-050); border-color: rgba(var(--accent-rgb), 0.3); border-radius: 18px 18px 4px 18px; }
 .msg-ai-escalated .msg-bubble { background: var(--warn-bg); border-color: rgba(176, 120, 24, 0.35); border-radius: 18px 18px 4px 18px; }
 .msg-admin .msg-bubble { background: var(--text-ink); color: var(--on-ink); border-radius: 18px 18px 4px 18px; }
-.msg-system .msg-bubble { background: var(--bg-sunken); color: var(--text-faint); border-radius: 12px; font-size: 12px; }
+
+/* System messages ("X подключился к диалогу") are short status pills, not
+   chat bubbles — compact, single line, sized to content rather than
+   stretched to the 70% column width. */
+.msg-system.msg-wrap { max-width: none; }
+.msg-system .msg-bubble { background: var(--bg-sunken); color: var(--text-faint); border-radius: 12px; font-size: 11px; padding: 5px 12px; white-space: nowrap; }
 
 .dlg-patient-card { width: 260px; flex-shrink: 0; border-left: 1px solid var(--border); background: var(--surface); padding: 18px; overflow-y: auto; }
 
