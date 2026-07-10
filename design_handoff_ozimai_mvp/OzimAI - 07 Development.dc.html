@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — 07 Development Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Golos Text', 'Helvetica Neue', sans-serif; color:#14171A; }
+  a { color:#0B9B6D; text-decoration:none; border-bottom:1px solid #0B9B6D44; }
+  a:hover { color:#087A56; border-bottom-color:#087A56; }
+  doc-page:not(:defined) { visibility:hidden; }
+  table { border-collapse:collapse; width:100%; }
+  code { font-family:'IBM Plex Mono',monospace; background:#F5F8F6; border:1px solid #E4E7EA; border-radius:4px; padding:1px 5px; font-size:.92em; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="a4" margin="0.8in" hint-size="100%,1400px">
+
+  <div slot="footer" style="display:flex; justify-content:space-between; font:500 9px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; padding-top:6px; border-top:1px solid #E4E7EA;">
+    <span>OzimAI · Конфиденциально</span>
+    <span>07 Development · v1.0 · июль 2026</span>
+  </div>
+
+  <!-- ТИТУЛ -->
+  <div style="padding:8px 0 36px; border-bottom:2px solid #14171A;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+      <div style="font:700 15px 'Golos Text',sans-serif; letter-spacing:-.01em;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+      <div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase;">Документ 07 из 08</div>
+    </div>
+    <h1 style="font:700 40px/1.15 'Golos Text',sans-serif; letter-spacing:-.02em; margin:48px 0 12px;">Development Package</h1>
+    <p style="font:400 16px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0; max-width:540px;">План разработки по спринтам, definition of done, тестовая стратегия и журнал архитектурных решений (ADR) по документам 01–06.</p>
+    <div style="display:flex; gap:28px; margin-top:28px; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#5C6470; text-transform:uppercase;">
+      <span>Команда · 3–5 инженеров</span><span>Спринт · 2 недели</span><span>Статус · На утверждение</span>
+    </div>
+  </div>
+
+  <!-- 01 ПЛАН ПО СПРИНТАМ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">01 · План</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">План разработки по спринтам</h2>
+  </div>
+  <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0 0 16px;">Реализует роадмап v0.9→v1.0 из <a href="OzimAI — 02 Product.dc.html">02 Product</a>. 6 спринтов × 2 недели = 12 недель до первых платящих клиник.</p>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:90px;">Спринт</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Фокус</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Выход</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">S1–2</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">Фундамент: мультиарендность, auth, Channel Gateway + WhatsApp BSP, LLM Router</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">AI отвечает тестовому номеру по фиксированной базе знаний</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">S3–4</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">E1 AI-диалог (RAG, guardrails, эскалация) + E2 Расписание и запись</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Первая клиника-партнёр принимает реальные записи через AI</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">S5–6</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">Панель (лента, перехват, календарь), напоминания, мини-CRM</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">10 дизайн-партнёров работают в панели ежедневно (v0.9)</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">S7–8</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">E3 Self-service онбординг-мастер, база знаний с версионированием</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Новая клиника запускается без участия команды за ≤ 1 день</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">S9–10</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">E4 Отчёты владельцу, E5 Биллинг (триал, Kaspi/карты, read-only при неуплате)</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Самостоятельная оплата работает end-to-end</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; font-weight:600;">S11–12</td><td style="padding:9px 10px;">Хардening: нагрузочное тестирование, аудит guardrails на adversarial-наборе, доступность (03 UX §6)</td><td style="padding:9px 0 9px 10px;"><strong>v1.0 — публичный запуск</strong></td></tr>
+  </table>
+
+  <!-- 02 DoD -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">02 · Качество</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Definition of Done</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Любая история</div>
+      <ul style="margin:0; padding-left:16px;"><li>Acceptance criteria из 02 Product выполнены и проверены вручную</li><li>Unit-тесты на бизнес-логику; e2e — на критичный путь (запись, оплата)</li><li>RLS-политика покрывает новые таблицы (мультиарендность)</li><li>Событие аналитики добавлено, если действие влияет на North Star</li><li>Прошла код-ревью; задеплоена за feature-флагом при риске</li></ul>
+    </div>
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Истории с AI-диалогом</div>
+      <ul style="margin:0; padding-left:16px;"><li>Прошла adversarial-набор: попытки медсовета, ложной цены, injection-атаки — все отклонены</li><li>Есть эскалация на «не знаю» — AI никогда не молчит и не выдумывает</li><li>Двуязычность проверена (рус + каз ответы на одинаковый вопрос)</li><li>Логируется в audit_log с моделью, версией базы знаний, латентностью</li></ul>
+    </div>
+  </div>
+
+  <!-- 03 ТЕСТОВАЯ СТРАТЕГИЯ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">03 · Тестирование</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Тестовая стратегия</h2>
+  </div>
+  <table style="font:400 13px/1.55 'Golos Text',sans-serif;">
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; width:170px; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Unit / интеграционные</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Покрытие бизнес-логики модулей (Расписание, Биллинг) — приоритет атомарности блокировки слота и расчёта отчётов.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">E2E</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Критичные пути: онбординг → первая запись; триал → оплата → read-only при неуплате. Прогон перед каждым релизом в прод.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">AI-качество (offline)</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Набор ~200 размеченных диалогов (реальные + adversarial) прогоняется на каждое изменение промпта/модели; блокирует деплой при регрессии эскалаций/галлюцинаций.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Нагрузочное</td><td style="padding:10px 0;">Перед публичным запуском: пиковая нагрузка = 300 клиник × 20 одновременных диалогов; цель — время ответа не деградирует выше NFR (≤5с p95).</td></tr>
+  </table>
+
+  <!-- 04 ADR -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">04 · Решения</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Architecture Decision Records</h2>
+  </div>
+  <p style="font:400 13px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0 0 16px;">Ключевые решения по ходу документов 01–06, зафиксированные для будущих спорных моментов.</p>
+
+  <div style="border:1px solid #E4E7EA; margin:0 0 12px;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between;"><span style="font:600 13px 'Golos Text',sans-serif;">ADR-01 · MVP урезан до 4 функций, а не 16 из брифа</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E;">01 EXECUTIVE</span></div>
+    <div style="padding:12px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">Контекст: исходный промпт описывает AI-сотрудника с 16 возможностями (в т.ч. телефония, аналитика, маркетинг). Решение: MVP = приём обращений, запись, напоминания, отчёт. Причина: каждая лишняя функция удваивает срок выхода и размывает позиционирование «одна боль — одно решение». Альтернатива (полный скоуп сразу) отклонена — риск не выйти на рынок вовремя.</div>
+  </div>
+  <div style="border:1px solid #E4E7EA; margin:0 0 12px;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between;"><span style="font:600 13px 'Golos Text',sans-serif;">ADR-02 · AI не даёт медицинских консультаций — только администрирование</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E;">01 / 02</span></div>
+    <div style="padding:12px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">Контекст: ниша — медицина, где ошибка AI дороже, чем в beauty/ритейле. Решение: жёсткий guardrail на уровне промпта и пост-фильтра; любой медицинский вопрос → эскалация. Причина: репутационный и юридический риск перевешивает выгоду от «умного» ответа. Проверяется тестами (раздел 03).</div>
+  </div>
+  <div style="border:1px solid #E4E7EA; margin:0 0 12px;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between;"><span style="font:600 13px 'Golos Text',sans-serif;">ADR-03 · Модульный монолит, не микросервисы</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E;">06 ENGINEERING</span></div>
+    <div style="padding:12px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">Контекст: команда 3–5 инженеров на pre-seed. Решение: один деплой с чёткими модульными границами; выносить в сервисы только AI-инференс и очередь. Причина: операционная сложность микросервисов не оправдана до PMF; пересмотр — при >1 200 клиентов.</div>
+  </div>
+  <div style="border:1px solid #E4E7EA;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between;"><span style="font:600 13px 'Golos Text',sans-serif;">ADR-04 · Данные хранятся в регионе КЗ/СНГ</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E;">06 ENGINEERING</span></div>
+    <div style="padding:12px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">Контекст: закон РК «О персональных данных» + медицинская тайна. Решение: managed Postgres в регионе КЗ/СНГ с день-1, а не миграция позже. Причина: миграция данных пациентов после запуска — дорогая и рискованная операция; дешевле заложить сразу.</div>
+  </div>
+
+  <!-- ДАЛЬШЕ -->
+  <div style="margin:56px 0 0; border-top:2px solid #14171A; padding-top:22px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase; margin-bottom:10px;">Следующий шаг</div>
+    <p style="font:400 14px/1.65 'Golos Text',sans-serif; margin:0 0 14px;">Последний документ — <strong>08 Startup</strong>: организационная структура, наём, бюджет и детальная финансовая модель с P&amp;L и сценариями, замыкающая пакет.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase;">
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">01 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">02 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">03 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">04 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">05 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">06 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">07 Development ✓</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">08 Startup</span>
+    </div>
+  </div>
+
+</x-import>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — 02 Product Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Golos Text', 'Helvetica Neue', sans-serif; color:#14171A; }
+  a { color:#0B9B6D; text-decoration:none; border-bottom:1px solid #0B9B6D44; }
+  a:hover { color:#087A56; border-bottom-color:#087A56; }
+  doc-page:not(:defined) { visibility:hidden; }
+  table { border-collapse:collapse; width:100%; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="a4" margin="0.8in" hint-size="100%,1400px">
+
+  <div slot="footer" style="display:flex; justify-content:space-between; font:500 9px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; padding-top:6px; border-top:1px solid #E4E7EA;">
+    <span>OzimAI · Конфиденциально</span>
+    <span>02 Product · v1.0 · июль 2026</span>
+  </div>
+
+  <!-- ТИТУЛ -->
+  <div style="padding:8px 0 36px; border-bottom:2px solid #14171A;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+      <div style="font:700 15px 'Golos Text',sans-serif; letter-spacing:-.01em;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+      <div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase;">Документ 02 из 08</div>
+    </div>
+    <h1 style="font:700 40px/1.15 'Golos Text',sans-serif; letter-spacing:-.02em; margin:48px 0 12px;">Product Package</h1>
+    <p style="font:400 16px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0; max-width:540px;">PRD, требования, скоуп MVP, эпики и истории, роадмап, метрики, персоны и карты пути клиента. Опирается на решения <a href="OzimAI — 01 Executive.dc.html">01 Executive</a>: ниша — частные медицинские и стоматологические клиники Казахстана.</p>
+    <div style="display:flex; gap:28px; margin-top:28px; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#5C6470; text-transform:uppercase;">
+      <span>Продукт · AI-сотрудник</span><span>Ниша · Клиники</span><span>Язык · РУС / КАЗ</span><span>Статус · На утверждение</span>
+    </div>
+  </div>
+
+  <!-- 01 PRD -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">01 · PRD</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Product Requirements Document</h2>
+  </div>
+  <table style="font:400 13.5px/1.55 'Golos Text',sans-serif;">
+    <tr><td style="padding:12px 16px 12px 0; border-bottom:1px solid #E4E7EA; width:150px; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Проблема</td><td style="padding:12px 0; border-bottom:1px solid #E4E7EA;">До 30% обращений в клиники теряются: нерабочие часы, занятый администратор, «забыли перезвонить». Каждое потерянное обращение — 30–150 тыс. ₸ недополученной выручки.</td></tr>
+    <tr><td style="padding:12px 16px 12px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Решение MVP</td><td style="padding:12px 0; border-bottom:1px solid #E4E7EA;">AI-администратор «Айым» в WhatsApp и Instagram: <strong>(1)</strong> приём и ведение обращений, <strong>(2)</strong> запись/перенос/отмена в календаре, <strong>(3)</strong> напоминания и подтверждения визитов, <strong>(4)</strong> еженедельный отчёт владельцу. Всё остальное — за пределами MVP.</td></tr>
+    <tr><td style="padding:12px 16px 12px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Пользователи</td><td style="padding:12px 0; border-bottom:1px solid #E4E7EA;">Владелец клиники (покупатель), старший администратор (оператор панели), пациент (общается с AI, продукт не устанавливает).</td></tr>
+    <tr><td style="padding:12px 16px 12px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Успех MVP</td><td style="padding:12px 0; border-bottom:1px solid #E4E7EA;">≥60% диалогов решены AI без человека · время первого ответа &lt; 5 сек · неявки −30% · churn &lt; 5%/мес · онбординг клиники ≤ 1 дня.</td></tr>
+    <tr><td style="padding:12px 16px 12px 0; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Вне скоупа MVP</td><td style="padding:12px 0;">AI-телефония · маркетинговые рассылки · полноценная CRM-аналитика · биллинг пациентов · мобильное приложение · интеграции МИС (кроме экспорта CSV). Порядок подключения — в роадмапе (раздел 07).</td></tr>
+  </table>
+
+  <!-- 02 ТРЕБОВАНИЯ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">02 · Требования</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Функциональные, нефункциональные, бизнес</h2>
+  </div>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:70px;">ID</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Функциональное требование (MVP)</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font:600 11px 'IBM Plex Mono',monospace; color:#0B9B6D;">FR-01</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">AI отвечает на входящие сообщения WhatsApp/Instagram на русском и казахском, определяя язык автоматически.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font:600 11px 'IBM Plex Mono',monospace; color:#0B9B6D;">FR-02</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">AI отвечает только на основе базы знаний клиники (услуги, цены, врачи, график); при отсутствии ответа — эскалация человеку, никаких догадок.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font:600 11px 'IBM Plex Mono',monospace; color:#0B9B6D;">FR-03</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">AI создаёт, переносит и отменяет записи в календаре с проверкой доступности врача в реальном времени.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font:600 11px 'IBM Plex Mono',monospace; color:#0B9B6D;">FR-04</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Автонапоминания за 24 ч и 2 ч до визита с кнопками «Подтвердить / Перенести / Отменить».</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font:600 11px 'IBM Plex Mono',monospace; color:#0B9B6D;">FR-05</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Каждый контакт автоматически попадает в мини-CRM: имя, телефон, история диалогов и визитов, статус лида.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font:600 11px 'IBM Plex Mono',monospace; color:#0B9B6D;">FR-06</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Панель управления: живая лента диалогов, «перехват» диалога человеком, календарь, база знаний, отчёты.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font:600 11px 'IBM Plex Mono',monospace; color:#0B9B6D;">FR-07</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Еженедельный отчёт владельцу в WhatsApp: обращения, записи, деньги в записях, ТОП-вопросы, потерянные лиды.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; font:600 11px 'IBM Plex Mono',monospace; color:#0B9B6D;">FR-08</td><td style="padding:9px 0 9px 10px;">Онбординг-мастер: загрузка прайса и графика (файл/текст) → AI-сотрудник готов к работе ≤ 1 дня.</td></tr>
+  </table>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; margin:18px 0 0; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Нефункциональные (NFR)</div>
+      <ul style="margin:0; padding-left:16px;"><li>Первый ответ AI ≤ 5 сек (p95)</li><li>Доступность 99,5%; деградация без AI → уведомление и ручной режим</li><li><strong>Guardrail: AI не даёт медицинских консультаций</strong> — только администрирование (решение из 01)</li><li>Перс. данные хранятся в КЗ, шифрование at-rest/in-transit</li><li>Мультиарендность с изоляцией данных клиник</li><li>Полный журнал действий AI (аудит каждой записи/отмены)</li></ul>
+    </div>
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Бизнес-требования</div>
+      <ul style="margin:0; padding-left:16px;"><li>Самостоятельная подписка и оплата картой/Kaspi без менеджера</li><li>Тарифы Старт/Рост/Бизнес с лимитами диалогов</li><li>Триал 14 дней с отчётом «сколько денег принёс AI»</li><li>Себестоимость AI на клиента ≤ 22% ARPU</li><li>Продукт демонстрируем за 10 минут на телефоне клиента</li></ul>
+    </div>
+  </div>
+
+  <!-- 03 MoSCoW -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">03 · Скоуп</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">MVP-скоуп · MoSCoW</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#F2FAF6; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#087A56; text-transform:uppercase; margin-bottom:8px;">Must — MVP</div><ul style="margin:0; padding-left:16px;"><li>AI-диалоги WhatsApp (рус/каз)</li><li>Запись / перенос / отмена + календарь</li><li>Напоминания и подтверждения</li><li>Мини-CRM (автозаполнение)</li><li>Панель: лента, перехват, база знаний</li><li>Отчёт владельцу · онбординг-мастер · биллинг</li></ul></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#14171A; text-transform:uppercase; margin-bottom:8px;">Should — v1.1–1.2</div><ul style="margin:0; padding-left:16px;"><li>Instagram Direct</li><li>Реактивация «спящих» пациентов</li><li>Виджет чата на сайт</li><li>Депозит при записи (Kaspi Pay)</li><li>Экспорт/импорт CSV, роли команды</li></ul></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#5C6470; text-transform:uppercase; margin-bottom:8px;">Could — v2</div><ul style="margin:0; padding-left:16px;"><li>AI-телефония (приём звонков)</li><li>Интеграции МИС и YClients</li><li>Аналитика воронки и LTV пациентов</li><li>Маркетинговые кампании</li></ul></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#B4232A; text-transform:uppercase; margin-bottom:8px;">Won't — сознательно нет</div><ul style="margin:0; padding-left:16px;"><li>Медицинские консультации AI</li><li>Мобильное приложение (панель — mobile-web)</li><li>Конструктор сценариев «как у ботов»</li><li>Внутренний ассистент, BI, voice — до PMF</li></ul></div>
+  </div>
+
+  <!-- 04 FEATURE MATRIX -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">04 · Тарифы</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Feature Matrix по тарифам</h2>
+  </div>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Возможность</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Старт · 39 000 ₸</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Рост · 89 000 ₸</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Бизнес · 189 000 ₸</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">AI-диалоги / мес</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">до 300</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">до 1 000</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">до 3 000</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Каналы</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">WhatsApp</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">+ Instagram</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">+ виджет сайта</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Запись, напоминания, мини-CRM</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">✓</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">✓</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">✓</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Реактивация базы</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">—</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">✓</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">✓</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Филиалы / пользователи панели</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">1 / 2</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">1 / 5</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">до 5 / 15</td></tr>
+    <tr><td style="padding:9px 10px 9px 0;">Поддержка</td><td style="padding:9px 10px;">чат</td><td style="padding:9px 10px;">приоритетная</td><td style="padding:9px 0 9px 10px;">success-менеджер</td></tr>
+  </table>
+
+  <!-- 05 ЭПИКИ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">05 · Бэклог</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Эпики, user stories, acceptance criteria</h2>
+  </div>
+  <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0 0 16px;">Пять эпиков MVP. Ниже — ключевые истории с критериями приёмки; полный бэклог (47 историй) ведётся в трекере и генерируется из этого документа.</p>
+
+  <div style="border:1px solid #E4E7EA; margin:0 0 14px;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between; align-items:baseline;"><span style="font:600 13px 'Golos Text',sans-serif;">E1 · AI-диалог</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E; letter-spacing:.08em;">12 ИСТОРИЙ</span></div>
+    <div style="padding:14px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+      <p style="margin:0 0 6px;"><strong>US-1.1</strong> Как пациент, я пишу в WhatsApp клиники в 23:00 и получаю ответ о цене чистки, чтобы не искать другую клинику.</p>
+      <p style="margin:0 0 12px; color:#5C6470;"><span style="font:600 9.5px 'IBM Plex Mono',monospace; color:#0B9B6D; letter-spacing:.08em;">AC</span> ответ ≤ 5 сек · цена только из базы знаний · язык ответа = язык вопроса · если цены нет в базе — «уточню у администратора» + эскалация.</p>
+      <p style="margin:0 0 6px;"><strong>US-1.2</strong> Как администратор, я перехватываю диалог одной кнопкой, чтобы решить нестандартный вопрос.</p>
+      <p style="margin:0; color:#5C6470;"><span style="font:600 9.5px 'IBM Plex Mono',monospace; color:#0B9B6D; letter-spacing:.08em;">AC</span> AI замолкает мгновенно · пациент не видит «шва» · AI возвращается по кнопке · вся переписка в одной ленте.</p>
+    </div>
+  </div>
+  <div style="border:1px solid #E4E7EA; margin:0 0 14px;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between; align-items:baseline;"><span style="font:600 13px 'Golos Text',sans-serif;">E2 · Запись и календарь</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E; letter-spacing:.08em;">10 ИСТОРИЙ</span></div>
+    <div style="padding:14px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+      <p style="margin:0 0 6px;"><strong>US-2.1</strong> Как пациент, я записываюсь к конкретному врачу на удобное время прямо в чате.</p>
+      <p style="margin:0 0 12px; color:#5C6470;"><span style="font:600 9.5px 'IBM Plex Mono',monospace; color:#0B9B6D; letter-spacing:.08em;">AC</span> AI предлагает ≤ 3 свободных слота · двойная запись невозможна (блокировка слота) · подтверждение с датой, врачом, адресом · запись видна в панели ≤ 2 сек.</p>
+      <p style="margin:0 0 6px;"><strong>US-2.2</strong> Как пациент, я переношу запись, ответив на напоминание.</p>
+      <p style="margin:0; color:#5C6470;"><span style="font:600 9.5px 'IBM Plex Mono',monospace; color:#0B9B6D; letter-spacing:.08em;">AC</span> старый слот освобождается атомарно · новый подтверждается · администратору — уведомление.</p>
+    </div>
+  </div>
+  <div style="border:1px solid #E4E7EA; margin:0 0 14px;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between; align-items:baseline;"><span style="font:600 13px 'Golos Text',sans-serif;">E3 · База знаний и онбординг</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E; letter-spacing:.08em;">9 ИСТОРИЙ</span></div>
+    <div style="padding:14px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+      <p style="margin:0 0 6px;"><strong>US-3.1</strong> Как владелец, я загружаю прайс (Excel/фото/текст) и получаю готового AI-сотрудника без настройки сценариев.</p>
+      <p style="margin:0; color:#5C6470;"><span style="font:600 9.5px 'IBM Plex Mono',monospace; color:#0B9B6D; letter-spacing:.08em;">AC</span> парсинг с предпросмотром «вопрос → ответ AI» · владелец правит формулировки инлайн · тест-чат до запуска · время до готовности ≤ 1 дня.</p>
+    </div>
+  </div>
+  <div style="border:1px solid #E4E7EA; margin:0 0 14px;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between; align-items:baseline;"><span style="font:600 13px 'Golos Text',sans-serif;">E4 · Отчёты и CRM</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E; letter-spacing:.08em;">8 ИСТОРИЙ</span></div>
+    <div style="padding:14px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+      <p style="margin:0 0 6px;"><strong>US-4.1</strong> Как владелец, я получаю в понедельник отчёт «AI принёс записей на 840 000 ₸», чтобы видеть ROI подписки.</p>
+      <p style="margin:0; color:#5C6470;"><span style="font:600 9.5px 'IBM Plex Mono',monospace; color:#0B9B6D; letter-spacing:.08em;">AC</span> сумма = записи × прайс · отдельно: потерянные лиды с причинами · отчёт приходит в WhatsApp владельца, полная версия — в панели.</p>
+    </div>
+  </div>
+  <div style="border:1px solid #E4E7EA;">
+    <div style="background:#F5F8F6; padding:10px 16px; display:flex; justify-content:space-between; align-items:baseline;"><span style="font:600 13px 'Golos Text',sans-serif;">E5 · Организация и биллинг</span><span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E; letter-spacing:.08em;">8 ИСТОРИЙ</span></div>
+    <div style="padding:14px 16px; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+      <p style="margin:0 0 6px;"><strong>US-5.1</strong> Как владелец, я оформляю подписку картой или Kaspi за 2 минуты, без звонка менеджеру.</p>
+      <p style="margin:0; color:#5C6470;"><span style="font:600 9.5px 'IBM Plex Mono',monospace; color:#0B9B6D; letter-spacing:.08em;">AC</span> триал 14 дней без карты · автопродление с чеком · при неуплате AI работает read-only 7 дней, данные не удаляются.</p>
+    </div>
+  </div>
+
+  <!-- 06 USE CASES / EDGE CASES -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">06 · Сценарии</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Use cases и edge cases</h2>
+  </div>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Ситуация</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Поведение системы</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Пациент спрашивает «что мне делать с болью?»</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">AI не консультирует: сочувствует, предлагает ближайший слот к врачу, при словах-маркерах «острая боль» — срочная эскалация администратору.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Два пациента претендуют на один слот</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Атомарная блокировка: первый подтвердивший получает слот, второму мгновенно предлагаются соседние.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">LLM-провайдер недоступен</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Фолбэк на резервного провайдера; если оба недоступны — автоответ «администратор ответит в течение часа» + пуш команде клиники.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Пациент пишет голосовыми</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Транскрибация → обычный пайплайн; при нераспознавании — вежливая просьба написать текстом.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Агрессия, спам, «взлом» промпта</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Guardrails: AI не раскрывает инструкции, не меняет цены, после 2 циклов агрессии — передача человеку и пометка контакта.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0;">Клиника меняет прайс задним числом</td><td style="padding:9px 0 9px 10px;">Версионирование базы знаний: в споре виден ответ AI и версия прайса на момент диалога.</td></tr>
+  </table>
+
+  <!-- 07 РОАДМАП -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">07 · План</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Роадмап продукта и релизов</h2>
+  </div>
+  <table style="font:400 13px/1.55 'Golos Text',sans-serif;">
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; width:170px; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase;">Спринты 1–6 · M1–3</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;"><strong>v0.9 «Дизайн-партнёры».</strong> E1 + E2 + базовая панель. 10 клиник бесплатно, ручной онбординг силами команды. Цель — данные реальных диалогов.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase;">Спринты 7–12 · M4–6</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;"><strong>v1.0 «Продажа».</strong> E3 (self-service онбординг) + E4 (отчёты) + E5 (биллинг). Публичный запуск, 25 платящих.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase;">M7–12</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;"><strong>v1.1–1.2.</strong> Instagram, реактивация базы, депозиты Kaspi, виджет сайта, роли. Параллельно — адаптация под beauty-сегмент.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase;">M13–24</td><td style="padding:10px 0;"><strong>v2.</strong> AI-телефония, интеграции МИС/YClients, аналитика воронки, мультифилиальность, Узбекистан. Каждый пункт — через ADR и валидацию спроса.</td></tr>
+  </table>
+
+  <!-- 08 МЕТРИКИ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">08 · Измерение</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Метрики, KPI-дашборд, аналитика</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12px/1.55 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#087A56; text-transform:uppercase; margin-bottom:8px;">Ценность (North Star)</div>Записи без человека/нед · % автономных диалогов (цель &gt; 70%) · деньги в записях от AI · снижение неявок</div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Бизнес</div>MRR · churn (логотипы и деньги) · NRR · CAC по каналам · LTV/CAC · конверсия триал → оплата (цель &gt; 40%)</div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Качество AI</div>Время первого ответа p95 · доля эскалаций · CSAT диалога · галлюцинации на 1 000 диалогов (цель 0) · стоимость диалога ₸</div>
+  </div>
+  <p style="font:400 13px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:14px 0 0;">План аналитики: события продукта — PostHog (self-hosted, данные в регионе); AI-качество — собственный трейсинг диалогов с разметкой; бизнес-метрики — витрина поверх БД, KPI-дашборд обновляется ежедневно и доступен всей команде. Спецификация событий — в документе 06.</p>
+
+  <!-- 09 ПЕРСОНЫ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">09 · Люди</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Персоны</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 14px 'Golos Text',sans-serif;">Айгуль, 42</div>
+      <div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#0B9B6D; text-transform:uppercase; margin:2px 0 10px;">Владелица стоматологии · покупатель</div>
+      <p style="margin:0 0 8px;">2 филиала, 8 врачей. Сама врач, управляет «на бегу». Живёт в WhatsApp, ненавидит сложный софт.</p>
+      <p style="margin:0; color:#5C6470;"><strong style="color:#14171A;">Хочет:</strong> полное расписание, контроль без микроменеджмента. <strong style="color:#14171A;">Боится:</strong> что AI нагрубит пациенту. <strong style="color:#14171A;">Триггер покупки:</strong> отчёт о потерянных обращениях за месяц.</p>
+    </div>
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 14px 'Golos Text',sans-serif;">Мадина, 26</div>
+      <div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#0B9B6D; text-transform:uppercase; margin:2px 0 10px;">Старший администратор · оператор</div>
+      <p style="margin:0 0 8px;">Разрывается между стойкой, телефоном и тремя мессенджерами. Боится, что AI «заберёт работу».</p>
+      <p style="margin:0; color:#5C6470;"><strong style="color:#14171A;">Хочет:</strong> меньше рутины ночных сообщений. <strong style="color:#14171A;">Нужно от нас:</strong> позиционирование «AI — твой помощник», простой перехват диалога, заслуги записей — админам.</p>
+    </div>
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 14px 'Golos Text',sans-serif;">Тимур, 34</div>
+      <div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#0B9B6D; text-transform:uppercase; margin:2px 0 10px;">Пациент · конечный пользователь</div>
+      <p style="margin:0 0 8px;">Ищет стоматологию в Instagram в 22:40. Пишет в 3 клиники сразу — записывается туда, где ответили первыми.</p>
+      <p style="margin:0; color:#5C6470;"><strong style="color:#14171A;">Хочет:</strong> цену и запись за 2 минуты без звонка. <strong style="color:#14171A;">Не хочет:</strong> «оставьте номер, вам перезвонят» и роботский тон.</p>
+    </div>
+  </div>
+
+  <!-- 10 CJM -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">10 · Путь клиента</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Customer Journey Map · владелец клиники</h2>
+  </div>
+  <table style="font:400 12px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 8px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:110px;">Этап</th>
+      <th style="padding:8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Действия и мысли</th>
+      <th style="padding:8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Точки касания</th>
+      <th style="padding:8px 0 8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Наша задача</th>
+    </tr>
+    <tr><td style="padding:9px 8px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Осознание</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">«Мы теряем пациентов ночью, админ не справляется»</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">Instagram-контент, рекомендация коллеги</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">Назвать боль цифрой: «клиника теряет ~450 тыс. ₸/мес»</td></tr>
+    <tr><td style="padding:9px 8px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Оценка</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">«Это очередной бот? Не опозорит ли клинику?»</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">Демо на её телефоне, кейсы коллег</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">Демо за 10 минут: она сама пишет AI и пробует «сломать»</td></tr>
+    <tr><td style="padding:9px 8px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Триал</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">«Посмотрим, что он реально запишет»</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">Онбординг-мастер, WhatsApp-отчёты</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">Первая AI-запись в первые 48 часов — ключевой aha-момент</td></tr>
+    <tr><td style="padding:9px 8px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Оплата</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">«Отчёт показал 12 записей на 840 тыс. ₸ — беру»</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">Итоговый отчёт триала, страница тарифов</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">ROI-рамка: подписка = 5% принесённой выручки</td></tr>
+    <tr><td style="padding:9px 8px 9px 0; font-weight:600;">Лояльность</td><td style="padding:9px 8px;">«Советую в чате владельцев клиник»</td><td style="padding:9px 8px;">Еженедельные отчёты, success-менеджер</td><td style="padding:9px 0 9px 8px;">Реферальная программа: месяц бесплатно за приведённую клинику</td></tr>
+  </table>
+
+  <!-- 11 SERVICE BLUEPRINT + JTBD -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">11 · Механика сервиса</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Service Blueprint и Jobs to Be Done</h2>
+  </div>
+  <table style="font:400 12px/1.5 'Golos Text',sans-serif; margin:0 0 18px;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 8px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:130px;">Слой</th>
+      <th style="padding:8px 0 8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Сценарий «пациент записывается ночью»</th>
+    </tr>
+    <tr><td style="padding:9px 8px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Фронтстейдж</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">Пациент пишет в WhatsApp → диалог с «Айым» → подтверждение записи с деталями → утром напоминание.</td></tr>
+    <tr><td style="padding:9px 8px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Бэкстейдж</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">Утром администратор видит новую запись в ленте с полным контекстом; спорные диалоги помечены для просмотра.</td></tr>
+    <tr><td style="padding:9px 8px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Процессы</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">Intent-распознавание → RAG по базе клиники → function calling (слоты, запись) → журнал аудита → события аналитики.</td></tr>
+    <tr><td style="padding:9px 8px 9px 0; font-weight:600;">Точки провала</td><td style="padding:9px 0 9px 8px;">Нет ответа в базе → эскалация; сомнение в намерении → уточняющий вопрос, а не догадка; сбой LLM → фолбэк-провайдер.</td></tr>
+  </table>
+  <div style="border-left:2px solid #0B9B6D; padding:4px 0 4px 20px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#087A56; text-transform:uppercase; margin-bottom:8px;">JTBD · главные работы</div>
+    <p style="font:400 13px/1.7 'Golos Text',sans-serif; margin:0;">«Когда пациент пишет клинике в любое время, я хочу, чтобы ему мгновенно и грамотно ответили и записали, чтобы ни один рубль выручки не терялся» — владелец. · «Когда я занята пациентом на стойке, я хочу, чтобы сообщения не копились, чтобы не работать вечером» — администратор. · «Когда у меня заболел зуб вечером, я хочу записаться за 2 минуты без звонков, чтобы спокойно лечь спать» — пациент. Карта историй (story map) строится по этим трём работам: хребет = путь пациента от вопроса до визита.</p>
+  </div>
+
+  <!-- ДАЛЬШЕ -->
+  <div style="margin:56px 0 0; border-top:2px solid #14171A; padding-top:22px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase; margin-bottom:10px;">Следующий шаг</div>
+    <p style="font:400 14px/1.65 'Golos Text',sans-serif; margin:0 0 14px;">После утверждения — <strong>03 UX</strong>: информационная архитектура, инвентарь экранов, вайрфреймы и все ключевые потоки (онбординг, база знаний, AI-чат, календарь, биллинг), включая error/empty/loading-состояния.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase;">
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">01 Executive ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">02 Product ✓</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">03 UX</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">04 UI</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">05 Branding</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">06 Engineering</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">07 Development</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">08 Startup</span>
+    </div>
+  </div>
+
+</x-import>
+</x-dc>
+</body>
+</html>

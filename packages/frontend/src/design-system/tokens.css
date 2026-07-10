@@ -1,0 +1,143 @@
+/* Transcribed verbatim from `OzimAI - 04 UI.dc.html` — colors, type scale,
+   8px spacing, radii, elevation, motion. Do not hand-tune values here;
+   change the design doc first, then mirror the change. */
+
+:root {
+  --bg-page: #FAFBFA;
+  --bg-sunken: #F5F8F6;
+  --surface: #FFFFFF;
+  --border: #E4E7EA;
+  --border-strong: #C9CED4;
+
+  --text-ink: #14171A;
+  --text-muted: #5C6470;
+  --text-faint: #8A929E;
+
+  --accent-600: #0B9B6D;
+  --accent-700: #087A56;
+  --accent-050: #F2FAF6;
+  --accent-rgb: 11, 155, 109;
+  /* Text drawn on top of accent-600: white in light mode, ink in dark mode
+     (04 UI: "accent осветляется... текст на accent — ink") — accent-600
+     turns into a bright mint in dark mode, where white text loses contrast. */
+  --on-accent: #FFFFFF;
+  /* Always the opposite of bg-page, for "inverted" chips/toasts (active
+     filter pill, toast) that must stay legible regardless of theme. */
+  --on-ink: #FFFFFF;
+
+  --danger-600: #B4232A;
+  --warn-600: #B07818;
+  --warn-bg: #FBF3E4;
+  --warn-text: #8A5C10;
+  --info-600: #2563A8;
+  --info-bg: #EFF4FA;
+  --info-text: #1F4E85;
+
+  --font-ui: 'Golos Text', 'Helvetica Neue', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  --radius-control: 6px;
+  --radius-card: 10px;
+  --radius-chip: 18px;
+
+  --elevation-1: 0 2px 8px rgba(20, 23, 26, 0.06);
+  --elevation-2: 0 8px 24px rgba(20, 23, 26, 0.10);
+
+  --motion-hover: 120ms;
+  --motion-popover: 200ms;
+  --motion-panel: 280ms;
+  --motion-ease: cubic-bezier(.2, .8, .2, 1);
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg-page: #0E1113;
+  --bg-sunken: #14181B;
+  --surface: #171B1E;
+  --border: #262C30;
+  --border-strong: #3A4147;
+
+  --text-ink: #E8EBED;
+  --text-muted: #9AA3AC;
+  --text-faint: #7E8790;
+
+  --accent-600: #2FBF8C;
+  --accent-700: #2FBF8C;
+  --accent-050: rgba(47, 191, 140, 0.12);
+  --accent-rgb: 47, 191, 140;
+  --on-accent: #0E1113;
+  --on-ink: #0E1113;
+
+  --warn-bg: rgba(176, 120, 24, 0.18);
+  --info-bg: rgba(37, 99, 168, 0.18);
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg-page: #0E1113;
+    --bg-sunken: #14181B;
+    --surface: #171B1E;
+    --border: #262C30;
+    --border-strong: #3A4147;
+
+    --text-ink: #E8EBED;
+    --text-muted: #9AA3AC;
+    --text-faint: #7E8790;
+
+    --accent-600: #2FBF8C;
+    --accent-700: #2FBF8C;
+    --accent-050: rgba(47, 191, 140, 0.12);
+    --accent-rgb: 47, 191, 140;
+    --on-accent: #0E1113;
+    --on-ink: #0E1113;
+
+    --warn-bg: rgba(176, 120, 24, 0.18);
+    --info-bg: rgba(37, 99, 168, 0.18);
+
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-ink);
+  font: 400 14px/1.57 var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea { font-family: inherit; color: inherit; }
+
+::placeholder { color: var(--text-faint); }
+
+a { color: var(--accent-600); text-decoration: none; }
+a:hover { color: var(--accent-700); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.type-display { font: 700 28px/1.2 var(--font-ui); letter-spacing: -0.02em; }
+.type-h1 { font: 600 22px/1.27 var(--font-ui); letter-spacing: -0.01em; }
+.type-h2 { font: 600 17px/1.4 var(--font-ui); }
+.type-body { font: 400 14px/1.57 var(--font-ui); }
+.type-small { font: 400 12px/1.5 var(--font-ui); color: var(--text-muted); }
+.type-label { font: 600 10px/1.4 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); }

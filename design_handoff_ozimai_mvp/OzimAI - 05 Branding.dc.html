@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — 05 Branding Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Golos Text', 'Helvetica Neue', sans-serif; color:#14171A; }
+  a { color:#0B9B6D; text-decoration:none; border-bottom:1px solid #0B9B6D44; }
+  a:hover { color:#087A56; border-bottom-color:#087A56; }
+  doc-page:not(:defined) { visibility:hidden; }
+  table { border-collapse:collapse; width:100%; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="a4" margin="0.8in" hint-size="100%,1400px">
+
+  <div slot="footer" style="display:flex; justify-content:space-between; font:500 9px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; padding-top:6px; border-top:1px solid #E4E7EA;">
+    <span>OzimAI · Конфиденциально</span>
+    <span>05 Branding · v1.0 · июль 2026</span>
+  </div>
+
+  <!-- ТИТУЛ -->
+  <div style="padding:8px 0 36px; border-bottom:2px solid #14171A;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+      <div style="font:700 15px 'Golos Text',sans-serif; letter-spacing:-.01em;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+      <div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase;">Документ 05 из 08</div>
+    </div>
+    <h1 style="font:700 40px/1.15 'Golos Text',sans-serif; letter-spacing:-.02em; margin:48px 0 12px;">Branding Package</h1>
+    <p style="font:400 16px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0; max-width:540px;">Имя, идентичность, тон голоса, месседжинг и структура лендинга. Опирается на позиционирование «AI-сотрудник» из <a href="OzimAI — 01 Executive.dc.html">01 Executive</a> и визуальную систему <a href="OzimAI — 04 UI.dc.html">04 UI</a>.</p>
+    <div style="display:flex; gap:28px; margin-top:28px; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#5C6470; text-transform:uppercase;">
+      <span>Имя · OzimAI</span><span>AI-персонаж · Айым</span><span>Язык · РУС / КАЗ</span><span>Статус · На утверждение</span>
+    </div>
+  </div>
+
+  <!-- 01 ИМЯ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">01 · Имя</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Название и смысл</h2>
+  </div>
+  <p style="font:400 14.5px/1.65 'Golos Text',sans-serif; margin:0 0 14px;"><strong>OzimAI</strong> — от казахского «Өзім» («я сам», «сам справляюсь»). Двойной смысл работает на обе аудитории: для владельца бизнеса — «теперь справляюсь сам, без лишних рук»; технически имя прячет в себе «AI» на конце, что мгновенно читается в любом контексте (домен, поиск, визитка). Рабочее название «BizPilot AI» из брифа отклонено — универсально-англоязычное, не даёт локальной укоренённости, которая является нашим главным конкурентным рвом (раздел 06, документ 01).</p>
+  <div style="border-left:2px solid #0B9B6D; padding:4px 0 4px 20px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#087A56; text-transform:uppercase; margin-bottom:6px;">Написание</div>
+    <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; margin:0;"><strong>OzimAI</strong> слитно, с заглавной O и заглавным AI — в тексте, доменах, коде. В кириллице — <strong>ОзимAI</strong> (AI латиницей всегда). Никогда не «Ozim AI» с пробелом и не всеми заглавными «OZIMAI».</p>
+  </div>
+
+  <!-- 02 ИДЕНТИЧНОСТЬ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">02 · Идентичность</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Логотип и визуальные атрибуты</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; margin:0 0 16px; break-inside:avoid;">
+    <div style="background:#fff; padding:28px; display:flex; align-items:center; justify-content:center;">
+      <div style="font:700 34px 'Golos Text',sans-serif; letter-spacing:-.02em; color:#14171A;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+    </div>
+    <div style="background:#14171A; padding:28px; display:flex; align-items:center; justify-content:center;">
+      <div style="font:700 34px 'Golos Text',sans-serif; letter-spacing:-.02em; color:#fff;">Ozim<span style="color:#2FBF8C;">AI</span></div>
+    </div>
+  </div>
+  <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; margin:0 0 14px;">Логотип — чистый вордмарк на Golos Text, без символа на старте: имя уже несёт весь смысл, а вордмарк дешевле в производстве для стартапа на pre-seed. Единственный цветной элемент — «AI» в акценте. Знак (для favicon/аватара AI) вводится отдельно ниже.</p>
+  <div style="display:flex; gap:20px; align-items:center; margin:0 0 16px; break-inside:avoid;">
+    <div style="width:56px; height:56px; border-radius:14px; background:#0B9B6D; display:flex; align-items:center; justify-content:center; font:700 22px 'Golos Text',sans-serif; color:#fff;">о</div>
+    <div style="width:56px; height:56px; border-radius:14px; background:#14171A; display:flex; align-items:center; justify-content:center; font:700 22px 'Golos Text',sans-serif; color:#2FBF8C;">о</div>
+    <p style="font:400 12.5px/1.55 'Golos Text',sans-serif; color:#5C6470; margin:0; max-width:340px;">Аватар «о» (от «Өзім») строчная, округлая, тёплая — используется как аватар AI-сотрудника в WhatsApp/Instagram и favicon. Радиус угла 14/56 = 0.25, совпадает с radius/l системы 04 UI.</p>
+  </div>
+  <p style="font:400 12.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0;"><strong style="color:#14171A;">Защитное поле:</strong> высота буквы O вокруг логотипа. <strong style="color:#14171A;">Мин. размер:</strong> 20px высоты в цифре, 15мм в печати. <strong style="color:#14171A;">Нельзя:</strong> растягивать, добавлять тень/градиент, менять цвет «AI» на что-то кроме accent-600/на светлом или #2FBF8C на тёмном.</p>
+
+  <!-- 03 ГОЛОС -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">03 · Голос</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Тон голоса</h2>
+  </div>
+  <p style="font:400 14px/1.6 'Golos Text',sans-serif; margin:0 0 16px;">Один бренд, два голоса: <strong>маркетинг OzimAI</strong> говорит с владельцем — прямо, цифрами, без пафоса про «AI-революцию». <strong>Айым</strong> говорит с пациентом — тепло, коротко, по-человечески, никогда не «роботизировано вежливо».</p>
+  <table style="font:400 13px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:150px;">Атрибут</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Мы говорим так</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Не так</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Прямой</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">«AI ответил за 4 секунды и записал пациента»</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA; color:#8A929E;">«Революционная синергия ИИ-технологий»</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Цифрами, не эмоциями</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">«В 6 раз дешевле администратора»</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA; color:#8A929E;">«Невероятная экономия для вашего бизнеса!»</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Тёплый, не льстивый</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">(Айым) «Понимаю, зубная боль — это неприятно»</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA; color:#8A929E;">«Здравствуйте! Я — ваш виртуальный ассистент 🤖»</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; font-weight:600;">Честный о границах</td><td style="padding:9px 10px;">(Айым) «Это лучше уточнить у врача, передаю администратору»</td><td style="padding:9px 0 9px 10px; color:#8A929E;">Придумывать цену или диагноз, чтобы не отказывать</td></tr>
+  </table>
+  <p style="font:400 12.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:14px 0 0;">Эмодзи — только у Айым, максимум один на сообщение, и только смысловой (✦ подпись, 📅 запись). Маркетинговые тексты — без эмодзи. Восклицательный знак — не чаще одного на экран.</p>
+
+  <!-- 04 МЕССЕДЖИНГ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">04 · Месседжинг</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Позиционирование и ключевые сообщения</h2>
+  </div>
+  <div style="border:1px solid #14171A; padding:20px 24px; margin:0 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Главное сообщение</div>
+    <div style="font:600 22px/1.4 'Golos Text',sans-serif;">Наймите AI-администратора за 39 000 ₸ в месяц — в 6 раз дешевле человека, работает 24/7 и не пропускает ни одного пациента.</div>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.55 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase; margin-bottom:6px;">Для владельца</div>«Ни одного пропущенного пациента — даже ночью и в выходные»</div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase; margin-bottom:6px;">Против конкурентов</div>«Не календарь, который ждёт клиента, а сотрудник, который сам его приводит»</div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase; margin-bottom:6px;">Снятие риска</div>«Запускается за 1 день. Отвечает только тем, что вы разрешили»</div>
+  </div>
+  <p style="font:400 13px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:14px 0 0;"><strong>Категория, которую мы называем:</strong> «AI-сотрудник» — не софт, не бот, не CRM. Ценовой якорь в любом тексте — зарплата администратора (200–400 тыс. ₸), а не цена подписок-конкурентов.</p>
+
+  <!-- 05 ЛЕНДИНГ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">05 · Лендинг</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Структура лендинга</h2>
+  </div>
+  <table style="font:400 12.5px/1.55 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:150px;">Секция</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Содержание и цель</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Hero</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Главное сообщение + подстрока «Для медицинских и стоматологических клиник Казахстана» + CTA «Попробовать 14 дней бесплатно». Справа — живой пример диалога Айым (компонент из 04 UI).</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Боль → цифра</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">«Клиники теряют до 30% обращений» с калькулятором: [Ваш средний чек] × [обращений/день] → «вы теряете ≈ N ₸/мес».</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Как работает</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">3 шага: загрузили прайс → подключили WhatsApp → Айым отвечает и записывает. Иллюстрируется вайрфреймами онбординга из 03 UX.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Доказательства</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Кейсы дизайн-партнёров с конкретной цифрой («+18% записей за месяц»); заполняется после пилотов из GTM (документ 01).</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Тарифы</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Старт / Рост / Бизнес — карточки из feature matrix (документ 02), сравнение с зарплатой администратора рядом.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; font-weight:600;">FAQ + финальный CTA</td><td style="padding:9px 0 9px 10px;">Снятие возражений: «Не опозорит ли AI клинику?», «Что с данными пациентов?» (см. риски, документ 01) → повтор CTA триала.</td></tr>
+  </table>
+
+  <!-- ДАЛЬШЕ -->
+  <div style="margin:56px 0 0; border-top:2px solid #14171A; padding-top:22px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase; margin-bottom:10px;">Следующий шаг</div>
+    <p style="font:400 14px/1.65 'Golos Text',sans-serif; margin:0 0 14px;">После утверждения — <strong>06 Engineering</strong>: техническая архитектура, стек, схема данных, API, интеграции (WhatsApp Business API, LLM-провайдеры, Kaspi), безопасность и требования к хранению данных в РК.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase;">
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">01 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">02 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">03 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">04 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">05 Branding ✓</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">06 Engineering</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">07 Development</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">08 Startup</span>
+    </div>
+  </div>
+
+</x-import>
+</x-dc>
+</body>
+</html>

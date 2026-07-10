@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — 01 Executive Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Golos Text', 'Helvetica Neue', sans-serif; color:#14171A; }
+  a { color:#0B9B6D; text-decoration:none; border-bottom:1px solid #0B9B6D44; }
+  a:hover { color:#087A56; border-bottom-color:#087A56; }
+  doc-page:not(:defined) { visibility:hidden; }
+  table { border-collapse:collapse; width:100%; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="a4" margin="0.8in" hint-size="100%,1400px">
+
+  <div slot="footer" style="display:flex; justify-content:space-between; font:500 9px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; padding-top:6px; border-top:1px solid #E4E7EA;">
+    <span>OzimAI · Конфиденциально</span>
+    <span>01 Executive · v1.0 · июль 2026</span>
+  </div>
+
+  <!-- ТИТУЛ -->
+  <div style="padding:8px 0 36px; border-bottom:2px solid #14171A;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+      <div style="font:700 15px 'Golos Text',sans-serif; letter-spacing:-.01em;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+      <div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase;">Документ 01 из 08</div>
+    </div>
+    <h1 style="font:700 40px/1.15 'Golos Text',sans-serif; letter-spacing:-.02em; margin:48px 0 12px;">Executive Package</h1>
+    <p style="font:400 16px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0; max-width:520px;">Стратегический фундамент компании: видение, рынок, ниша MVP, бизнес-модель, риски и путь к $10M ARR. Все последующие документы (02 Product — 08 Startup) опираются на решения, зафиксированные здесь.</p>
+    <div style="display:flex; gap:28px; margin-top:28px; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#5C6470; text-transform:uppercase;">
+      <span>Рынок · Казахстан</span><span>Валюта · ₸ (KZT)</span><span>Курс · 525 ₸/$</span><span>Статус · На утверждение</span>
+    </div>
+  </div>
+
+  <!-- 01 EXECUTIVE SUMMARY -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">01 · Резюме</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Executive Summary</h2>
+  </div>
+  <p style="font:400 14.5px/1.65 'Golos Text',sans-serif; margin:0 0 14px;"><strong>OzimAI</strong> («Өзім» — каз. «я сам») — AI-операционная система для малого и среднего бизнеса. Продукт продаётся не как чат-бот и не как CRM, а как <strong>AI-сотрудник</strong>: цифровой член команды, который отвечает клиентам 24/7, записывает на приём, квалифицирует лиды, ведёт базу клиентов, напоминает, дозванивается и отчитывается владельцу.</p>
+  <p style="font:400 14.5px/1.65 'Golos Text',sans-serif; margin:0 0 14px;">MVP фокусируется на <strong>одной нише — частных медицинских и стоматологических клиниках Казахстана</strong> (обоснование в разделе 04). Это сегмент с самой дорогой ценой ошибки: пропущенный звонок или неотвеченный WhatsApp — потерянный чек от 30 000 до 150 000 ₸. Продукт монетизируется подпиской (39 000 – 189 000 ₸/мес), целевая юнит-экономика LTV/CAC > 10, точка безубыточности — около 260 клиентов.</p>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; margin:22px 0;">
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 22px 'Golos Text',sans-serif; color:#0B9B6D;">₸5,25 млрд</div><div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Цель ARR ($10M)</div></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 22px 'Golos Text',sans-serif; color:#14171A;">~5 500</div><div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Клиентов для цели</div></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 22px 'Golos Text',sans-serif; color:#14171A;">79 000 ₸</div><div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Целевой ARPU / мес</div></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 22px 'Golos Text',sans-serif; color:#14171A;">≈260</div><div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Клиентов до безубыточности</div></div>
+  </div>
+  <sc-if value="{{ showChallenges }}" hint-placeholder-val="{{ true }}">
+    <div style="border:1px solid rgba(11,155,109,.25); background:#F2FAF6; padding:14px 18px; margin:18px 0; border-radius:6px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#087A56; text-transform:uppercase; margin-bottom:6px;">⚑ Вызов команды основателю</div>
+      <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; margin:0; color:#33403A;">Исходный промпт перечисляет 16 функций AI-сотрудника. Это не MVP, а роадмап на 3 года. Мы сознательно урезаем MVP до 4 функций (приём обращений, запись, напоминания, отчёт владельцу) — каждая лишняя функция на старте удваивает срок выхода и размывает позиционирование. Несогласие фиксируем через ADR в документе 07.</p>
+    </div>
+  </sc-if>
+
+  <!-- 02 ВИДЕНИЕ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">02 · Фундамент</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Видение, миссия, ценности</h2>
+  </div>
+  <table style="font:400 13.5px/1.55 'Golos Text',sans-serif;">
+    <tr><td style="padding:12px 16px 12px 0; border-bottom:1px solid #E4E7EA; width:150px; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Видение</td><td style="padding:12px 0; border-bottom:1px solid #E4E7EA;">Стать операционной системой малого бизнеса: каждая компания в регионе управляет клиентами, записями и коммуникациями через OzimAI — так же естественно, как сегодня через WhatsApp.</td></tr>
+    <tr><td style="padding:12px 16px 12px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Миссия</td><td style="padding:12px 0; border-bottom:1px solid #E4E7EA;">Дать каждому малому бизнесу сотрудника, которого он не может себе позволить: безотказного, вежливого, работающего 24/7 и стоящего меньше половины МЗП.</td></tr>
+    <tr><td style="padding:12px 16px 12px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Ценности</td><td style="padding:12px 0; border-bottom:1px solid #E4E7EA;"><strong>Простота прежде мощности.</strong> Владелец салона осваивает продукт за 15 минут без обучения. · <strong>AI-first, а не AI-фича.</strong> · <strong>Доверие как продукт:</strong> AI никогда не выдумывает цену и не подтверждает несуществующую запись. · <strong>Скорость решений:</strong> решение за день лучше идеального за месяц.</td></tr>
+    <tr><td style="padding:12px 16px 12px 0; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Философия продукта</td><td style="padding:12px 0;">Продукт ощущается как сотрудник, а не как софт: у него есть имя, рабочие часы, зона ответственности и еженедельный отчёт. Интерфейс минимален — основная работа происходит в каналах, где уже живёт бизнес (WhatsApp, Instagram, телефон). Панель управления — для контроля, а не для рутины.</td></tr>
+  </table>
+
+  <!-- 03 ЦЕЛИ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">03 · Метрики</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">North Star, цели и критерии успеха</h2>
+  </div>
+  <div style="border:1px solid #14171A; padding:18px 22px; margin:0 0 20px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">North Star Metric</div>
+    <div style="font:600 19px/1.4 'Golos Text',sans-serif;">Количество записей/сделок, закрытых AI-сотрудником без участия человека, в неделю</div>
+    <p style="font:400 13px/1.55 'Golos Text',sans-serif; color:#5C6470; margin:8px 0 0;">Метрика напрямую связывает ценность для клиента (заработанные деньги) с нашей выручкой (retention). Прокси-метрики — MRR, NPS, доля автономно решённых диалогов (&gt;70%).</p>
+  </div>
+  <table style="font:400 13px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 12px 8px 0; border-bottom:2px solid #14171A; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Горизонт</th>
+      <th style="padding:8px 12px; border-bottom:2px solid #14171A; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Цель компании</th>
+      <th style="padding:8px 0 8px 12px; border-bottom:2px solid #14171A; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Критерий успеха</th>
+    </tr>
+    <tr><td style="padding:10px 12px 10px 0; border-bottom:1px solid #E4E7EA; white-space:nowrap; font-weight:600;">6 мес</td><td style="padding:10px 12px; border-bottom:1px solid #E4E7EA;">MVP в проде, 25 платящих клиник в Алматы/Астане</td><td style="padding:10px 0 10px 12px; border-bottom:1px solid #E4E7EA;">Churn &lt; 5%/мес; ≥60% диалогов решены AI автономно</td></tr>
+    <tr><td style="padding:10px 12px 10px 0; border-bottom:1px solid #E4E7EA; white-space:nowrap; font-weight:600;">12 мес</td><td style="padding:10px 12px; border-bottom:1px solid #E4E7EA;">300 клиентов, MRR ≈ 23,7 млн ₸, безубыточность в зоне видимости</td><td style="padding:10px 0 10px 12px; border-bottom:1px solid #E4E7EA;">LTV/CAC &gt; 5; NPS &gt; 45; выход во 2-ю нишу (beauty)</td></tr>
+    <tr><td style="padding:10px 12px 10px 0; border-bottom:1px solid #E4E7EA; white-space:nowrap; font-weight:600;">24 мес</td><td style="padding:10px 12px; border-bottom:1px solid #E4E7EA;">1 200 клиентов, MRR ≈ 95 млн ₸, старт Центральной Азии</td><td style="padding:10px 0 10px 12px; border-bottom:1px solid #E4E7EA;">Положительный операционный денежный поток</td></tr>
+    <tr><td style="padding:10px 12px 10px 0; white-space:nowrap; font-weight:600;">48 мес</td><td style="padding:10px 12px;">5 800 клиентов, ARR &gt; $10M, присутствие в 3+ странах</td><td style="padding:10px 0 10px 12px;">Готовность к раунду B или прибыльному росту без него</td></tr>
+  </table>
+
+  <!-- 04 НИША -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">04 · Ключевое решение</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Анализ ниш и выбор MVP</h2>
+  </div>
+  <p style="font:400 14px/1.6 'Golos Text',sans-serif; margin:0 0 16px;">Оценка шести ниш Казахстана по семи критериям промпта (шкала 1–5, взвешенно). Данные — оценки команды на основе открытых реестров и интервью; подлежат валидации в discovery (документ 02).</p>
+  <table style="font:400 12.5px/1.45 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Ниша</th>
+      <th style="padding:8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Размер</th>
+      <th style="padding:8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Боль</th>
+      <th style="padding:8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Готовность платить</th>
+      <th style="padding:8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">AI-готовность</th>
+      <th style="padding:8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Лёгкость CAC</th>
+      <th style="padding:8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Экспансия</th>
+      <th style="padding:8px 0 8px 8px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#0B9B6D; text-transform:uppercase;">Итог</th>
+    </tr>
+    <tr style="background:#F2FAF6;"><td style="padding:9px 10px 9px 8px; border-bottom:1px solid #E4E7EA; font-weight:600;">Мед. и стоматологические клиники</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">5</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">5</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">5</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA; font-weight:700; color:#0B9B6D;">4,5</td></tr>
+    <tr><td style="padding:9px 10px 9px 8px; border-bottom:1px solid #E4E7EA;">Салоны красоты и спа</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">5</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA; font-weight:600;">4,0</td></tr>
+    <tr><td style="padding:9px 10px 9px 8px; border-bottom:1px solid #E4E7EA;">Автосервисы и детейлинг</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">3,4</td></tr>
+    <tr><td style="padding:9px 10px 9px 8px; border-bottom:1px solid #E4E7EA;">Рестораны и доставка</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">5</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">2</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">3,1</td></tr>
+    <tr><td style="padding:9px 10px 9px 8px; border-bottom:1px solid #E4E7EA;">Проф. услуги (юристы, бухгалтеры)</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">4</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">2</td><td style="padding:9px 8px; border-bottom:1px solid #E4E7EA;">3</td><td style="padding:9px 0 9px 8px; border-bottom:1px solid #E4E7EA;">3,0</td></tr>
+    <tr><td style="padding:9px 10px 9px 8px;">E-commerce / розница</td><td style="padding:9px 8px;">5</td><td style="padding:9px 8px;">3</td><td style="padding:9px 8px;">2</td><td style="padding:9px 8px;">4</td><td style="padding:9px 8px;">2</td><td style="padding:9px 8px;">3</td><td style="padding:9px 0 9px 8px;">2,9</td></tr>
+  </table>
+  <div style="border-left:2px solid #0B9B6D; padding:4px 0 4px 20px; margin:22px 0;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#087A56; text-transform:uppercase; margin-bottom:8px;">Решение · MVP-ниша</div>
+    <p style="font:500 15px/1.6 'Golos Text',sans-serif; margin:0 0 10px;">Частные медицинские и стоматологические клиники Казахстана. Вторая волна — салоны красоты (общая механика записи, ниже ARPU).</p>
+    <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0;"><strong style="color:#14171A;">Обоснование.</strong> (1) Самая дорогая боль: средний чек 30–150 тыс. ₸ — пропущенное обращение измеримо в деньгах, ROI продукта доказывается за первую неделю. (2) Высокая готовность платить: клиники уже тратят 200–400 тыс. ₸/мес на администраторов. (3) Коммуникации сконцентрированы в WhatsApp и телефоне — идеально для AI-сотрудника. (4) Конкуренты (YClients, Bitrix24) сильны в записи, но не решают коммуникацию; AI для них — надстройка, для нас — ядро. (5) Ниша концентрирована в Алматы и Астане — дешёвый прямой CAC. (6) Модель клиники переносится на ОАЭ и Европу без переделки продукта.</p>
+  </div>
+  <sc-if value="{{ showChallenges }}" hint-placeholder-val="{{ true }}">
+    <div style="border:1px solid rgba(11,155,109,.25); background:#F2FAF6; padding:14px 18px; margin:18px 0; border-radius:6px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#087A56; text-transform:uppercase; margin-bottom:6px;">⚑ Вызов команды основателю</div>
+      <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; margin:0; color:#33403A;">Риск ниши: медицина чувствительна к ошибкам AI (неверная цена, ложная запись, медсоветы). Требование к MVP: AI никогда не консультирует по лечению, только администрирует. Это должно попасть в Non-functional Requirements документа 02 как жёсткое ограничение.</p>
+    </div>
+  </sc-if>
+
+  <!-- 05 РЫНОК -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">05 · Рынок</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Анализ рынка · TAM / SAM / SOM</h2>
+  </div>
+  <p style="font:400 14px/1.6 'Golos Text',sans-serif; margin:0 0 16px;">В Казахстане зарегистрировано свыше 2 млн субъектов МСБ; активно работающих сервисных бизнесов с потоком клиентских обращений — порядка 250–350 тыс. Оценки ниже консервативны и требуют полевой валидации.</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; margin:0 0 18px;">
+    <div style="background:#fff; padding:18px 20px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase;">TAM · Казахстан, сервисный МСБ</div>
+      <div style="font:600 24px 'Golos Text',sans-serif; margin:8px 0 4px;">≈ ₸240 млрд/год</div>
+      <div style="font:400 12px/1.5 'Golos Text',sans-serif; color:#5C6470;">~250 тыс. бизнесов × ~80 тыс. ₸/мес потенциальных расходов на автоматизацию коммуникаций</div>
+    </div>
+    <div style="background:#fff; padding:18px 20px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase;">SAM · Клиники + beauty</div>
+      <div style="font:600 24px 'Golos Text',sans-serif; margin:8px 0 4px;">≈ ₸26 млрд/год</div>
+      <div style="font:400 12px/1.5 'Golos Text',sans-serif; color:#5C6470;">~3,5 тыс. частных клиник и стоматологий + ~24 тыс. салонов, платёжеспособное ядро ~27 тыс. точек</div>
+    </div>
+    <div style="background:#fff; padding:18px 20px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#0B9B6D; text-transform:uppercase;">SOM · 3 года</div>
+      <div style="font:600 24px 'Golos Text',sans-serif; color:#0B9B6D; margin:8px 0 4px;">≈ ₸3,0 млрд/год</div>
+      <div style="font:400 12px/1.5 'Golos Text',sans-serif; color:#5C6470;">~3 200 клиентов (≈12% ядра SAM) при ARPU 79 тыс. ₸/мес — реалистично при прямых продажах + партнёрствах</div>
+    </div>
+  </div>
+  <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0;">Драйверы рынка: дефицит и текучесть администраторов, тотальное проникновение WhatsApp в бизнес-коммуникации КЗ, госпрограммы цифровизации МСБ, падение стоимости LLM-инференса. Сдерживающие факторы: консерватизм владельцев 45+, чувствительность к цене вне топ-городов.</p>
+
+  <!-- 06 КОНКУРЕНТЫ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">06 · Конкуренция</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Конкурентный анализ и позиционирование</h2>
+  </div>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:170px;">Игрок</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Сила</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Наше отличие</th>
+    </tr>
+    <tr><td style="padding:10px 10px 10px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">YClients / DIKIDI</td><td style="padding:10px 10px; border-bottom:1px solid #E4E7EA;">Стандарт онлайн-записи в beauty/мед, большая база</td><td style="padding:10px 0 10px 10px; border-bottom:1px solid #E4E7EA;">Они — календарь, куда клиент должен прийти сам. Мы — сотрудник, который сам доводит клиента до записи. Интегрируемся, а не воюем.</td></tr>
+    <tr><td style="padding:10px 10px 10px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Bitrix24 / amoCRM</td><td style="padding:10px 10px; border-bottom:1px solid #E4E7EA;">Мощные CRM, узнаваемость, партнёрские сети</td><td style="padding:10px 0 10px 10px; border-bottom:1px solid #E4E7EA;">Требуют внедренца и дисциплины команды. OzimAI работает «из коробки» за 15 минут, CRM заполняет сам AI.</td></tr>
+    <tr><td style="padding:10px 10px 10px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Чат-бот-агентства и конструкторы (Wazzup, BotHelp и лок. студии)</td><td style="padding:10px 10px; border-bottom:1px solid #E4E7EA;">Дёшево, быстро, «под ключ»</td><td style="padding:10px 0 10px 10px; border-bottom:1px solid #E4E7EA;">Скриптовые боты ломаются на первом нестандартном вопросе. У нас — LLM + знания клиники + действия (запись, перенос, оплата), плюс продукт, а не проект.</td></tr>
+    <tr><td style="padding:10px 10px 10px 0; font-weight:600;">Intercom / HubSpot / Zendesk AI</td><td style="padding:10px 10px;">Зрелый AI, бренд, капитал</td><td style="padding:10px 0 10px 10px;">Цены в долларах, нет локализации (казахский/русский, WhatsApp-центричность, Kaspi-платежи), не работают с офлайн-МСБ. Наше окно — 2–3 года.</td></tr>
+  </table>
+  <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; margin:16px 0 0;"><strong>Позиционирование:</strong> «Наймите AI-сотрудника за 39 000 ₸ в месяц». Не «CRM», не «чат-бот», не «автоматизация» — категория <em>AI-сотрудник</em>, где мы задаём правила. Ценовой якорь — не софт-подписки, а зарплата администратора (в 5–8 раз дороже).</p>
+
+  <!-- 07 SWOT -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">07 · Диагностика</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">SWOT</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA;">
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#087A56; text-transform:uppercase; margin-bottom:8px;">S · Сильные стороны</div><ul style="font:400 12.5px/1.6 'Golos Text',sans-serif; margin:0; padding-left:16px;"><li>Локализация: казахский + русский, WhatsApp, Kaspi</li><li>Категория «AI-сотрудник» свободна в регионе</li><li>Низкая база затрат (КЗ-команда) → длинный runway</li><li>Нишевой фокус → глубина продукта против ширины гигантов</li></ul></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#B4232A; text-transform:uppercase; margin-bottom:8px;">W · Слабые стороны</div><ul style="font:400 12.5px/1.6 'Golos Text',sans-serif; margin:0; padding-left:16px;"><li>Зависимость от внешних LLM и WhatsApp Business API</li><li>Нет бренда и кейсов на старте</li><li>Маленькая команда против интеграторов Bitrix24</li><li>AI-качество на казахском языке требует доработки</li></ul></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#087A56; text-transform:uppercase; margin-bottom:8px;">O · Возможности</div><ul style="font:400 12.5px/1.6 'Golos Text',sans-serif; margin:0; padding-left:16px;"><li>Падение цены инференса → рост маржи каждый год</li><li>Дефицит администраторов усиливается</li><li>Экспансия: Узбекистан (>1 млн МСБ), ОАЭ, Европа</li><li>Партнёрства с YClients-интеграторами и мед-ассоциациями</li></ul></div>
+    <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#B4232A; text-transform:uppercase; margin-bottom:8px;">T · Угрозы</div><ul style="font:400 12.5px/1.6 'Golos Text',sans-serif; margin:0; padding-left:16px;"><li>Выход глобальных игроков с локализацией</li><li>Ужесточение регулирования AI/перс. данных</li><li>Ценовая война с дешёвыми скрипт-ботами</li><li>Репутационный инцидент AI в медицине</li></ul></div>
+  </div>
+
+  <!-- 08 PESTLE -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">08 · Среда</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">PESTLE</h2>
+  </div>
+  <table style="font:400 13px/1.55 'Golos Text',sans-serif;">
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; width:130px; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Political</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Госкурс на цифровизацию МСБ и AI (Digital Kazakhstan) — попутный ветер; гранты и акселераторы (Astana Hub, налоговые льготы IT-компаний).</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Economic</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Волатильность тенге → цены в ₸ при долларовых AI-затратах требуют валютного буфера в марже; рост МЗП делает живого администратора дороже — усиливает наш value prop.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Social</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">WhatsApp — де-факто канал бизнеса в КЗ; двуязычие (каз/рус) — барьер для глобальных игроков и наше преимущество; доверие к AI растёт, но требует «человеческого» тона.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Technological</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Стоимость инференса падает ~10× за 2 года; function calling и RAG зрелы; WhatsApp Business Platform стабилен; риск — изменение условий API-провайдеров.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Legal</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Закон КЗ «О персональных данных» (локализация хранения), мед. тайна для ниши клиник → шифрование и хостинг данных в КЗ/регионе — архитектурное требование (документ 06).</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Environmental</td><td style="padding:10px 0;">Незначимо для SaaS; косвенно — выбор энергоэффективных облачных регионов.</td></tr>
+  </table>
+
+  <!-- 09 BMC -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">09 · Модель</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Business Model Canvas</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(10,1fr); grid-template-rows:auto auto auto; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 11.5px/1.5 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:12px 14px; grid-column:span 2; grid-row:span 2;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">Ключевые партнёры</div>WhatsApp BSP · провайдеры LLM · YClients/MIS-интеграции · Kaspi Pay · мед-ассоциации · Astana Hub</div>
+    <div style="background:#fff; padding:12px 14px; grid-column:span 2;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">Ключевые активности</div>Разработка AI-ядра · онбординг клиник · качество диалогов · продажи</div>
+    <div style="background:#F2FAF6; padding:12px 14px; grid-column:span 2; grid-row:span 2;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#087A56; text-transform:uppercase; margin-bottom:6px;">Ценностное предложение</div><strong>AI-сотрудник за долю зарплаты администратора:</strong> отвечает за 5 секунд 24/7, записывает, напоминает, возвращает клиентов, отчитывается владельцу. Ноль пропущенных обращений.</div>
+    <div style="background:#fff; padding:12px 14px; grid-column:span 2;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">Отношения с клиентами</div>Личный онбординг → self-service · success-менеджер на тарифе «Бизнес»</div>
+    <div style="background:#fff; padding:12px 14px; grid-column:span 2; grid-row:span 2;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">Сегменты клиентов</div>Ядро: частные клиники и стоматологии (2–30 врачей). Волна 2: салоны красоты. Волна 3: сервисный МСБ шире</div>
+    <div style="background:#fff; padding:12px 14px; grid-column:span 2;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">Ключевые ресурсы</div>AI-команда · база знаний ниши · данные диалогов · бренд категории</div>
+    <div style="background:#fff; padding:12px 14px; grid-column:span 2;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">Каналы</div>Прямые продажи · рефералы клиник · интеграторы · Instagram/контент</div>
+    <div style="background:#fff; padding:12px 14px; grid-column:span 5;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">Структура затрат</div>Команда (55–65%) · AI-инференс и телефония (12–17%) · инфраструктура (3–5%) · маркетинг и продажи (15–20%)</div>
+    <div style="background:#fff; padding:12px 14px; grid-column:span 5;"><div style="font:600 9px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:6px;">Потоки доходов</div>Подписка 39/89/189 тыс. ₸/мес · доплата за AI-телефонию (поминутно) · сверхлимитные диалоги · позже: транзакционный % с депозитов записи</div>
+  </div>
+
+  <!-- 10 LEAN CANVAS -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">10 · Модель</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Lean Canvas</h2>
+  </div>
+  <table style="font:400 12.5px/1.55 'Golos Text',sans-serif;">
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; width:190px; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Проблема</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">1) До 30% обращений в клиники остаются без ответа (нерабочие часы, занятый администратор). 2) Администраторы дороги, текучи и ошибаются. 3) Нет системного возврата клиентов и напоминаний.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Решение</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">AI-сотрудник в WhatsApp/Instagram/телефоне: мгновенный ответ, запись в календарь, напоминания, реактивация базы, мини-CRM и отчёт владельцу.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">УТП</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">«Ни одного пропущенного пациента. AI-администратор за 39 000 ₸/мес — в 6 раз дешевле живого».</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Нечестное преимущество</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Корпус диалогов клиник на казахском/русском + нишевые интеграции (МИС, Kaspi) — данные и локализация, которые нельзя купить.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Метрики</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">North Star (записи без человека/нед) · MRR · churn · % автономных диалогов · время первого ответа.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Каналы / Сегменты / Финансы</td><td style="padding:10px 0;">Прямые продажи в Алматы/Астане, рефералы, интеграторы · клиники 2–30 врачей · доходы: подписка; затраты: команда + AI; безубыточность ≈ 260 клиентов.</td></tr>
+  </table>
+
+  <!-- 11 VPC -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">11 · Ценность</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Value Proposition Canvas</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Профиль клиента · владелец клиники</div>
+      <p style="margin:0 0 8px;"><strong>Задачи (jobs):</strong> заполнить расписание врачей; не терять обращения; удерживать пациентов; контролировать администраторов; видеть цифры.</p>
+      <p style="margin:0 0 8px;"><strong>Боли:</strong> пропущенные звонки ночью и в пик; текучка админов; «забыли перезвонить»; пустые окна в расписании; нет данных о потерянных лидах.</p>
+      <p style="margin:0;"><strong>Выгоды:</strong> полное расписание; предсказуемая выручка; спокойствие «всё под контролем»; статус современной клиники.</p>
+    </div>
+    <div style="background:#F2FAF6; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#087A56; text-transform:uppercase; margin-bottom:8px;">Карта ценности · OzimAI</div>
+      <p style="margin:0 0 8px;"><strong>Продукты:</strong> AI-администратор (WhatsApp/Instagram/телефон), календарь записи, мини-CRM, отчёты владельцу.</p>
+      <p style="margin:0 0 8px;"><strong>Обезболивающие:</strong> ответ за 5 секунд 24/7; автозапись и перенос; напоминания −50% неявок; реактивация «спящей» базы; журнал каждого обращения.</p>
+      <p style="margin:0;"><strong>Создатели выгод:</strong> еженедельный отчёт «сколько денег принёс AI»; заполнение пустых окон; тон общения бренда клиники на двух языках.</p>
+    </div>
+  </div>
+
+  <!-- 12 РИСКИ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">12 · Риски</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Анализ рисков</h2>
+  </div>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Риск</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:90px;">Вер. / Ущерб</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Митигация</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">AI-галлюцинация в мед-контексте</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">Средняя / Крит.</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Жёсткий скоуп «только администрирование», guardrails, эскалация человеку, аудит диалогов</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Изменение цен/условий LLM или WhatsApp API</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">Средняя / Высок.</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Мульти-провайдерная абстракция LLM, 2 BSP-партнёра, маржинальный буфер 15%</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Медленные продажи консервативной нише</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">Высокая / Средн.</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Пилот 14 дней бесплатно с отчётом «потерянные деньги», продажа через ROI, рефералы врачей</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Копирование локальными агентствами</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">Высокая / Средн.</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Скорость, данные диалогов, интеграции МИС, бренд категории «AI-сотрудник»</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Валютный риск (₸ выручка, $ затраты)</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">Средняя / Средн.</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Ежеквартальный пересмотр тарифов, рост маржи от удешевления инференса</td></tr>
+    <tr><td style="padding:9px 10px 9px 0;">Регуляторика перс. данных / мед. тайны</td><td style="padding:9px 10px;">Низкая / Высок.</td><td style="padding:9px 0 9px 10px;">Хранение в КЗ, шифрование, DPA с клиниками, юр. аудит до запуска (документ 06)</td></tr>
+  </table>
+
+  <!-- 13 GTM -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">13 · Выход на рынок</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Go-to-Market и экспансия</h2>
+  </div>
+  <table style="font:400 13px/1.55 'Golos Text',sans-serif;">
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; width:150px; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase;">0–6 мес · Алматы</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Founder-led sales: 10 дизайн-партнёров бесплатно → кейсы с цифрами → 25 платящих. Канал: прямые визиты, WhatsApp-рассылки по базе клиник, стоматологические конференции.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase;">6–18 мес · Казахстан</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Наём 2–3 сейлзов, реферальная программа (месяц бесплатно за клинику), партнёрство с МИС и интеграторами, контент «сколько денег теряет клиника» + запуск beauty-сегмента.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase;">18–30 мес · Центр. Азия</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Узбекистан и Кыргызстан: тот же продукт, локальные платежи и язык, продажи через локальных партнёров. Прайс адаптируется к рынку.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#0B9B6D; text-transform:uppercase;">30–48 мес · MENA → EU</td><td style="padding:10px 0;">ОАЭ/Саудовская Аравия: премиальные клиники, английский/арабский, цены ×3. Европа — после соответствия GDPR и AI Act (заложено в архитектуру с день-1).</td></tr>
+  </table>
+
+  <!-- 14 ИНВЕСТОРСКОЕ РЕЗЮМЕ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">14 · Финансы</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Инвесторское резюме и юнит-экономика</h2>
+  </div>
+  <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0 0 16px;">Целевые значения; полная финансовая модель с чувствительностью — в документе 08 Startup. Все суммы в тенге, курс 525 ₸/$.</p>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; margin:0 0 20px; font:400 12px/1.5 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">39 / 89 / 189 тыс. ₸</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Тарифы Старт / Рост / Бизнес, в мес</div></div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">79 000 ₸</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Смешанный ARPU</div></div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">≈78%</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Валовая маржа (AI+инфра ≈ 17 тыс. ₸/клиент)</div></div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">≈140 000 ₸</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Целевой CAC · окупаемость ≈ 2,3 мес</div></div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">≈1,76 млн ₸</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">LTV при churn 3,5%/мес · LTV/CAC ≈ 12</div></div>
+    <div style="background:#F2FAF6; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif; color:#087A56;">≈260 клиентов</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#087A56; text-transform:uppercase; margin-top:4px;">Безубыточность (фикс. затраты ≈ 16 млн ₸/мес)</div></div>
+  </div>
+  <table style="font:400 13px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 12px 8px 0; border-bottom:2px solid #14171A; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Год</th>
+      <th style="padding:8px 12px; border-bottom:2px solid #14171A; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Клиенты</th>
+      <th style="padding:8px 12px; border-bottom:2px solid #14171A; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">MRR</th>
+      <th style="padding:8px 12px; border-bottom:2px solid #14171A; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">ARR</th>
+      <th style="padding:8px 0 8px 12px; border-bottom:2px solid #14171A; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">ARR в $</th>
+    </tr>
+    <tr><td style="padding:9px 12px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Y1</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">300</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">23,7 млн ₸</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">284 млн ₸</td><td style="padding:9px 0 9px 12px; border-bottom:1px solid #E4E7EA;">$0,54M</td></tr>
+    <tr><td style="padding:9px 12px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Y2</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">1 200</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">94,8 млн ₸</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">1,14 млрд ₸</td><td style="padding:9px 0 9px 12px; border-bottom:1px solid #E4E7EA;">$2,2M</td></tr>
+    <tr><td style="padding:9px 12px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Y3</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">3 200</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">253 млн ₸</td><td style="padding:9px 12px; border-bottom:1px solid #E4E7EA;">3,03 млрд ₸</td><td style="padding:9px 0 9px 12px; border-bottom:1px solid #E4E7EA;">$5,8M</td></tr>
+    <tr><td style="padding:9px 12px 9px 0; font-weight:600;">Y4</td><td style="padding:9px 12px;">5 800</td><td style="padding:9px 12px;">458 млн ₸</td><td style="padding:9px 12px;">5,5 млрд ₸</td><td style="padding:9px 0 9px 12px; font-weight:700; color:#0B9B6D;">$10,5M</td></tr>
+  </table>
+  <p style="font:400 13px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:16px 0 0;">Потребность в капитале: pre-seed ≈ 150 млн ₸ (~$285K) на 18 месяцев до безубыточности; альтернатива — грант Astana Hub + выручка дизайн-партнёров. Детальный P&amp;L, cash flow и сценарии — документ 08.</p>
+
+  <!-- ДАЛЬШЕ -->
+  <div style="margin:56px 0 0; border-top:2px solid #14171A; padding-top:22px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase; margin-bottom:10px;">Следующий шаг</div>
+    <p style="font:400 14px/1.65 'Golos Text',sans-serif; margin:0 0 14px;">После утверждения этого документа команда переходит к <strong>02 Product</strong>: PRD, MVP-скоуп (MoSCoW), эпики, user stories, персоны и роадмап — всё в рамках ниши и ограничений, зафиксированных здесь. Изменения решений этого документа оформляются через ADR.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase;">
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">01 Executive ✓</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">02 Product</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">03 UX</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">04 UI</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">05 Branding</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">06 Engineering</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">07 Development</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">08 Startup</span>
+    </div>
+  </div>
+
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showChallenges&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Содержание&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showChallenges: this.props.showChallenges ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

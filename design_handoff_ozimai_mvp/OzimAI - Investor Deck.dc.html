@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — Investor Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; }
+  :root {
+    --type-title: 64px; --type-subtitle: 40px; --type-h2: 48px; --type-body: 30px; --type-small: 24px; --type-label: 20px;
+    --pad-x: 100px; --pad-top: 100px; --pad-bottom: 80px; --gap-title: 44px; --gap-item: 24px;
+    --ink:#14171A; --muted:#5C6470; --faint:#8A929E; --border:#E4E7EA; --sunken:#F5F8F6; --page:#FAFBFA;
+    --accent:#0B9B6D; --accent-700:#087A56; --accent-050:#F2FAF6; --warn:#B07818; --warn-bg:#FBF3E4;
+  }
+  * { box-sizing:border-box; font-family:'Golos Text','Helvetica Neue',sans-serif; }
+  .mono { font-family:'IBM Plex Mono',monospace; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<!-- 1 · TITLE -->
+<section data-label="Титул" data-speaker-notes="Открыть питч: кто мы и что делаем. Одна фраза." style="background:#14171A; color:#fff; display:flex; flex-direction:column; justify-content:center; padding:0 var(--pad-x);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.16em; color:#5FCBA0; text-transform:uppercase; margin-bottom:32px;">Инвесторская презентация · Июль 2026</div>
+  <div style="font-size:104px; font-weight:800; letter-spacing:-.02em; line-height:1;">Ozim<span style="color:#2FBF8C;">AI</span></div>
+  <div style="font-size:var(--type-subtitle); color:#B7BFC6; font-weight:500; margin-top:28px; max-width:1200px; line-height:1.35;">AI-сотрудник для частных клиник Казахстана — отвечает, записывает и напоминает 24/7</div>
+</section>
+
+<!-- 2 · PROBLEM -->
+<section data-label="Проблема" data-speaker-notes="Проблема измерима в деньгах — это ключевой крюк." style="background:var(--page); color:var(--ink); display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:var(--accent-700); text-transform:uppercase; margin-bottom:20px;">Проблема</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 var(--gap-title); max-width:1400px; line-height:1.2;">Клиники теряют до 30% обращений — ночью, в пик и когда администратор занят</h2>
+  <div style="display:flex; gap:1px; background:var(--border); border:1px solid var(--border); margin-top:20px;">
+    <div style="flex:1; background:#fff; padding:36px 40px;">
+      <div style="font-size:72px; font-weight:700; color:var(--ink);">30–150 <span style="font-size:36px; font-weight:600; color:var(--muted);">тыс. ₸</span></div>
+      <div style="font-size:var(--type-small); color:var(--muted); margin-top:12px;">Средний чек одного пропущенного пациента</div>
+    </div>
+    <div style="flex:1; background:#fff; padding:36px 40px;">
+      <div style="font-size:72px; font-weight:700; color:var(--ink);">200–400 <span style="font-size:36px; font-weight:600; color:var(--muted);">тыс. ₸</span></div>
+      <div style="font-size:var(--type-small); color:var(--muted); margin-top:12px;">Ежемесячная зарплата администратора</div>
+    </div>
+    <div style="flex:1; background:var(--accent-050); padding:36px 40px;">
+      <div style="font-size:72px; font-weight:700; color:var(--accent-700);">24/7</div>
+      <div style="font-size:var(--type-small); color:var(--accent-700); margin-top:12px;">Часы, когда пациенты пишут — и часто не получают ответ</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · SOLUTION -->
+<section data-label="Решение" data-speaker-notes="Категория: AI-сотрудник, не бот и не CRM." style="background:var(--page); color:var(--ink); display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:var(--accent-700); text-transform:uppercase; margin-bottom:20px;">Решение</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 var(--gap-title); max-width:1300px;">Айым — AI-администратор в WhatsApp, за долю зарплаты человека</h2>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:12px;">
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:32px 28px;">
+      <div class="mono" style="font-size:var(--type-label); color:var(--accent); margin-bottom:16px;">01</div>
+      <div style="font-size:28px; font-weight:600; color:var(--ink); margin-bottom:10px;">Отвечает мгновенно</div>
+      <div style="font-size:var(--type-small); color:var(--muted); line-height:1.5;">Первый ответ пациенту ≤ 5 секунд, в любое время суток</div>
+    </div>
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:32px 28px;">
+      <div class="mono" style="font-size:var(--type-label); color:var(--accent); margin-bottom:16px;">02</div>
+      <div style="font-size:28px; font-weight:600; color:var(--ink); margin-bottom:10px;">Записывает</div>
+      <div style="font-size:var(--type-small); color:var(--muted); line-height:1.5;">Создаёт, переносит и отменяет записи прямо в календаре клиники</div>
+    </div>
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:32px 28px;">
+      <div class="mono" style="font-size:var(--type-label); color:var(--accent); margin-bottom:16px;">03</div>
+      <div style="font-size:28px; font-weight:600; color:var(--ink); margin-bottom:10px;">Напоминает</div>
+      <div style="font-size:var(--type-small); color:var(--muted); line-height:1.5;">Автонапоминания снижают неявки на 30%+</div>
+    </div>
+    <div style="background:var(--accent-050); border:1px solid rgba(11,155,109,.25); border-radius:12px; padding:32px 28px;">
+      <div class="mono" style="font-size:var(--type-label); color:var(--accent-700); margin-bottom:16px;">04</div>
+      <div style="font-size:28px; font-weight:600; color:var(--accent-700); margin-bottom:10px;">Отчитывается</div>
+      <div style="font-size:var(--type-small); color:var(--accent-700); line-height:1.5;">Владелец каждую неделю видит, сколько денег принёс AI</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · PRODUCT SCREENSHOT -->
+<section data-label="Продукт" data-speaker-notes="Показать живой прототип, если время позволяет." style="background:#14171A; display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:#5FCBA0; text-transform:uppercase; margin-bottom:20px;">Продукт</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:#fff; margin:0 0 36px; max-width:1300px;">AI сам ведёт диалог — администратор перехватывает одной кнопкой</h2>
+  <div style="flex:1; display:flex; align-items:center; justify-content:center; min-height:0;">
+    <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="deck-product-shot" src="assets/dialogues-shot.png" shape="rounded" radius="14" placeholder="Скриншот панели OzimAI" style="width:1180px; height:560px; box-shadow:0 24px 60px rgba(0,0,0,.4);"></x-import>
+  </div>
+</section>
+
+<!-- 5 · MARKET -->
+<section data-label="Рынок" data-speaker-notes="TAM/SAM/SOM из документа 01, консервативные оценки." style="background:var(--page); color:var(--ink); display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:var(--accent-700); text-transform:uppercase; margin-bottom:20px;">Рынок</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 var(--gap-title); max-width:1300px;">Ниша сфокусирована, но открывает дорогу в Центральную Азию и MENA</h2>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border);">
+    <div style="background:#fff; padding:40px 36px;">
+      <div class="mono" style="font-size:var(--type-label); color:var(--faint); text-transform:uppercase; letter-spacing:.1em; margin-bottom:16px;">TAM · Казахстан</div>
+      <div style="font-size:56px; font-weight:700; color:var(--ink);">₸240 млрд<span style="font-size:28px; color:var(--muted); font-weight:500;">/год</span></div>
+      <div style="font-size:var(--type-small); color:var(--muted); margin-top:14px; line-height:1.5;">~250 тыс. сервисных МСБ с потоком клиентских обращений</div>
+    </div>
+    <div style="background:#fff; padding:40px 36px;">
+      <div class="mono" style="font-size:var(--type-label); color:var(--faint); text-transform:uppercase; letter-spacing:.1em; margin-bottom:16px;">SAM · Клиники + beauty</div>
+      <div style="font-size:56px; font-weight:700; color:var(--ink);">₸26 млрд<span style="font-size:28px; color:var(--muted); font-weight:500;">/год</span></div>
+      <div style="font-size:var(--type-small); color:var(--muted); margin-top:14px; line-height:1.5;">~27 тыс. клиник и салонов, платёжеспособное ядро</div>
+    </div>
+    <div style="background:var(--accent-050); padding:40px 36px;">
+      <div class="mono" style="font-size:var(--type-label); color:var(--accent-700); text-transform:uppercase; letter-spacing:.1em; margin-bottom:16px;">SOM · 3 года</div>
+      <div style="font-size:56px; font-weight:700; color:var(--accent-700);">₸3,0 млрд<span style="font-size:28px; color:var(--accent-700); font-weight:500;">/год</span></div>
+      <div style="font-size:var(--type-small); color:var(--accent-700); margin-top:14px; line-height:1.5;">≈3 200 клиентов при ARPU 79 тыс. ₸/мес</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · BUSINESS MODEL -->
+<section data-label="Бизнес-модель" data-speaker-notes="Ценовой якорь — зарплата администратора, не цена софта." style="background:var(--page); color:var(--ink); display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:var(--accent-700); text-transform:uppercase; margin-bottom:20px;">Бизнес-модель</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 var(--gap-title);">Подписка с юнит-экономикой, которая работает с первого клиента</h2>
+  <div style="display:flex; gap:24px;">
+    <div style="flex:1.1; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border);">
+      <div style="background:#fff; padding:28px 24px;">
+        <div style="font-size:24px; font-weight:600; color:var(--ink);">Старт</div>
+        <div style="font-size:40px; font-weight:700; color:var(--ink); margin-top:8px;">39 000 ₸</div>
+        <div style="font-size:22px; color:var(--muted); margin-top:6px;">до 300 диалогов/мес</div>
+      </div>
+      <div style="background:#fff; padding:28px 24px;">
+        <div style="font-size:24px; font-weight:600; color:var(--ink);">Рост</div>
+        <div style="font-size:40px; font-weight:700; color:var(--ink); margin-top:8px;">89 000 ₸</div>
+        <div style="font-size:22px; color:var(--muted); margin-top:6px;">до 1 000 диалогов/мес</div>
+      </div>
+      <div style="background:var(--accent-050); padding:28px 24px;">
+        <div style="font-size:24px; font-weight:600; color:var(--accent-700);">Бизнес</div>
+        <div style="font-size:40px; font-weight:700; color:var(--accent-700); margin-top:8px;">189 000 ₸</div>
+        <div style="font-size:22px; color:var(--accent-700); margin-top:6px;">до 3 000 диалогов/мес</div>
+      </div>
+    </div>
+    <div style="flex:0.9; background:#14171A; border-radius:12px; padding:32px 36px; display:flex; flex-direction:column; justify-content:center; gap:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline;"><span style="font-size:24px; color:#B7BFC6;">LTV / CAC</span><span style="font-size:36px; font-weight:700; color:#fff;">≈ 12×</span></div>
+      <div style="display:flex; justify-content:space-between; align-items:baseline;"><span style="font-size:24px; color:#B7BFC6;">Валовая маржа</span><span style="font-size:36px; font-weight:700; color:#fff;">≈ 78%</span></div>
+      <div style="display:flex; justify-content:space-between; align-items:baseline;"><span style="font-size:24px; color:#B7BFC6;">Окупаемость CAC</span><span style="font-size:36px; font-weight:700; color:#2FBF8C;">2,3 мес</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · COMPETITION -->
+<section data-label="Конкуренция" data-speaker-notes="Мы не воюем с YClients — интегрируемся." style="background:var(--page); color:var(--ink); display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:var(--accent-700); text-transform:uppercase; margin-bottom:20px;">Позиционирование</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 var(--gap-title); max-width:1400px;">Не календарь, который ждёт клиента — сотрудник, который сам его приводит</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:var(--type-small);">
+    <tr style="text-align:left;">
+      <th style="padding:16px 20px 16px 0; border-bottom:2px solid var(--ink); font-size:22px; color:var(--faint); text-transform:uppercase; letter-spacing:.06em; font-weight:600;">Игрок</th>
+      <th style="padding:16px 20px; border-bottom:2px solid var(--ink); font-size:22px; color:var(--faint); text-transform:uppercase; letter-spacing:.06em; font-weight:600;">Что решает</th>
+      <th style="padding:16px 0 16px 20px; border-bottom:2px solid var(--ink); font-size:22px; color:var(--accent-700); text-transform:uppercase; letter-spacing:.06em; font-weight:600;">Наше отличие</th>
+    </tr>
+    <tr><td style="padding:22px 20px 22px 0; border-bottom:1px solid var(--border); font-weight:600;">YClients / DIKIDI</td><td style="padding:22px 20px; border-bottom:1px solid var(--border); color:var(--muted);">Онлайн-запись, календарь</td><td style="padding:22px 0 22px 20px; border-bottom:1px solid var(--border);">Мы приводим клиента к записи, а не ждём его</td></tr>
+    <tr><td style="padding:22px 20px 22px 0; border-bottom:1px solid var(--border); font-weight:600;">Bitrix24 / amoCRM</td><td style="padding:22px 20px; border-bottom:1px solid var(--border); color:var(--muted);">CRM, требует внедренца</td><td style="padding:22px 0 22px 20px; border-bottom:1px solid var(--border);">Работает «из коробки» за 1 день, CRM заполняет AI</td></tr>
+    <tr><td style="padding:22px 20px 22px 0; font-weight:600;">Скрипт-боты и агентства</td><td style="padding:22px 20px; color:var(--muted);">Дёшево, но ломаются на нестандартном вопросе</td><td style="padding:22px 0 22px 20px;">LLM + база знаний клиники + реальные действия</td></tr>
+  </table>
+</section>
+
+<!-- 8 · GTM -->
+<section data-label="Выход на рынок" data-speaker-notes="Founder-led sales, затем найм и экспансия." style="background:var(--page); color:var(--ink); display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:var(--accent-700); text-transform:uppercase; margin-bottom:20px;">Go-to-market</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 var(--gap-title);">От Алматы к Центральной Азии за 4 года</h2>
+  <div style="display:flex; gap:0; position:relative;">
+    <div style="flex:1; border-top:3px solid var(--accent); padding-top:28px; padding-right:24px;">
+      <div class="mono" style="font-size:22px; color:var(--accent-700); margin-bottom:10px;">0–6 МЕС</div>
+      <div style="font-size:26px; font-weight:600; color:var(--ink); margin-bottom:8px;">Алматы</div>
+      <div style="font-size:var(--type-small); color:var(--muted); line-height:1.5;">10 дизайн-партнёров → 25 платящих клиник</div>
+    </div>
+    <div style="flex:1; border-top:3px solid var(--border); padding-top:28px; padding-right:24px;">
+      <div class="mono" style="font-size:22px; color:var(--faint); margin-bottom:10px;">6–18 МЕС</div>
+      <div style="font-size:26px; font-weight:600; color:var(--ink); margin-bottom:8px;">Казахстан</div>
+      <div style="font-size:var(--type-small); color:var(--muted); line-height:1.5;">Sales-команда, партнёрства, запуск beauty-сегмента</div>
+    </div>
+    <div style="flex:1; border-top:3px solid var(--border); padding-top:28px; padding-right:24px;">
+      <div class="mono" style="font-size:22px; color:var(--faint); margin-bottom:10px;">18–30 МЕС</div>
+      <div style="font-size:26px; font-weight:600; color:var(--ink); margin-bottom:8px;">Центр. Азия</div>
+      <div style="font-size:var(--type-small); color:var(--muted); line-height:1.5;">Узбекистан, Кыргызстан через локальных партнёров</div>
+    </div>
+    <div style="flex:1; border-top:3px solid var(--border); padding-top:28px;">
+      <div class="mono" style="font-size:22px; color:var(--faint); margin-bottom:10px;">30–48 МЕС</div>
+      <div style="font-size:26px; font-weight:600; color:var(--ink); margin-bottom:8px;">MENA → EU</div>
+      <div style="font-size:var(--type-small); color:var(--muted); line-height:1.5;">Премиальные клиники ОАЭ, затем Европа (GDPR-ready)</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · FINANCIALS -->
+<section data-label="Финансы" data-speaker-notes="ARR к Y4 переходит порог $10M." style="background:var(--page); color:var(--ink); display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:var(--accent-700); text-transform:uppercase; margin-bottom:20px;">Финансовая модель</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 var(--gap-title);">К Y4 — ARR $10,5M при EBITDA-марже 53%</h2>
+  <div style="display:flex; align-items:flex-end; gap:40px; height:480px; padding:0 20px 40px; border-bottom:2px solid var(--ink);">
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:flex-end;">
+      <div class="mono" style="font-size:26px; font-weight:600; color:var(--ink); margin-bottom:12px;">₸284 млн</div>
+      <div style="width:100%; max-width:180px; height:52px; background:#C9CED4; border-radius:6px 6px 0 0;"></div>
+      <div style="font-size:24px; color:var(--muted); margin-top:16px;">Y1</div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:flex-end;">
+      <div class="mono" style="font-size:26px; font-weight:600; color:var(--ink); margin-bottom:12px;">₸1,14 млрд</div>
+      <div style="width:100%; max-width:180px; height:150px; background:#8FCBB4; border-radius:6px 6px 0 0;"></div>
+      <div style="font-size:24px; color:var(--muted); margin-top:16px;">Y2</div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:flex-end;">
+      <div class="mono" style="font-size:26px; font-weight:600; color:var(--ink); margin-bottom:12px;">₸3,03 млрд</div>
+      <div style="width:100%; max-width:180px; height:330px; background:#2FBF8C; border-radius:6px 6px 0 0;"></div>
+      <div style="font-size:24px; color:var(--muted); margin-top:16px;">Y3</div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:flex-end;">
+      <div class="mono" style="font-size:26px; font-weight:700; color:var(--accent-700); margin-bottom:12px;">₸5,5 млрд</div>
+      <div style="width:100%; max-width:180px; height:420px; background:var(--accent-700); border-radius:6px 6px 0 0;"></div>
+      <div style="font-size:24px; color:var(--ink); font-weight:600; margin-top:16px;">Y4</div>
+    </div>
+  </div>
+  <div style="text-align:right; font-size:var(--type-small); color:var(--faint); margin-top:16px;">ARR по годам, ₸</div>
+</section>
+
+<!-- 10 · TEAM -->
+<section data-label="Команда" data-speaker-notes="Плоская структура, найм по приоритету инженерии." style="background:var(--page); color:var(--ink); display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:var(--accent-700); text-transform:uppercase; margin-bottom:20px;">Команда</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:var(--ink); margin:0 0 var(--gap-title);">8 человек к концу первого года, инженерия — приоритет найма</h2>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:28px;">
+      <div style="font-size:24px; font-weight:600; color:var(--ink);">Founder / CEO</div>
+      <div style="font-size:var(--type-small); color:var(--muted); margin-top:8px;">Продукт, продажи первым 25 клиникам, фандрейзинг</div>
+    </div>
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:28px;">
+      <div style="font-size:24px; font-weight:600; color:var(--ink);">AI/Backend × 2</div>
+      <div style="font-size:var(--type-small); color:var(--muted); margin-top:8px;">Orchestrator, LLM Router, guardrails, интеграции</div>
+    </div>
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:28px;">
+      <div style="font-size:24px; font-weight:600; color:var(--ink);">Frontend + дизайнер</div>
+      <div style="font-size:var(--type-small); color:var(--muted); margin-top:8px;">Панель управления, онбординг, тон Айым</div>
+    </div>
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:28px; grid-column:span 3;">
+      <div style="font-size:24px; font-weight:600; color:var(--ink);">Sales lead + Customer success</div>
+      <div style="font-size:var(--type-small); color:var(--muted); margin-top:8px;">Присоединяются с M4–M6 — после подтверждения качества продукта на дизайн-партнёрах</div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · ASK -->
+<section data-label="Запрос" data-speaker-notes="150 млн тенге, 18 месяцев, до безубыточности." style="background:#14171A; color:#fff; display:flex; flex-direction:column; padding:var(--pad-top) var(--pad-x) var(--pad-bottom);">
+  <div class="mono" style="font-size:var(--type-label); letter-spacing:.14em; color:#5FCBA0; text-transform:uppercase; margin-bottom:20px;">Запрос</div>
+  <h2 style="font-size:var(--type-h2); font-weight:600; letter-spacing:-.01em; color:#fff; margin:0 0 var(--gap-title); max-width:1300px;">150 млн ₸ pre-seed на 18 месяцев до безубыточности</h2>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+    <div style="background:#1E2327; border-radius:12px; padding:32px;">
+      <div style="font-size:56px; font-weight:700; color:#fff;">55%</div>
+      <div style="font-size:26px; font-weight:600; color:#fff; margin-top:8px;">Команда</div>
+      <div style="font-size:var(--type-small); color:#8A929E; margin-top:10px; line-height:1.5;">Инженеры и дизайнер до M6</div>
+    </div>
+    <div style="background:#1E2327; border-radius:12px; padding:32px;">
+      <div style="font-size:56px; font-weight:700; color:#fff;">25%</div>
+      <div style="font-size:26px; font-weight:600; color:#fff; margin-top:8px;">GTM</div>
+      <div style="font-size:var(--type-small); color:#8A929E; margin-top:10px; line-height:1.5;">Продажи, контент, партнёрства</div>
+    </div>
+    <div style="background:var(--accent-700); border-radius:12px; padding:32px;">
+      <div style="font-size:56px; font-weight:700; color:#fff;">20%</div>
+      <div style="font-size:26px; font-weight:600; color:#fff; margin-top:8px;">Инфра + буфер</div>
+      <div style="font-size:var(--type-small); color:#EAF6EF; margin-top:10px; line-height:1.5;">AI-инференс, облако, валютный резерв</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · CLOSING -->
+<section data-label="Контакты" data-speaker-notes="Финальный слайд, контакт." style="background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 var(--pad-x);">
+  <div style="font-size:88px; font-weight:800; letter-spacing:-.02em; color:var(--ink);">Ozim<span style="color:var(--accent);">AI</span></div>
+  <div style="font-size:var(--type-subtitle); color:var(--muted); font-weight:500; margin-top:24px; max-width:1100px; line-height:1.4;">Наймите AI-администратора за 39 000 ₸ в месяц</div>
+  <div class="mono" style="font-size:var(--type-label); color:var(--faint); letter-spacing:.08em; margin-top:56px;">hello@ozim.ai · Алматы, Казахстан</div>
+</section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

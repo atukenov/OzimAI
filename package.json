@@ -1,0 +1,19 @@
+{
+  "name": "ozimai",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm run start:dev -w @ozimai/backend",
+    "dev:frontend": "npm run dev -w @ozimai/frontend",
+    "migrate": "npm run migrate -w @ozimai/backend",
+    "seed": "npm run seed -w @ozimai/backend",
+    "test:backend": "npm run test -w @ozimai/backend",
+    "build": "npm run build -w @ozimai/shared && npm run build -w @ozimai/backend && npm run build -w @ozimai/frontend"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

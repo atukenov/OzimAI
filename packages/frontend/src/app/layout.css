@@ -1,0 +1,27 @@
+.app-shell { height: 100vh; width: 100%; display: flex; overflow: hidden; background: var(--bg-page); }
+
+.app-main { flex: 1; min-width: 0; overflow: auto; }
+
+.tab-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--surface); border-top: 1px solid var(--border);
+  justify-content: space-around; align-items: center; height: 56px; z-index: 50;
+}
+.tab-bar-item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font: 500 10px var(--font-ui); color: var(--text-muted); text-decoration: none;
+  background: none; border: none; flex: 1; height: 100%; justify-content: center;
+}
+.tab-bar-item.active { color: var(--accent-600); }
+
+@media (max-width: 768px) {
+  /* !important: CSS module injection order in Vite follows the JS import
+     graph, not file position, so this media-scoped override can end up
+     earlier in the cascade than components.css's unconditional
+     `.sidebar { display: flex }` — without !important the later,
+     unconditional rule wins the tie even though this query matches. */
+  .sidebar { display: none !important; }
+  .tab-bar { display: flex; }
+  .app-main { padding-bottom: 56px; }
+}

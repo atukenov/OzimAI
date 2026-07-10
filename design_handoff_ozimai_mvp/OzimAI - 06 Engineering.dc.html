@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — 06 Engineering Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Golos Text', 'Helvetica Neue', sans-serif; color:#14171A; }
+  a { color:#0B9B6D; text-decoration:none; border-bottom:1px solid #0B9B6D44; }
+  a:hover { color:#087A56; border-bottom-color:#087A56; }
+  doc-page:not(:defined) { visibility:hidden; }
+  table { border-collapse:collapse; width:100%; }
+  code { font-family:'IBM Plex Mono',monospace; background:#F5F8F6; border:1px solid #E4E7EA; border-radius:4px; padding:1px 5px; font-size:.92em; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="a4" margin="0.8in" hint-size="100%,1400px">
+
+  <div slot="footer" style="display:flex; justify-content:space-between; font:500 9px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; padding-top:6px; border-top:1px solid #E4E7EA;">
+    <span>OzimAI · Конфиденциально</span>
+    <span>06 Engineering · v1.0 · июль 2026</span>
+  </div>
+
+  <!-- ТИТУЛ -->
+  <div style="padding:8px 0 36px; border-bottom:2px solid #14171A;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+      <div style="font:700 15px 'Golos Text',sans-serif; letter-spacing:-.01em;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+      <div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase;">Документ 06 из 08</div>
+    </div>
+    <h1 style="font:700 40px/1.15 'Golos Text',sans-serif; letter-spacing:-.02em; margin:48px 0 12px;">Engineering Package</h1>
+    <p style="font:400 16px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0; max-width:540px;">Архитектура, стек, схема данных, API, интеграции, безопасность. Реализует требования <a href="OzimAI — 02 Product.dc.html">02 Product</a> (FR/NFR) в рамках MVP-скоупа.</p>
+    <div style="display:flex; gap:28px; margin-top:28px; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#5C6470; text-transform:uppercase;">
+      <span>Стиль · Модульный монолит</span><span>Хостинг · КЗ/регион</span><span>Статус · На утверждение</span>
+    </div>
+  </div>
+
+  <!-- 01 АРХИТЕКТУРА -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">01 · Архитектура</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Архитектурный стиль и обзор системы</h2>
+  </div>
+  <p style="font:400 14px/1.6 'Golos Text',sans-serif; margin:0 0 16px;"><strong>Модульный монолит</strong>, не микросервисы. Команда 3–5 инженеров, скорость важнее изоляции; модули (Диалоги, Расписание, CRM, Знания, Биллинг) — отдельные пакеты с чёткими границами внутри одного деплоя, готовые к вынесению в сервисы при росте (>1 200 клиентов, см. 01 Executive). AI-инференс и очередь сообщений — единственные компоненты, масштабируемые отдельно с день-1.</p>
+  <div style="border:1px solid #E4E7EA; padding:18px; font:400 11.5px/1.6 'IBM Plex Mono',monospace; color:#33403A; break-inside:avoid; margin:0 0 14px;">
+    WhatsApp/Instagram ⇄ <strong>Channel Gateway</strong> → очередь (события) → <strong>Orchestrator</strong> (диалог, состояние, function calling) ⇄ <strong>LLM Router</strong> (провайдер A/B) <br>
+    Orchestrator ⇄ <strong>Модули</strong>: Знания (RAG) · Расписание (слоты, блокировки) · CRM (контакты, статусы) · Отчёты <br>
+    <strong>API (REST + WS)</strong> ← Панель (SPA) · <strong>Билинг-модуль</strong> ⇄ Kaspi Pay / карты · <strong>Job-планировщик</strong> → напоминания, отчёты, реактивация
+  </div>
+  <p style="font:400 13px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0;">Ключевое решение: Orchestrator — единая точка, где происходит function calling (запись/перенос/отмена), поэтому гарантии консистентности (атомарная блокировка слота) реализуются в одном месте, а не размазаны по каналам.</p>
+
+  <!-- 02 СТЕК -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">02 · Стек</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Технологический стек</h2>
+  </div>
+  <table style="font:400 13px/1.5 'Golos Text',sans-serif;">
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; width:160px; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Frontend</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">React + TypeScript SPA, mobile-first (документ 03/04). Real-time через WebSocket для живой ленты диалогов.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Backend</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Node.js (TypeScript), NestJS-модули = границы монолита. Очередь событий — Postgres-based (напр. pg-boss) на MVP, миграция на Kafka/SQS при масштабе.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Данные</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">PostgreSQL (основные данные, RLS для мультиарендности) · Redis (кэш, блокировки слотов, сессии) · Vector store (pgvector) для RAG базы знаний.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">AI</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">LLM Router с абстракцией провайдера (примary + fallback) — снижает риск ценовой/доступностной зависимости (риск из 01 Executive). Function calling для действий; guardrails-слой перед и после генерации (запрет медсоветов, проверка цен по базе).</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; border-bottom:1px solid #E4E7EA; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Инфраструктура</td><td style="padding:10px 0; border-bottom:1px solid #E4E7EA;">Облако с регионом в КЗ/СНГ (или EU + локальный DPA до появления локального дата-центра уровня прод); контейнеры + managed Postgres; IaC (Terraform); CI/CD на каждый merge в main.</td></tr>
+    <tr><td style="padding:10px 14px 10px 0; vertical-align:top; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Наблюдаемость</td><td style="padding:10px 0;">Структурные логи + трейсинг диалогов (каждый AI-ответ — с промптом, версией базы знаний, латентностью); алерты на: канал недоступен, латентность >5с p95, доля эскалаций аномально высока.</td></tr>
+  </table>
+
+  <!-- 03 СХЕМА ДАННЫХ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">03 · Данные</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Схема данных (основные сущности)</h2>
+  </div>
+  <table style="font:400 12px/1.5 'IBM Plex Mono',monospace;">
+    <tr style="text-align:left; font-family:'Golos Text',sans-serif;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Сущность</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Ключевые поля и связи</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">organization</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">id, name, plan, locale, billing_status → 1:N branches, users</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">branch / practitioner</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">practitioner: name, org_id, branch_id, working_hours (jsonb) → 1:N slots</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">service</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">org_id, name, price, duration_min, version — версионирование прайса (edge case из 02 Product)</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">patient (contact)</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">org_id, phone (уникален в рамках org), name, lead_status, source_channel → 1:N conversations, appointments</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">conversation / message</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">conversation: patient_id, channel, status (ai/escalated/human); message: sender_type, text, ai_meta (jsonb: model, latency, escalation_reason)</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">appointment</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">patient_id, practitioner_id, service_id, slot_start, status (booked/confirmed/no_show/cancelled), created_by (ai/human)</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">knowledge_doc</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">org_id, source_type, content, embedding (vector), version, published_at</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; font-weight:600;">audit_log</td><td style="padding:9px 0 9px 10px;">org_id, actor (ai/user_id), action, entity, before/after (jsonb) — покрывает NFR аудита из 02 Product</td></tr>
+  </table>
+  <p style="font:400 12.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:14px 0 0;">Мультиарендность: <code>org_id</code> на каждой таблице + Postgres Row-Level Security — политика по умолчанию deny, явные policy на чтение/запись в рамках своей организации. Одна база на MVP; шардирование по org_id — при необходимости после Y1.</p>
+
+  <!-- 04 API -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">04 · API</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">API-контракты (основные)</h2>
+  </div>
+  <table style="font:400 12px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:230px;">Эндпоинт</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Назначение</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;"><code>POST /webhooks/whatsapp</code></td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Приём событий от WhatsApp Business Platform → в очередь Orchestrator</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;"><code>GET/POST /appointments</code></td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Список/создание записей; используется и панелью, и Orchestrator через внутренний вызов</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;"><code>POST /appointments/:id/hold</code></td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Атомарная временная блокировка слота (TTL 5 мин) — решает edge case конкурентной записи</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;"><code>WS /conversations/stream</code></td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Живая лента диалогов в панели (push новых сообщений и статусов эскалации)</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;"><code>POST /conversations/:id/takeover</code></td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Перехват диалога человеком (мгновенно останавливает AI)</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;"><code>POST /knowledge/import</code></td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Загрузка прайса (файл/фото/текст) → парсинг → предпросмотр (онбординг из 03 UX)</td></tr>
+    <tr><td style="padding:9px 10px 9px 0;"><code>GET /reports/weekly</code></td><td style="padding:9px 0 9px 10px;">Данные для еженедельного отчёта владельцу (панель + генератор WhatsApp-сообщения)</td></tr>
+  </table>
+  <p style="font:400 12.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:14px 0 0;">Внешняя публичная API/SDK для интеграторов — вне MVP (Could из 02 Product); версионирование через <code>/v1/</code> с день-1 закладывается на будущее.</p>
+
+  <!-- 05 ИНТЕГРАЦИИ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">05 · Интеграции</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Внешние интеграции</h2>
+  </div>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:190px;">Интеграция</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Роль и риск</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">WhatsApp Business Platform</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Основной канал. Через официального BSP-партнёра (не серый API) — снижает риск блокировки номера клиники.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Instagram Direct (Graph API)</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">v1.1, тот же Channel Gateway, другой адаптер.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">LLM-провайдер(ы)</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Primary + fallback за абстракцией LLM Router — митигирует риск изменения цен/условий (01 Executive, раздел рисков).</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Kaspi Pay / карты</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Самостоятельная оплата подписки; в v1.1 — депозиты за запись.</td></tr>
+    <tr><td style="padding:9px 10px 9px 0;">МИС / YClients (экспорт)</td><td style="padding:9px 0 9px 10px;">MVP — только CSV-экспорт записей; полная интеграция — Could (02 Product), после спроса от первых 25 клиентов.</td></tr>
+  </table>
+
+  <!-- 06 БЕЗОПАСНОСТЬ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">06 · Безопасность</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Безопасность и соответствие</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Данные и соответствие</div>
+      <ul style="margin:0; padding-left:16px;"><li>Хранение перс. данных пациентов — регион КЗ/СНГ (закон РК «О персональных данных», решение 01 Executive)</li><li>Шифрование at-rest (AES-256) и in-transit (TLS 1.2+)</li><li>DPA (Data Processing Agreement) с каждой клиникой при онбординге</li><li>Право на удаление данных пациента по запросу; retention 90 дней после закрытия аккаунта</li></ul>
+    </div>
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Доступ и приложение</div>
+      <ul style="margin:0; padding-left:16px;"><li>RBAC: owner / admin / staff — на уровне организации</li><li>RLS в Postgres — изоляция между организациями на уровне БД, не только приложения</li><li>Секреты — vault-сервис, ротация ключей провайдеров</li><li>Guardrails AI: жёсткий системный промпт + пост-фильтр ответов (запрет медсоветов/цен вне базы) — тестируется в CI на наборе adversarial-примеров</li></ul>
+    </div>
+  </div>
+
+  <!-- ДАЛЬШЕ -->
+  <div style="margin:56px 0 0; border-top:2px solid #14171A; padding-top:22px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase; margin-bottom:10px;">Следующий шаг</div>
+    <p style="font:400 14px/1.65 'Golos Text',sans-serif; margin:0 0 14px;">После утверждения — <strong>07 Development</strong>: план разработки по спринтам, definition of done, тестовая стратегия и ключевые ADR (архитектурные решения), зафиксированные по ходу документов 01–06.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase;">
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">01 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">02 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">03 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">04 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">05 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">06 Engineering ✓</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">07 Development</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">08 Startup</span>
+    </div>
+  </div>
+
+</x-import>
+</x-dc>
+</body>
+</html>

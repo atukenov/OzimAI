@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — 04 UI Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Golos Text', 'Helvetica Neue', sans-serif; color:#14171A; }
+  a { color:#0B9B6D; text-decoration:none; border-bottom:1px solid #0B9B6D44; }
+  a:hover { color:#087A56; border-bottom-color:#087A56; }
+  doc-page:not(:defined) { visibility:hidden; }
+  table { border-collapse:collapse; width:100%; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="a4" margin="0.8in" hint-size="100%,1400px">
+
+  <div slot="footer" style="display:flex; justify-content:space-between; font:500 9px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; padding-top:6px; border-top:1px solid #E4E7EA;">
+    <span>OzimAI · Конфиденциально</span>
+    <span>04 UI · v1.0 · июль 2026</span>
+  </div>
+
+  <!-- ТИТУЛ -->
+  <div style="padding:8px 0 36px; border-bottom:2px solid #14171A;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+      <div style="font:700 15px 'Golos Text',sans-serif; letter-spacing:-.01em;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+      <div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase;">Документ 04 из 08</div>
+    </div>
+    <h1 style="font:700 40px/1.15 'Golos Text',sans-serif; letter-spacing:-.02em; margin:48px 0 12px;">UI Design System</h1>
+    <p style="font:400 16px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0; max-width:540px;">Figma-ready система: токены, типографика, цвет, компоненты со всеми состояниями и точными значениями. Все образцы ниже отрисованы реальными значениями системы — их можно мерить пипеткой и линейкой. Экраны — из инвентаря <a href="OzimAI — 03 UX.dc.html">03 UX</a>.</p>
+    <div style="display:flex; gap:28px; margin-top:28px; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#5C6470; text-transform:uppercase;">
+      <span>Темы · Light + Dark</span><span>Сетка · 8px</span><span>Шрифты · Golos Text + Plex Mono</span><span>Статус · На утверждение</span>
+    </div>
+  </div>
+
+  <!-- 01 ФИЛОСОФИЯ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">01 · Основа</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Философия и принципы</h2>
+  </div>
+  <p style="font:400 14px/1.65 'Golos Text',sans-serif; margin:0 0 14px;"><strong>«Спокойный инструмент».</strong> Панель OzimAI — рабочее место администратора на 8 часов в день. Дизайн-язык: почти-чёрный текст на тонированном белом, одна изумрудная краска для действий и «голоса AI», плоские поверхности с волосяными границами вместо теней, плотная, но дышащая вёрстка. Никаких градиентов, иллюстративного шума и лишних цветов.</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:14px 16px;"><strong>Зелёный = AI и действие.</strong> Изумруд используется только для primary-кнопок, сообщений AI и позитивных денег. Ничего декоративного.</div>
+    <div style="background:#fff; padding:14px 16px;"><strong>Границы, не тени.</strong> Иерархия поверхностей — цветом фона и hairline-границей. Тень — только у плавающих слоёв (меню, диалоги).</div>
+    <div style="background:#fff; padding:14px 16px;"><strong>Статус ≠ только цвет.</strong> Каждый статус несёт иконку/текст — требование доступности из 03 UX.</div>
+  </div>
+
+  <!-- 02 ЦВЕТ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">02 · Цвет</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Цветовая система</h2>
+  </div>
+  <div style="font:600 12px 'Golos Text',sans-serif; margin:0 0 8px;">Нейтральные (light)</div>
+  <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; margin:0 0 16px; break-inside:avoid;">
+    <div style="background:#FAFBFA; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#5C6470;">bg-page<br>#FAFBFA</span></div>
+    <div style="background:#F5F8F6; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#5C6470;">bg-sunken<br>#F5F8F6</span></div>
+    <div style="background:#FFFFFF; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#5C6470;">surface<br>#FFFFFF</span></div>
+    <div style="background:#E4E7EA; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#5C6470;">border<br>#E4E7EA</span></div>
+    <div style="background:#8A929E; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#fff;">text-faint<br>#8A929E</span></div>
+    <div style="background:#14171A; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#fff;">text-ink<br>#14171A</span></div>
+  </div>
+  <div style="font:600 12px 'Golos Text',sans-serif; margin:0 0 8px;">Акцент и семантика <span style="font:400 11px 'Golos Text',sans-serif; color:#8A929E;">— один хроматический ряд oklch(L 0.13 H), хью варьируется</span></div>
+  <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; margin:0 0 16px; break-inside:avoid;">
+    <div style="background:#0B9B6D; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#fff;">accent-600<br>#0B9B6D</span></div>
+    <div style="background:#087A56; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#fff;">accent-700<br>#087A56</span></div>
+    <div style="background:#F2FAF6; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#087A56;">accent-050<br>#F2FAF6</span></div>
+    <div style="background:#B4232A; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#fff;">danger-600<br>#B4232A</span></div>
+    <div style="background:#B07818; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#fff;">warn-600<br>#B07818</span></div>
+    <div style="background:#2563A8; height:64px; position:relative;"><span style="position:absolute; bottom:6px; left:8px; font:500 8.5px 'IBM Plex Mono',monospace; color:#fff;">info-600<br>#2563A8</span></div>
+  </div>
+  <p style="font:400 12.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0;">Правила: текст на светлом — только ink/muted/faint (контраст ≥ 4,5:1); accent-050 — фон сообщений AI и выделенных блоков; danger/warn/info имеют парные -050 фоны по той же схеме. Полный набор из 10 ступеней на цвет — в Figma Variables.</p>
+
+  <!-- 03 ТИПОГРАФИКА -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">03 · Типографика</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Шкала типографики</h2>
+  </div>
+  <p style="font:400 13px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0 0 14px;"><strong style="color:#14171A;">Golos Text</strong> — интерфейс и заголовки (полная кириллица, казахские глифы); <strong style="color:#14171A;">IBM Plex Mono</strong> — коды, метки, суммы в таблицах. Шкала 1.25, базовый размер 14px.</p>
+  <div style="border:1px solid #E4E7EA; break-inside:avoid;">
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 16px; border-bottom:1px solid #E4E7EA;"><span style="font:500 9px 'IBM Plex Mono',monospace; color:#8A929E; width:150px; flex:none;">display · 28/34 · 700</span><span style="font:700 28px/1.2 'Golos Text',sans-serif; letter-spacing:-.02em;">Отчёт за неделю</span></div>
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 16px; border-bottom:1px solid #E4E7EA;"><span style="font:500 9px 'IBM Plex Mono',monospace; color:#8A929E; width:150px; flex:none;">h1 · 22/28 · 600</span><span style="font:600 22px/1.27 'Golos Text',sans-serif; letter-spacing:-.01em;">Диалоги</span></div>
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 16px; border-bottom:1px solid #E4E7EA;"><span style="font:500 9px 'IBM Plex Mono',monospace; color:#8A929E; width:150px; flex:none;">h2 · 17/24 · 600</span><span style="font:600 17px/1.4 'Golos Text',sans-serif;">Карточка пациента</span></div>
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 16px; border-bottom:1px solid #E4E7EA;"><span style="font:500 9px 'IBM Plex Mono',monospace; color:#8A929E; width:150px; flex:none;">body · 14/22 · 400</span><span style="font:400 14px/1.57 'Golos Text',sans-serif;">Айым записала Тимура на приём к доктору Сериковой на завтра, 11:30.</span></div>
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 16px; border-bottom:1px solid #E4E7EA;"><span style="font:500 9px 'IBM Plex Mono',monospace; color:#8A929E; width:150px; flex:none;">small · 12/18 · 400</span><span style="font:400 12px/1.5 'Golos Text',sans-serif; color:#5C6470;">Вчера в 23:14 · WhatsApp · автономно</span></div>
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 16px;"><span style="font:500 9px 'IBM Plex Mono',monospace; color:#8A929E; width:150px; flex:none;">label · 10/14 · 600 · caps</span><span style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; text-transform:uppercase; color:#8A929E;">Требует внимания</span></div>
+  </div>
+
+  <!-- 04 СЕТКА / SPACING / RADIUS / ELEVATION -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">04 · Геометрия</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Сетка, отступы, радиусы, elevation</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif; break-inside:avoid;">
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:10px;">Spacing · база 8px</div>
+      <div style="display:flex; align-items:flex-end; gap:10px;">
+        <div><div style="width:4px; height:4px; background:#0B9B6D;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">4</div></div>
+        <div><div style="width:8px; height:8px; background:#0B9B6D;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">8</div></div>
+        <div><div style="width:12px; height:12px; background:#0B9B6D;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">12</div></div>
+        <div><div style="width:16px; height:16px; background:#0B9B6D;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">16</div></div>
+        <div><div style="width:24px; height:24px; background:#0B9B6D;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">24</div></div>
+        <div><div style="width:32px; height:32px; background:#0B9B6D;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">32</div></div>
+        <div><div style="width:48px; height:48px; background:#0B9B6D;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">48</div></div>
+      </div>
+      <p style="margin:10px 0 0; color:#5C6470;">Сетка макета: 12 колонок, gutter 24, контейнер 1200. Внутри компонентов — только шаги шкалы.</p>
+    </div>
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:10px;">Radius + Elevation</div>
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div style="text-align:center;"><div style="width:52px; height:36px; border:1px solid #C9CED4; border-radius:6px;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">6 · контролы</div></div>
+        <div style="text-align:center;"><div style="width:52px; height:36px; border:1px solid #C9CED4; border-radius:10px;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">10 · карты</div></div>
+        <div style="text-align:center;"><div style="width:52px; height:36px; border:1px solid #C9CED4; border-radius:18px;"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">18 · чипы/бабблы</div></div>
+        <div style="text-align:center;"><div style="width:52px; height:36px; background:#fff; border:1px solid #E4E7EA; border-radius:10px; box-shadow:0 8px 24px rgba(20,23,26,.10);"></div><div style="font:500 8.5px 'IBM Plex Mono',monospace; color:#8A929E; margin-top:4px;">elevation-2</div></div>
+      </div>
+      <p style="margin:10px 0 0; color:#5C6470;">elevation-0: граница · elevation-1: 0 2px 8px rgba(20,23,26,.06) — поповеры · elevation-2: 0 8px 24px rgba(20,23,26,.10) — диалоги.</p>
+    </div>
+  </div>
+
+  <!-- 05 КНОПКИ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">05 · Компоненты</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Кнопки</h2>
+  </div>
+  <div style="border:1px solid #E4E7EA; padding:18px; break-inside:avoid;">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:0 0 14px;">
+      <button style="font:500 14px 'Golos Text',sans-serif; background:#0B9B6D; color:#fff; border:none; border-radius:6px; height:40px; padding:0 20px; cursor:pointer;">Primary</button>
+      <button style="font:500 14px 'Golos Text',sans-serif; background:#087A56; color:#fff; border:none; border-radius:6px; height:40px; padding:0 20px;">Hover</button>
+      <button style="font:500 14px 'Golos Text',sans-serif; background:#fff; color:#14171A; border:1px solid #C9CED4; border-radius:6px; height:40px; padding:0 20px;">Secondary</button>
+      <button style="font:500 14px 'Golos Text',sans-serif; background:transparent; color:#0B9B6D; border:none; border-radius:6px; height:40px; padding:0 20px;">Ghost</button>
+      <button style="font:500 14px 'Golos Text',sans-serif; background:#B4232A; color:#fff; border:none; border-radius:6px; height:40px; padding:0 20px;">Danger</button>
+      <button style="font:500 14px 'Golos Text',sans-serif; background:#EEF0F1; color:#8A929E; border:none; border-radius:6px; height:40px; padding:0 20px;">Disabled</button>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+      <button style="font:500 13px 'Golos Text',sans-serif; background:#0B9B6D; color:#fff; border:none; border-radius:6px; height:32px; padding:0 14px;">Small · 32</button>
+      <button style="font:500 14px 'Golos Text',sans-serif; background:#0B9B6D; color:#fff; border:none; border-radius:6px; height:40px; padding:0 20px;">Default · 40</button>
+      <button style="font:500 15px 'Golos Text',sans-serif; background:#0B9B6D; color:#fff; border:none; border-radius:6px; height:48px; padding:0 24px;">Large · 48 (моб.)</button>
+    </div>
+  </div>
+  <p style="font:400 12px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:8px 0 0;">Spec: radius 6 · паддинг 20/14/24 · фокус-кольцо 2px accent-600 offset 2 · active: scale(.98) · один primary на экран. Иконка 16px, зазор 8.</p>
+
+  <!-- 06 ПОЛЯ -->
+  <div style="margin:44px 0 18px;">
+    <h2 style="font:600 22px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:0;">Поля ввода и дропдауны</h2>
+  </div>
+  <div style="border:1px solid #E4E7EA; padding:18px; display:grid; grid-template-columns:1fr 1fr; gap:16px; break-inside:avoid;">
+    <div>
+      <div style="font:500 12px 'Golos Text',sans-serif; color:#5C6470; margin-bottom:6px;">Default → Focus</div>
+      <div style="font:400 14px 'Golos Text',sans-serif; border:1px solid #C9CED4; border-radius:6px; height:40px; display:flex; align-items:center; padding:0 12px; color:#8A929E; margin-bottom:8px;">Имя пациента</div>
+      <div style="font:400 14px 'Golos Text',sans-serif; border:1px solid #0B9B6D; box-shadow:0 0 0 3px rgba(11,155,109,.15); border-radius:6px; height:40px; display:flex; align-items:center; padding:0 12px;">Тимур|</div>
+    </div>
+    <div>
+      <div style="font:500 12px 'Golos Text',sans-serif; color:#5C6470; margin-bottom:6px;">Error → Select</div>
+      <div style="margin-bottom:8px;">
+        <div style="font:400 14px 'Golos Text',sans-serif; border:1px solid #B4232A; border-radius:6px; height:40px; display:flex; align-items:center; padding:0 12px;">+7 70</div>
+        <div style="font:400 11.5px 'Golos Text',sans-serif; color:#B4232A; margin-top:4px;">⚠ Неполный номер телефона</div>
+      </div>
+      <div style="font:400 14px 'Golos Text',sans-serif; border:1px solid #C9CED4; border-radius:6px; height:40px; display:flex; align-items:center; justify-content:space-between; padding:0 12px;">Доктор Серикова <span style="color:#8A929E;">⌄</span></div>
+    </div>
+  </div>
+  <p style="font:400 12px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:8px 0 0;">Spec: высота 40 (моб. 48) · radius 6 · паддинг 12 · лейбл сверху 12/600 · ошибка: рамка danger + текст под полем, без тряски. Дропдаун-меню: surface, elevation-1, пункт 36px, hover bg-sunken.</p>
+
+  <!-- 07 КАРТЫ/ТАБЛИЦЫ/ТАБЫ/ЧИПЫ -->
+  <div style="margin:44px 0 18px;">
+    <h2 style="font:600 22px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:0;">Карточки, таблицы, табы, статусы</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:230px 1fr; gap:16px; break-inside:avoid;">
+    <div style="background:#fff; border:1px solid #E4E7EA; border-radius:10px; padding:16px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Деньги от AI · неделя</div>
+      <div style="font:700 26px 'Golos Text',sans-serif; color:#087A56; margin:6px 0 2px;">₸ 840 000</div>
+      <div style="font:400 12px 'Golos Text',sans-serif; color:#5C6470;">27 записей · <span style="color:#087A56;">↑ 18%</span> к прошлой</div>
+    </div>
+    <div>
+      <div style="display:flex; gap:2px; border-bottom:1px solid #E4E7EA; margin-bottom:10px;">
+        <span style="font:500 13px 'Golos Text',sans-serif; padding:8px 14px; border-bottom:2px solid #0B9B6D; color:#14171A;">Все</span>
+        <span style="font:500 13px 'Golos Text',sans-serif; padding:8px 14px; color:#5C6470;">Лиды</span>
+        <span style="font:500 13px 'Golos Text',sans-serif; padding:8px 14px; color:#5C6470;">Записаны</span>
+      </div>
+      <table style="font:400 12.5px/1.4 'Golos Text',sans-serif;">
+        <tr style="text-align:left;"><th style="padding:6px 10px 6px 0; border-bottom:1px solid #E4E7EA; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Пациент</th><th style="padding:6px 10px; border-bottom:1px solid #E4E7EA; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Статус</th><th style="padding:6px 0 6px 10px; border-bottom:1px solid #E4E7EA; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; text-align:right;">Сумма</th></tr>
+        <tr><td style="padding:8px 10px 8px 0; border-bottom:1px solid #F0F2F3;">Тимур А.</td><td style="padding:8px 10px; border-bottom:1px solid #F0F2F3;"><span style="font:500 11px 'Golos Text',sans-serif; background:#F2FAF6; color:#087A56; border:1px solid rgba(11,155,109,.3); border-radius:18px; padding:2px 10px;">✓ Записан</span></td><td style="padding:8px 0 8px 10px; border-bottom:1px solid #F0F2F3; text-align:right; font-family:'IBM Plex Mono',monospace;">45 000</td></tr>
+        <tr><td style="padding:8px 10px 8px 0;">Алия К.</td><td style="padding:8px 10px;"><span style="font:500 11px 'Golos Text',sans-serif; background:#FBF3E4; color:#8A5C10; border:1px solid rgba(176,120,24,.35); border-radius:18px; padding:2px 10px;">⚑ Ждёт человека</span></td><td style="padding:8px 0 8px 10px; text-align:right; font-family:'IBM Plex Mono',monospace;">—</td></tr>
+      </table>
+    </div>
+  </div>
+  <p style="font:400 12px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:8px 0 0;">Spec: карта — surface, border, radius 10, паддинг 16; таблица — строки 40px, hover bg-sunken, числа mono вправо; таб — 2px underline accent; чип статуса — radius 18, паддинг 2/10, фон -050 + рамка 30%.</p>
+
+  <!-- 08 AI-ЧАТ -->
+  <div style="margin:44px 0 18px;">
+    <h2 style="font:600 22px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:0;">AI-чат — фирменный компонент</h2>
+  </div>
+  <div style="border:1px solid #E4E7EA; border-radius:10px; padding:18px; background:#FAFBFA; display:flex; flex-direction:column; gap:10px; max-width:560px; break-inside:avoid;">
+    <div style="align-self:flex-start; max-width:75%; background:#fff; border:1px solid #E4E7EA; border-radius:18px 18px 18px 4px; padding:10px 14px; font:400 13.5px/1.5 'Golos Text',sans-serif;">Сколько стоит чистка? Можно завтра вечером?</div>
+    <div style="align-self:flex-end; max-width:78%;">
+      <div style="background:#F2FAF6; border:1px solid rgba(11,155,109,.3); border-radius:18px 18px 4px 18px; padding:10px 14px; font:400 13.5px/1.5 'Golos Text',sans-serif;">Профессиональная чистка — 25 000 ₸. Завтра свободно: <strong>18:00</strong>, <strong>19:30</strong>. Записать вас?</div>
+      <div style="display:flex; justify-content:flex-end; gap:6px; margin-top:4px; font:500 10px 'IBM Plex Mono',monospace; color:#0B9B6D;"><span>✦ Айым</span><span style="color:#8A929E;">23:14 · автономно</span></div>
+    </div>
+    <div style="align-self:flex-end; max-width:78%;">
+      <div style="background:#FBF3E4; border:1px solid rgba(176,120,24,.35); border-radius:18px 18px 4px 18px; padding:10px 14px; font:400 13.5px/1.5 'Golos Text',sans-serif;">Передаю ваш вопрос администратору — ответим в течение часа.</div>
+      <div style="display:flex; justify-content:flex-end; gap:6px; margin-top:4px; font:500 10px 'IBM Plex Mono',monospace; color:#B07818;"><span>⚑ эскалация</span></div>
+    </div>
+  </div>
+  <p style="font:400 12px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:8px 0 0;">Голос AI всегда маркирован: фон accent-050, подпись «✦ Айым», режим (автономно / эскалация / человек). Правило переносится во все поверхности: ленту, тест-чат, виджет сайта.</p>
+
+  <!-- 09 НАВИГАЦИЯ + ДИАЛОГ -->
+  <div style="margin:44px 0 18px;">
+    <h2 style="font:600 22px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:0;">Навигация, диалоги, уведомления</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:170px 1fr; gap:16px; break-inside:avoid;">
+    <div style="background:#fff; border:1px solid #E4E7EA; border-radius:10px; padding:10px; font:500 13px 'Golos Text',sans-serif;">
+      <div style="display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:6px; background:#F2FAF6; color:#087A56; font-weight:600;">● Диалоги <span style="margin-left:auto; font:600 10px 'IBM Plex Mono',monospace; background:#0B9B6D; color:#fff; border-radius:9px; padding:1px 6px;">2</span></div>
+      <div style="padding:8px 10px; color:#5C6470;">Календарь</div>
+      <div style="padding:8px 10px; color:#5C6470;">Пациенты</div>
+      <div style="padding:8px 10px; color:#5C6470;">✦ Айым</div>
+      <div style="padding:8px 10px; color:#5C6470;">Отчёты</div>
+    </div>
+    <div>
+      <div style="background:#fff; border:1px solid #E4E7EA; border-radius:10px; box-shadow:0 8px 24px rgba(20,23,26,.10); padding:18px; max-width:360px;">
+        <div style="font:600 16px 'Golos Text',sans-serif; margin-bottom:6px;">Отменить запись?</div>
+        <p style="font:400 13px/1.55 'Golos Text',sans-serif; color:#5C6470; margin:0 0 14px;">Тимур А., завтра 11:30, доктор Серикова. Пациент получит уведомление в WhatsApp.</p>
+        <div style="display:flex; gap:8px; justify-content:flex-end;">
+          <button style="font:500 13px 'Golos Text',sans-serif; background:#fff; border:1px solid #C9CED4; border-radius:6px; height:36px; padding:0 14px;">Оставить</button>
+          <button style="font:500 13px 'Golos Text',sans-serif; background:#B4232A; color:#fff; border:none; border-radius:6px; height:36px; padding:0 14px;">Отменить запись</button>
+        </div>
+      </div>
+      <div style="margin-top:10px; background:#14171A; color:#fff; border-radius:8px; padding:10px 14px; font:400 12.5px 'Golos Text',sans-serif; max-width:360px; display:flex; gap:8px; align-items:center;">✓ Запись перенесена <span style="margin-left:auto; color:#8A929E;">✕</span></div>
+    </div>
+  </div>
+  <p style="font:400 12px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:8px 0 0;">Sidebar 220px (иконки 20px, активный пункт accent-050); диалог — elevation-2, max 400px, danger-кнопка называет действие; тост — ink-фон, 4с, снизу-справа; нотификации — поповер у колокольчика, критичное дублируется баннером.</p>
+
+  <!-- 10 DARK -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">06 · Тёмная тема</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Dark theme</h2>
+  </div>
+  <div style="background:#0E1113; border-radius:10px; padding:18px; display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start; break-inside:avoid;">
+    <div style="background:#171B1E; border:1px solid #262C30; border-radius:10px; padding:14px; width:200px;">
+      <div style="font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#7E8790; text-transform:uppercase;">Деньги от AI</div>
+      <div style="font:700 22px 'Golos Text',sans-serif; color:#2FBF8C; margin:4px 0;">₸ 840 000</div>
+      <div style="font:400 11.5px 'Golos Text',sans-serif; color:#9AA3AC;">27 записей за неделю</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <button style="font:500 13px 'Golos Text',sans-serif; background:#2FBF8C; color:#0E1113; border:none; border-radius:6px; height:36px; padding:0 16px;">Primary dark</button>
+      <button style="font:500 13px 'Golos Text',sans-serif; background:transparent; color:#E8EBED; border:1px solid #3A4147; border-radius:6px; height:36px; padding:0 16px;">Secondary dark</button>
+    </div>
+    <div style="max-width:220px; background:rgba(47,191,140,.12); border:1px solid rgba(47,191,140,.35); border-radius:18px 18px 4px 18px; padding:9px 12px; font:400 12.5px/1.5 'Golos Text',sans-serif; color:#E8EBED;">Записала вас на 18:00 ✦</div>
+  </div>
+  <p style="font:400 12px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:8px 0 0;">Токены dark: bg #0E1113 · surface #171B1E · border #262C30 · text #E8EBED/#9AA3AC/#7E8790 · accent осветляется до #2FBF8C (контраст на тёмном), текст на accent — ink. Семантика та же, меняются только значения переменных.</p>
+
+  <!-- 11 MOTION + TOKENS + FIGMA -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">07 · Движение и передача</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Motion, токены, Figma-гайд</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif; break-inside:avoid;">
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Motion</div>
+      <ul style="margin:0; padding-left:16px;"><li>Длительности: 120мс (hover) · 200мс (поповеры) · 280мс (диалоги, панели)</li><li>Изинг: cubic-bezier(.2,.8,.2,1); без bounce</li><li>Микровзаимодействия: новое сообщение — fade+8px up; «AI печатает» — 3 точки; перехват — мгновенный, без анимации</li><li>prefers-reduced-motion — всё отключается</li></ul>
+    </div>
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Токены и нейминг</div>
+      <div style="font:400 11px/1.7 'IBM Plex Mono',monospace; color:#33403A;">color/bg/page · color/surface/default<br>color/text/{ink,muted,faint}<br>color/accent/{050…900} · color/{danger,warn,info}/*<br>space/{1…8} · radius/{s,m,l} · elevation/{0,1,2}<br>type/{display,h1,h2,body,small,label}</div>
+      <p style="margin:8px 0 0; color:#5C6470;">Figma Variables: коллекции Primitives → Semantic (алиасы) → режимы Light/Dark. Компоненты: variants по props (size, state, tone), auto layout везде, нейминг Component/Variant как в токенах.</p>
+    </div>
+  </div>
+
+  <!-- ДАЛЬШЕ -->
+  <div style="margin:56px 0 0; border-top:2px solid #14171A; padding-top:22px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase; margin-bottom:10px;">Следующий шаг</div>
+    <p style="font:400 14px/1.65 'Golos Text',sans-serif; margin:0 0 14px;">После утверждения — <strong>05 Branding</strong>: идентичность, тон голоса, месседжинг, структура лендинга. Composite-компоненты (Kanban, календарь, voice-интерфейс) из полного списка промпта спроектируем при их появлении в роадмапе — сейчас это Won't-скоуп из <a href="OzimAI — 02 Product.dc.html">02 Product</a>. По запросу соберу интерактивный hi-fi прототип панели на этой системе.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase;">
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">01 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">02 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">03 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">04 UI ✓</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">05 Branding</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">06 Engineering</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">07 Development</span>
+      <span style="border:1px solid #E4E7EA; color:#8A929E; padding:6px 12px;">08 Startup</span>
+    </div>
+  </div>
+
+</x-import>
+</x-dc>
+</body>
+</html>

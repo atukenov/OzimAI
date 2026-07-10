@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — 08 Startup Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Golos Text', 'Helvetica Neue', sans-serif; color:#14171A; }
+  a { color:#0B9B6D; text-decoration:none; border-bottom:1px solid #0B9B6D44; }
+  a:hover { color:#087A56; border-bottom-color:#087A56; }
+  doc-page:not(:defined) { visibility:hidden; }
+  table { border-collapse:collapse; width:100%; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="a4" margin="0.8in" hint-size="100%,1400px">
+
+  <div slot="footer" style="display:flex; justify-content:space-between; font:500 9px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; padding-top:6px; border-top:1px solid #E4E7EA;">
+    <span>OzimAI · Конфиденциально</span>
+    <span>08 Startup · v1.0 · июль 2026</span>
+  </div>
+
+  <!-- ТИТУЛ -->
+  <div style="padding:8px 0 36px; border-bottom:2px solid #14171A;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+      <div style="font:700 15px 'Golos Text',sans-serif; letter-spacing:-.01em;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+      <div style="font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.14em; color:#8A929E; text-transform:uppercase;">Документ 08 из 08</div>
+    </div>
+    <h1 style="font:700 40px/1.15 'Golos Text',sans-serif; letter-spacing:-.02em; margin:48px 0 12px;">Startup Package</h1>
+    <p style="font:400 16px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:0; max-width:540px;">Организация, наём, бюджет и полная финансовая модель. Замыкает пакет, сводя решения документов 01–07 в операционный и денежный план.</p>
+    <div style="display:flex; gap:28px; margin-top:28px; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#5C6470; text-transform:uppercase;">
+      <span>Команда Y1 · 8 чел</span><span>Runway цель · 18 мес</span><span>Статус · На утверждение</span>
+    </div>
+  </div>
+
+  <!-- 01 ОРГСТРУКТУРА -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">01 · Команда</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Организационная структура</h2>
+  </div>
+  <p style="font:400 14px/1.6 'Golos Text',sans-serif; margin:0 0 16px;">Плоская структура на старте: 8 человек к концу Y1, все репортят основателю. Первый найм после MVP — не сейлз, а <strong>AI/backend-инженер №2</strong>: качество диалогов важнее скорости продаж на этом этапе (риск ADR-02, документ 07).</p>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Роль</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:100px;">Найм</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Фокус</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Founder / CEO</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">День 0</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Продукт, продажи первым 25 клиникам, фандрейзинг</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">AI/Backend-инженер (2)</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">M0, M2</td><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Orchestrator, LLM Router, guardrails, интеграции</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Frontend-инженер</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">M1</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Панель, онбординг-мастер</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Продуктовый дизайнер</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">M2</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">UX/UI, тон Айым, лендинг</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Sales / onboarding lead</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">M4</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Прямые продажи в Алматы, ручной онбординг партнёров</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; font-weight:600;">Customer success</td><td style="padding:9px 10px;">M6</td><td style="padding:9px 0 9px 10px;">Триал → оплата, retention, сбор кейсов</td></tr>
+  </table>
+
+  <!-- 02 НАЙМ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">02 · Наём</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">План найма и культура</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Принципы найма</div>
+      <ul style="margin:0; padding-left:16px;"><li>Инженеры — с опытом продакшн-LLM-систем, не только API-вызовов</li><li>Продажи — с опытом B2B в офлайн-МСБ КЗ, не только SaaS-инсайдсейлз</li><li>Двуязычность (рус/каз) — обязательна для sales/success</li><li>Первые 8 — в офисе Алматы; удалёнка — с ролей от M6</li></ul>
+    </div>
+    <div style="background:#fff; padding:16px 18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.12em; color:#8A929E; text-transform:uppercase; margin-bottom:8px;">Культура</div>
+      <ul style="margin:0; padding-left:16px;"><li>Еженедельная демо-сессия: показываем реальный диалог AI, не слайды</li><li>Каждый инженер раз в квартал — «в поле» на визите в клинику</li><li>Метрика команды — не скорость коммитов, а % диалогов без эскалации</li></ul>
+    </div>
+  </div>
+
+  <!-- 03 БЮДЖЕТ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">03 · Бюджет</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Бюджет Y1 по статьям</h2>
+  </div>
+  <table style="font:400 13px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Статья</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:150px;">Y1, ₸/год</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; width:80px;">Доля</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Команда (ЗП + налоги)</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">108 млн</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">58%</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">AI-инференс и телефония</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">21 млн</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">11%</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Инфраструктура (облако, WhatsApp BSP)</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">8 млн</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">4%</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Маркетинг и продажи</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">30 млн</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">16%</td></tr>
+    <tr><td style="padding:9px 10px 9px 0;">Офис, юр., прочее</td><td style="padding:9px 10px; font-family:'IBM Plex Mono',monospace;">20 млн</td><td style="padding:9px 0 9px 10px;">11%</td></tr>
+    <tr><td style="padding:10px 10px 10px 0; border-top:2px solid #14171A; font-weight:700;">Итого Y1</td><td style="padding:10px 10px; border-top:2px solid #14171A; font-family:'IBM Plex Mono',monospace; font-weight:700;">187 млн ₸</td><td style="padding:10px 0 10px 10px; border-top:2px solid #14171A; font-weight:700;">100%</td></tr>
+  </table>
+  <p style="font:400 12.5px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:14px 0 0;">При выручке Y1 ≈ 284 млн ₸ (01 Executive) и затратах 187 млн ₸ — операционный запас ≈ 97 млн ₸, но это без учёта неравномерности набора клиентов в течение года; реальный cash flow отрицателен первые 7–8 месяцев (см. раздел 05).</p>
+
+  <!-- 04 ФИНМОДЕЛЬ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">04 · Финансы</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Финансовая модель · P&amp;L (4 года)</h2>
+  </div>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Показатель, млн ₸</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Y1</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Y2</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Y3</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Y4</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Выручка (ARR)</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">284</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">1 140</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">3 030</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">5 496</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Себестоимость (AI+инфра)</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">63</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">205</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">454</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">714</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; font-weight:600;">Валовая прибыль</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">221</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">935</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">2 576</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">4 782</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA;">Команда + маркетинг + прочее</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">187</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">420</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">980</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA; font-family:'IBM Plex Mono',monospace;">1 850</td></tr>
+    <tr><td style="padding:10px 10px 10px 0; border-top:2px solid #14171A; font-weight:700;">EBITDA</td><td style="padding:10px 10px; border-top:2px solid #14171A; font-family:'IBM Plex Mono',monospace; font-weight:700; color:#B4232A;">−45</td><td style="padding:10px 10px; border-top:2px solid #14171A; font-family:'IBM Plex Mono',monospace; font-weight:700; color:#087A56;">+515</td><td style="padding:10px 10px; border-top:2px solid #14171A; font-family:'IBM Plex Mono',monospace; font-weight:700; color:#087A56;">+1 596</td><td style="padding:10px 0 10px 10px; border-top:2px solid #14171A; font-family:'IBM Plex Mono',monospace; font-weight:700; color:#087A56;">+2 932</td></tr>
+    <tr><td style="padding:8px 10px 8px 0; font:400 11.5px 'Golos Text',sans-serif; color:#8A929E;">EBITDA-маржа</td><td style="padding:8px 10px; font:400 11.5px 'IBM Plex Mono',monospace; color:#8A929E;">−16%</td><td style="padding:8px 10px; font:400 11.5px 'IBM Plex Mono',monospace; color:#8A929E;">45%</td><td style="padding:8px 10px; font:400 11.5px 'IBM Plex Mono',monospace; color:#8A929E;">53%</td><td style="padding:8px 0 8px 10px; font:400 11.5px 'IBM Plex Mono',monospace; color:#8A929E;">53%</td></tr>
+  </table>
+
+  <!-- 05 CASH FLOW -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">05 · Кэш</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Cash Flow и точка безубыточности</h2>
+  </div>
+  <p style="font:400 13.5px/1.6 'Golos Text',sans-serif; margin:0 0 14px;">Клиенты набираются неравномерно в Y1 (10 бесплатных партнёров M1–3 → платный рост с M4). Кумулятивный минимум денежного потока — около <strong>−72 млн ₸</strong> в M7, до выхода на положительный операционный поток к M9–10 при плановом темпе продаж.</p>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; margin:0 0 18px;">
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">≈260</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Клиентов до безубыточности (01 Executive)</div></div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">M9–10</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Ожидаемый месяц выхода в плюс</div></div>
+    <div style="background:#F2FAF6; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif; color:#087A56;">−72 млн ₸</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#087A56; text-transform:uppercase; margin-top:4px;">Пиковая потребность в кэше</div></div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">150 млн ₸</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin-top:4px;">Рекомендуемый pre-seed (буфер 2×)</div></div>
+  </div>
+
+  <!-- 06 СЦЕНАРИИ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">06 · Сценарии</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Сценарный анализ Y1</h2>
+  </div>
+  <table style="font:400 12.5px/1.5 'Golos Text',sans-serif;">
+    <tr style="text-align:left;">
+      <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Сценарий</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Клиентов Y1</th>
+      <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">MRR дек. Y1</th>
+      <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Влияние на runway</th>
+    </tr>
+    <tr><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; color:#B4232A; font-weight:600;">Пессимистичный</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">150</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">11,9 млн ₸</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">Нужен доп. транш к M10, либо сокращение найма sales/success</td></tr>
+    <tr style="background:#F2FAF6;"><td style="padding:9px 10px 9px 0; border-bottom:1px solid #E4E7EA; color:#087A56; font-weight:600;">Базовый</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">300</td><td style="padding:9px 10px; border-bottom:1px solid #E4E7EA;">23,7 млн ₸</td><td style="padding:9px 0 9px 10px; border-bottom:1px solid #E4E7EA;">150 млн ₸ pre-seed хватает с буфером ~2 месяца</td></tr>
+    <tr><td style="padding:9px 10px 9px 0; font-weight:600;">Оптимистичный</td><td style="padding:9px 10px;">450</td><td style="padding:9px 10px;">35,6 млн ₸</td><td style="padding:9px 0 9px 10px;">Безубыточность к M8; возможность не привлекать раунд A вовсе</td></tr>
+  </table>
+
+  <!-- 07 ИСПОЛЬЗОВАНИЕ СРЕДСТВ -->
+  <div style="margin:52px 0 18px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase;">07 · Капитал</div>
+    <h2 style="font:600 26px/1.25 'Golos Text',sans-serif; letter-spacing:-.01em; margin:6px 0 0;">Использование pre-seed (150 млн ₸)</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; font:400 12.5px/1.6 'Golos Text',sans-serif;">
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">55%</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin:4px 0;">Команда</div>Инженеры и дизайнер до M6 — сердце продукта должно быть готово раньше, чем начнутся продажи.</div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">25%</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin:4px 0;">GTM</div>Sales-найм M4, founder-led продажи, контент и партнёрства с мед-ассоциациями.</div>
+    <div style="background:#fff; padding:14px 16px;"><div style="font:600 18px 'Golos Text',sans-serif;">20%</div><div style="font:500 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase; margin:4px 0;">Инфра + буфер</div>AI-инференс, облако, WhatsApp BSP + резерв на валютные колебания (риск из 01 Executive).</div>
+  </div>
+  <p style="font:400 13px/1.6 'Golos Text',sans-serif; color:#5C6470; margin:14px 0 0;">Альтернатива без внешнего капитала: грант/резидентство Astana Hub (налоговые льготы IT-компаний) + выручка от 10 дизайн-партнёров с M4 — продлевает самостоятельный runway, но замедляет найм sales на 2–3 месяца.</p>
+
+  <!-- ИТОГ -->
+  <div style="margin:56px 0 0; border-top:2px solid #14171A; padding-top:22px;">
+    <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.16em; color:#0B9B6D; text-transform:uppercase; margin-bottom:10px;">Пакет завершён</div>
+    <p style="font:400 14px/1.65 'Golos Text',sans-serif; margin:0 0 14px;">Все 8 документов OzimAI утверждены: от видения и ниши до финансовой модели. Пакет самосогласован — каждое решение прослеживается от <a href="OzimAI — 01 Executive.dc.html">01 Executive</a> через продукт, дизайн и инженерию до операционного плана. Готов приступить к первому спринту разработки (S1–2, документ 07) или к материалам для инвесторов/партнёров на основе этого пакета — скажите, что нужно дальше.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; font:500 10px 'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase;">
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">01 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">02 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">03 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">04 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">05 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">06 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">07 ✓</span>
+      <span style="border:1px solid #14171A; background:#14171A; color:#fff; padding:6px 12px;">08 Startup ✓</span>
+    </div>
+  </div>
+
+</x-import>
+</x-dc>
+</body>
+</html>

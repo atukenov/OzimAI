@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>OzimAI — Панель · Прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; height:100%; font-family:'Golos Text','Helvetica Neue',sans-serif; color:#14171A; }
+  * { box-sizing:border-box; }
+  a { color:#0B9B6D; text-decoration:none; }
+  a:hover { color:#087A56; }
+  button { cursor:pointer; font-family:inherit; }
+  input, textarea { font-family:inherit; }
+  ::placeholder { color:#8A929E; }
+  @keyframes blink { 0%,80%,100% { opacity:.25; } 40% { opacity:1; } }
+</style>
+</helmet>
+
+<div style="height:100vh; width:100%; display:flex; overflow:hidden; background:#FAFBFA;">
+
+  <!-- SIDEBAR -->
+  <div style="width:220px; flex:none; border-right:1px solid #E4E7EA; background:#fff; display:flex; flex-direction:column;">
+    <div style="padding:18px 18px 14px; border-bottom:1px solid #E4E7EA;">
+      <div style="font:700 15px 'Golos Text',sans-serif; letter-spacing:-.01em;">Ozim<span style="color:#0B9B6D;">AI</span></div>
+      <div style="font:400 11.5px 'Golos Text',sans-serif; color:#8A929E; margin-top:4px;">Стоматология «Айгуль»</div>
+    </div>
+    <div style="padding:10px; display:flex; flex-direction:column; gap:2px; flex:1;">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+        <button onClick="{{ n.onSelect }}" style="{{ n.style }}">
+          <span>{{ n.label }}</span>
+          <sc-if value="{{ n.badge }}" hint-placeholder-val="{{ 0 }}"><span style="margin-left:auto; font:600 10px 'IBM Plex Mono',monospace; background:#0B9B6D; color:#fff; border-radius:9px; padding:1px 7px;">{{ n.badge }}</span></sc-if>
+        </button>
+      </sc-for>
+    </div>
+    <div style="padding:12px 16px; border-top:1px solid #E4E7EA; display:flex; align-items:center; gap:8px;">
+      <div style="width:28px; height:28px; border-radius:14px; background:#EEF0F1; display:flex; align-items:center; justify-content:center; font:600 12px 'Golos Text',sans-serif; color:#5C6470;">М</div>
+      <div style="font:500 12px 'Golos Text',sans-serif; color:#5C6470;">Мадина, админ</div>
+    </div>
+  </div>
+
+  <!-- ================= ДИАЛОГИ ================= -->
+  <sc-if value="{{ isDialogues }}" hint-placeholder-val="{{ true }}">
+  <div style="flex:1; display:flex; min-width:940px; overflow-x:auto;">
+
+    <!-- список -->
+    <div style="width:300px; flex:none; border-right:1px solid #E4E7EA; background:#fff; display:flex; flex-direction:column;">
+      <div style="padding:14px 16px 10px; display:flex; gap:6px;">
+        <sc-for list="{{ filterButtons }}" as="f" hint-placeholder-count="2">
+          <button onClick="{{ f.onSelect }}" style="{{ f.style }}">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <div style="flex:1; overflow-y:auto; padding:0 8px 8px;">
+        <sc-for list="{{ convListView }}" as="c" hint-placeholder-count="3">
+          <div onClick="{{ c.onSelect }}" style="{{ c.rowStyle }}">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+              <span style="font:600 13px 'Golos Text',sans-serif;">{{ c.name }}</span>
+              <span style="font:500 9.5px 'IBM Plex Mono',monospace; color:#8A929E;">{{ c.channel }}</span>
+            </div>
+            <div style="font:400 12px 'Golos Text',sans-serif; color:#5C6470; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:6px;">{{ c.preview }}</div>
+            <span style="{{ c.chipStyle }}">{{ c.statusLabel }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- диалог -->
+    <div style="flex:1; flex-shrink:0; min-width:400px; display:flex; flex-direction:column; background:#FAFBFA;">
+      <div style="padding:14px 20px; border-bottom:1px solid #E4E7EA; background:#fff; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+        <div style="min-width:0; overflow:hidden;">
+          <div style="font:600 15px 'Golos Text',sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ selectedConv.name }}</div>
+          <div style="font:400 11.5px 'Golos Text',sans-serif; color:#8A929E; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ selectedConv.phone }} · {{ selectedConv.channel }}</div>
+        </div>
+        <sc-if value="{{ selectedConv.isHuman }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ () => returnToAI(selectedConv.id) }}" style="flex:none; white-space:nowrap; font:500 13px 'Golos Text',sans-serif; background:#fff; color:#0B9B6D; border:1px solid #0B9B6D; border-radius:6px; height:36px; padding:0 14px;">Вернуть Айым</button>
+        </sc-if>
+        <sc-if value="{{ selectedConv.isNotHuman }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ () => takeover(selectedConv.id) }}" style="flex:none; white-space:nowrap; font:600 13px 'Golos Text',sans-serif; background:#0B9B6D; color:#fff; border:none; border-radius:6px; height:36px; padding:0 16px;">Перехватить</button>
+        </sc-if>
+      </div>
+
+      <div style="flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:10px;">
+        <sc-for list="{{ selectedConv.messagesView }}" as="m" hint-placeholder-count="3">
+          <div style="display:flex; justify-content:{{ m.justify }};">
+            <div style="max-width:70%;">
+              <div style="background:{{ m.bg }}; border:1px solid {{ m.border }}; color:{{ m.color }}; border-radius:{{ m.radius }}; padding:10px 14px; font:400 13.5px/1.5 'Golos Text',sans-serif;">{{ m.text }}</div>
+              <sc-if value="{{ m.tag }}" hint-placeholder-val="{{ '' }}">
+                <div style="text-align:{{ m.tagAlign }}; margin-top:3px; font:500 10px 'IBM Plex Mono',monospace; color:{{ m.tagColor }};">{{ m.tag }}</div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ isTyping }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; justify-content:flex-end;">
+            <div style="background:#F2FAF6; border:1px solid rgba(11,155,109,.3); border-radius:18px 18px 4px 18px; padding:10px 16px; display:flex; gap:4px;">
+              <span style="width:6px; height:6px; border-radius:3px; background:#0B9B6D; display:inline-block; animation:blink 1.2s infinite;"></span>
+              <span style="width:6px; height:6px; border-radius:3px; background:#0B9B6D; display:inline-block; animation:blink 1.2s infinite .2s;"></span>
+              <span style="width:6px; height:6px; border-radius:3px; background:#0B9B6D; display:inline-block; animation:blink 1.2s infinite .4s;"></span>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="padding:14px 20px; border-top:1px solid #E4E7EA; background:#fff;">
+        <sc-if value="{{ selectedConv.isHuman }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; gap:10px;">
+            <input value="{{ inputText }}" onChange="{{ handleInputChange }}" onKeyDown="{{ handleKeyDown }}" placeholder="Написать пациенту от имени клиники…" style="flex:1; height:40px; border:1px solid #C9CED4; border-radius:6px; padding:0 14px; font:400 14px 'Golos Text',sans-serif;"></input>
+            <button onClick="{{ sendMessage }}" style="font:600 13px 'Golos Text',sans-serif; background:#0B9B6D; color:#fff; border:none; border-radius:6px; height:40px; padding:0 18px;">Отправить</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ selectedConv.isNotHuman }}" hint-placeholder-val="{{ true }}">
+          <div style="font:400 12.5px 'Golos Text',sans-serif; color:#8A929E; text-align:center; padding:8px;">Айым ведёт этот диалог. Нажмите «Перехватить», чтобы написать самим.</div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- карточка пациента -->
+    <div style="width:260px; flex-shrink:0; border-left:1px solid #E4E7EA; background:#fff; padding:18px;">
+      <div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase; margin-bottom:10px;">Карточка пациента</div>
+      <div style="font:600 15px 'Golos Text',sans-serif; margin-bottom:2px;">{{ selectedConv.name }}</div>
+      <div style="font:400 12px 'Golos Text',sans-serif; color:#5C6470; margin-bottom:14px;">{{ selectedConv.phone }}</div>
+      <div style="border:1px solid #E4E7EA; border-radius:8px; padding:10px 12px; font:400 12px/1.5 'Golos Text',sans-serif; color:#5C6470;">{{ selectedConv.patientNote }}</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= КАЛЕНДАРЬ ================= -->
+  <sc-if value="{{ isCalendar }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1; padding:28px 32px; overflow-y:auto;">
+    <h1 style="font:600 22px 'Golos Text',sans-serif; margin:0 0 16px;">Календарь</h1>
+    <div style="display:flex; gap:8px; margin-bottom:18px;">
+      <sc-for list="{{ doctorChips }}" as="d" hint-placeholder-count="2">
+        <button onClick="{{ d.onSelect }}" style="{{ d.style }}">{{ d.name }}</button>
+      </sc-for>
+    </div>
+    <div style="max-width:420px; border:1px solid #E4E7EA; border-radius:10px; overflow:hidden; background:#fff;">
+      <sc-for list="{{ slotsView }}" as="s" hint-placeholder-count="6">
+        <div onClick="{{ s.onToggle }}" style="display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid #F0F2F3; cursor:pointer;">
+          <span style="font:500 13px 'IBM Plex Mono',monospace; color:#5C6470; width:56px;">{{ s.time }}</span>
+          <span style="{{ s.chipStyle }}">{{ s.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font:400 12.5px 'Golos Text',sans-serif; color:#8A929E; margin-top:14px;">Клик по свободному слоту — создать запись; по занятому — отменить. В проде запись создаёт Айым или администратор.</p>
+  </div>
+  </sc-if>
+
+  <!-- ================= ПАЦИЕНТЫ ================= -->
+  <sc-if value="{{ isPatients }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1; padding:28px 32px; overflow-y:auto;">
+    <h1 style="font:600 22px 'Golos Text',sans-serif; margin:0 0 16px;">Пациенты</h1>
+    <table style="width:100%; max-width:760px; border-collapse:collapse; font:400 13px 'Golos Text',sans-serif;">
+      <tr style="text-align:left;">
+        <th style="padding:8px 10px 8px 0; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Имя</th>
+        <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Статус</th>
+        <th style="padding:8px 10px; border-bottom:2px solid #14171A; font:600 9.5px 'IBM Plex Mono',monospace; letter-spacing:.08em; color:#8A929E; text-transform:uppercase;">Заметка</th>
+        <th style="padding:8px 0 8px 10px; border-bottom:2px solid #14171A;"></th>
+      </tr>
+      <sc-for list="{{ patientsView }}" as="p" hint-placeholder-count="4">
+        <tr>
+          <td style="padding:10px 10px 10px 0; border-bottom:1px solid #F0F2F3; font-weight:600;">{{ p.name }}</td>
+          <td style="padding:10px 10px; border-bottom:1px solid #F0F2F3;"><span style="{{ p.chipStyle }}">{{ p.statusLabel }}</span></td>
+          <td style="padding:10px 10px; border-bottom:1px solid #F0F2F3; color:#5C6470;">{{ p.note }}</td>
+          <td style="padding:10px 0 10px 10px; border-bottom:1px solid #F0F2F3; text-align:right;"><button onClick="{{ p.onOpen }}" style="font:500 12px 'Golos Text',sans-serif; background:none; border:1px solid #C9CED4; border-radius:6px; height:28px; padding:0 10px; color:#14171A;">Открыть диалог →</button></td>
+        </tr>
+      </sc-for>
+    </table>
+  </div>
+  </sc-if>
+
+  <!-- ================= АЙЫМ / ТЕСТ-ЧАТ ================= -->
+  <sc-if value="{{ isAi }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1; padding:28px 32px; overflow-y:auto; display:flex; gap:28px;">
+    <div style="flex:1; max-width:440px;">
+      <h1 style="font:600 22px 'Golos Text',sans-serif; margin:0 0 6px;">База знаний</h1>
+      <p style="font:400 12.5px 'Golos Text',sans-serif; color:#8A929E; margin:0 0 16px;">Айым отвечает только на основе этих пар. Всё остальное — эскалация.</p>
+      <sc-for list="{{ knowledge }}" as="k" hint-placeholder-count="5">
+        <div style="border:1px solid #E4E7EA; border-radius:8px; padding:12px 14px; margin-bottom:8px; background:#fff;">
+          <div style="font:600 12.5px 'Golos Text',sans-serif; margin-bottom:4px;">{{ k.q }}</div>
+          <div style="font:400 12px/1.5 'Golos Text',sans-serif; color:#5C6470;">{{ k.a }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="width:340px; flex:none;">
+      <h2 style="font:600 15px 'Golos Text',sans-serif; margin:0 0 10px;">Тест-чат</h2>
+      <div style="border:1px solid #E4E7EA; border-radius:10px; background:#FAFBFA; height:360px; display:flex; flex-direction:column;">
+        <div style="flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ testChatView }}" as="t" hint-placeholder-count="1">
+            <div style="display:flex; justify-content:{{ t.justify }};">
+              <div style="max-width:80%; background:{{ t.bg }}; border:1px solid {{ t.border }}; color:{{ t.color }}; border-radius:14px; padding:8px 12px; font:400 12.5px/1.45 'Golos Text',sans-serif;">{{ t.text }}</div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ testChatBusy }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; justify-content:flex-start;">
+              <div style="background:#F2FAF6; border:1px solid rgba(11,155,109,.3); border-radius:14px; padding:8px 14px; display:flex; gap:4px;">
+                <span style="width:5px; height:5px; border-radius:3px; background:#0B9B6D; display:inline-block; animation:blink 1.2s infinite;"></span>
+                <span style="width:5px; height:5px; border-radius:3px; background:#0B9B6D; display:inline-block; animation:blink 1.2s infinite .2s;"></span>
+                <span style="width:5px; height:5px; border-radius:3px; background:#0B9B6D; display:inline-block; animation:blink 1.2s infinite .4s;"></span>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="padding:10px; border-top:1px solid #E4E7EA; display:flex; gap:8px;">
+          <input value="{{ testChatInput }}" onChange="{{ handleTestChange }}" onKeyDown="{{ handleTestKeyDown }}" placeholder="Спросите что-нибудь…" style="flex:1; height:34px; border:1px solid #C9CED4; border-radius:6px; padding:0 10px; font:400 13px 'Golos Text',sans-serif;"></input>
+          <button onClick="{{ testChatSend }}" style="font:600 12px 'Golos Text',sans-serif; background:#0B9B6D; color:#fff; border:none; border-radius:6px; height:34px; padding:0 12px;">→</button>
+        </div>
+      </div>
+      <sc-if value="{{ testChatError }}" hint-placeholder-val="{{ '' }}">
+        <p style="font:400 11.5px/1.5 'Golos Text',sans-serif; color:#B07818; margin-top:8px;">{{ testChatError }}</p>
+      </sc-if>
+      <p style="font:400 11.5px/1.5 'Golos Text',sans-serif; color:#8A929E; margin-top:8px;">Живой Айым на реальном AI: спросите про цену или запись — а после про «что выпить от боли», чтобы увидеть guardrail. Успешная запись сразу появится в «Календаре».</p>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= ОТЧЁТЫ ================= -->
+  <sc-if value="{{ isReports }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1; padding:28px 32px; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px;">
+      <h1 style="font:600 22px 'Golos Text',sans-serif; margin:0;">Отчёты</h1>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button onClick="{{ prevWeek }}" style="border:1px solid #C9CED4; background:#fff; border-radius:6px; height:30px; width:30px;">‹</button>
+        <span style="font:500 12.5px 'Golos Text',sans-serif; color:#5C6470; min-width:120px; text-align:center;">{{ reportData.label }}</span>
+        <button onClick="{{ nextWeek }}" style="border:1px solid #C9CED4; background:#fff; border-radius:6px; height:30px; width:30px;">›</button>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#E4E7EA; border:1px solid #E4E7EA; max-width:640px;">
+      <div style="background:#F2FAF6; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#087A56; text-transform:uppercase;">Деньги от AI</div><div style="font:700 24px 'Golos Text',sans-serif; color:#087A56; margin-top:6px;">{{ reportData.money }}</div></div>
+      <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Записей AI</div><div style="font:700 24px 'Golos Text',sans-serif; margin-top:6px;">{{ reportData.count }}</div></div>
+      <div style="background:#fff; padding:16px 18px;"><div style="font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.1em; color:#8A929E; text-transform:uppercase;">Неявки</div><div style="font:700 24px 'Golos Text',sans-serif; margin-top:6px;">{{ reportData.noshow }}</div></div>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    activeTab: 'dialogues',
+    filter: 'attention',
+    selectedConvId: 'c1',
+    inputText: '',
+    typingConvId: null,
+    doctorFilter: 'Серикова',
+    reportWeek: 1,
+    testChatInput: '',
+    testChatMessages: [],
+    testChatBusy: false,
+    testChatError: '',
+    slots: [
+      { key:'s-c1', doctor:'Серикова', time:'09:00', status:'free', patient:null },
+      { key:'s-c2', doctor:'Серикова', time:'10:00', status:'booked', patient:'Постоянный пациент' },
+      { key:'s-c3', doctor:'Серикова', time:'11:30', status:'booked', patient:'Тимур А.' },
+      { key:'s-c4', doctor:'Серикова', time:'13:00', status:'free', patient:null },
+      { key:'s-c5', doctor:'Серикова', time:'18:00', status:'booked', patient:'Алия К.' },
+      { key:'s-c6', doctor:'Серикова', time:'19:30', status:'free', patient:null },
+      { key:'s-a1', doctor:'Ахметов', time:'09:00', status:'booked', patient:'Плановый пациент' },
+      { key:'s-a2', doctor:'Ахметов', time:'10:00', status:'free', patient:null },
+      { key:'s-a3', doctor:'Ахметов', time:'11:30', status:'free', patient:null },
+      { key:'s-a4', doctor:'Ахметов', time:'13:00', status:'booked', patient:'Плановый пациент' },
+      { key:'s-a5', doctor:'Ахметов', time:'18:00', status:'free', patient:null },
+      { key:'s-a6', doctor:'Ахметов', time:'19:30', status:'free', patient:null }
+    ],
+    conversations: [
+      { id:'c1', name:'Тимур А.', phone:'+7 701 234 5678', channel:'WhatsApp', status:'attention',
+        patientNote:'Новый пациент · первое обращение',
+        messages:[
+          { id:1, from:'patient', text:'Добрый вечер! Очень болит зуб, что мне выпить?' },
+          { id:2, from:'ai', text:'Понимаю, зубная боль — это неприятно. Обезболивающее посоветовать не могу, это решает врач. Могу записать вас: завтра свободно в 09:00 и 11:30.' },
+          { id:3, from:'patient', text:'А может, можно решить вопрос без визита?' },
+          { id:4, from:'ai', text:'Передаю ваш вопрос администратору клиники — ответят в течение часа.', tag:'эскалация' }
+        ] },
+      { id:'c2', name:'Алия К.', phone:'+7 707 555 1122', channel:'WhatsApp', status:'booked',
+        patientNote:'Постоянный пациент · 3 визита',
+        messages:[
+          { id:1, from:'patient', text:'Сколько стоит чистка и можно ли завтра вечером?' },
+          { id:2, from:'ai', text:'Профессиональная чистка — 25 000 ₸. Завтра свободно 18:00 и 19:30. Записать вас?' },
+          { id:3, from:'patient', text:'Давайте на 18:00' },
+          { id:4, from:'ai', text:'Записала вас на завтра, 18:00, доктор Серикова.', tag:'записано' }
+        ] },
+      { id:'c3', name:'Ержан Т.', phone:'+7 701 998 4432', channel:'WhatsApp', status:'answered',
+        patientNote:'Новый пациент · интересуется имплантацией',
+        messages:[
+          { id:1, from:'patient', text:'Сколько стоит имплант зуба?' },
+          { id:2, from:'ai', text:'Имплантация под ключ — от 180 000 ₸, точная цена после осмотра. Хотите записаться на консультацию?' },
+          { id:3, from:'patient', text:'Подумаю, спасибо' }
+        ] },
+      { id:'c4', name:'+7 700 111 2233', phone:'+7 700 111 2233', channel:'WhatsApp', status:'typing',
+        patientNote:'Контакт не сохранён',
+        messages:[
+          { id:1, from:'patient', text:'Добрый вечер, вы сегодня работаете?' }
+        ] }
+    ]
+  };
+
+  timeouts = [];
+  componentWillUnmount() { this.timeouts.forEach(t => clearTimeout(t)); }
+
+  stripMd(text) {
+    return String(text)
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/\*(.*?)\*/g, '$1')
+      .replace(/__(.*?)__/g, '$1')
+      .replace(/`(.*?)`/g, '$1')
+      .replace(/^#{1,6}\s*/gm, '');
+  }
+
+  statusMeta(status) {
+    const map = {
+      attention: { label:'⚑ Ждёт человека', bg:'#FBF3E4', border:'rgba(176,120,24,.35)', color:'#8A5C10' },
+      booked:    { label:'✓ Записан',        bg:'#F2FAF6', border:'rgba(11,155,109,.3)', color:'#087A56' },
+      answered:  { label:'AI ответил',       bg:'#EEF0F1', border:'#E4E7EA',             color:'#5C6470' },
+      human:     { label:'Вы отвечаете',     bg:'#EFF4FA', border:'rgba(37,99,168,.3)',   color:'#1F4E85' },
+      typing:    { label:'печатает…',        bg:'#EEF0F1', border:'#E4E7EA',             color:'#8A929E' }
+    };
+    return map[status] || map.answered;
+  }
+
+  setTab = (t) => this.setState({ activeTab: t });
+  setFilter = (f) => this.setState({ filter: f });
+
+  selectConv = (id) => {
+    this.setState({ selectedConvId: id });
+    const conv = this.state.conversations.find(c => c.id === id);
+    if (conv && conv.status === 'typing' && this.state.typingConvId !== id) {
+      this.setState({ typingConvId: id });
+      const t = setTimeout(() => {
+        this.setState(s => ({
+          typingConvId: null,
+          conversations: s.conversations.map(c => c.id === id ? {
+            ...c, status:'answered',
+            messages:[...c.messages, { id: c.messages.length+1, from:'ai', text:'Добрый вечер! Да, работаем до 20:00 сегодня. Чем можем помочь?' }]
+          } : c)
+        }));
+      }, 1400);
+      this.timeouts.push(t);
+    }
+  };
+
+  takeover = (id) => this.setState(s => ({
+    conversations: s.conversations.map(c => c.id === id ? {
+      ...c, status:'human',
+      messages:[...c.messages, { id:c.messages.length+1, from:'system', text:'Мадина подключилась к диалогу' }]
+    } : c)
+  }));
+
+  returnToAI = (id) => this.setState(s => ({
+    conversations: s.conversations.map(c => c.id === id ? {
+      ...c, status:'answered',
+      messages:[...c.messages, { id:c.messages.length+1, from:'system', text:'Айым продолжает диалог' }]
+    } : c)
+  }));
+
+  handleInputChange = (e) => this.setState({ inputText: e.target.value });
+  handleKeyDown = (e) => { if (e.key === 'Enter') this.sendMessage(); };
+
+  sendMessage = () => {
+    const text = this.state.inputText.trim();
+    if (!text) return;
+    const id = this.state.selectedConvId;
+    this.setState(s => ({
+      inputText: '',
+      conversations: s.conversations.map(c => c.id === id ? {
+        ...c, messages:[...c.messages, { id:c.messages.length+1, from:'admin', text }]
+      } : c)
+    }));
+  };
+
+  toggleSlot = (key) => this.setState(s => ({
+    slots: s.slots.map(sl => sl.key === key ? {
+      ...sl,
+      status: sl.status === 'free' ? 'booked' : 'free',
+      patient: sl.status === 'free' ? 'Новая запись' : null
+    } : sl)
+  }));
+
+  knowledgeBase = [
+    { q:'Сколько стоит чистка?', a:'Профессиональная чистка — 25 000 ₸' },
+    { q:'Сколько стоит имплант?', a:'От 180 000 ₸, точная цена после осмотра' },
+    { q:'Часы работы клиники', a:'Ежедневно 09:00–20:00, включая выходные' },
+    { q:'Адрес клиники', a:'г. Алматы, ул. Достык 89' },
+    { q:'Принимаете ли детей?', a:'Да, с 4 лет, отдельный детский кабинет' }
+  ];
+
+  buildSystemPrompt() {
+    const kb = this.knowledgeBase.map(k => `- ${k.q} → ${k.a}`).join('\n');
+    return [
+      'Ты — Айым, AI-администратор стоматологии «Айгуль» в Алматы. Отвечай коротко, тепло и по-человечески, максимум 2-3 предложения. Пиши на языке пациента (русский или казахский).',
+      '',
+      'БАЗА ЗНАНИЙ (единственный источник фактов и цен):',
+      kb,
+      '',
+      'ЖЁСТКИЕ ПРАВИЛА:',
+      '1. Никогда не давай медицинских советов, не называй лекарства, не ставь диагнозы и не советуй, что делать при боли/симптомах. При любом медицинском вопросе вызови tool escalate — не отвечай на него сам.',
+      '2. Называй только цены и факты из базы знаний выше. Если чего-то там нет — вызови escalate, не придумывай.',
+      '3. Если пациент хочет записаться — сначала вызови check_availability, предложи 1-2 свободных времени, а после согласия пациента вызови book_appointment.',
+      '4. Никогда не подтверждай запись словами, не вызвав book_appointment.',
+      '5. Пиши обычным текстом без markdown — никаких звёздочек, решёток или других символов разметки.'
+    ].join('\n');
+  }
+
+  testChatTools() {
+    return [
+      {
+        name: 'check_availability',
+        description: 'Вернуть свободные слоты у врачей клиники',
+        input_schema: { type:'object', properties: { doctor: { type:'string', description:'Имя врача, необязательно' } } },
+        run: async (input) => {
+          const slots = this.state.slots.filter(sl => sl.status === 'free' && (!input.doctor || sl.doctor === input.doctor));
+          if (!slots.length) return 'Свободных слотов нет.';
+          return slots.map(sl => `${sl.doctor} — ${sl.time}`).join('; ');
+        }
+      },
+      {
+        name: 'book_appointment',
+        description: 'Забронировать слот для пациента',
+        input_schema: { type:'object', properties: {
+          doctor: { type:'string' }, time: { type:'string' }, patientName: { type:'string' }
+        }, required:['doctor','time','patientName'] },
+        run: async (input) => {
+          const match = this.state.slots.find(sl => sl.doctor === input.doctor && sl.time === input.time);
+          if (!match) return 'Такого слота нет, предложите другое время.';
+          if (match.status === 'booked') return 'Этот слот уже занят, предложите другое время.';
+          await new Promise(res => {
+            this.setState(s => ({
+              slots: s.slots.map(sl => sl.key === match.key ? { ...sl, status:'booked', patient: input.patientName } : sl)
+            }), res);
+          });
+          return `Записано: ${input.patientName} к ${input.doctor} на ${input.time}.`;
+        }
+      },
+      {
+        name: 'escalate',
+        description: 'Передать вопрос администратору-человеку, когда нельзя ответить самостоятельно (медицинский вопрос, нет данных в базе знаний)',
+        input_schema: { type:'object', properties: { reason: { type:'string' } }, required:['reason'] },
+        run: async (input) => `Передано администратору. Причина: ${input.reason}`
+      }
+    ];
+  }
+
+  setDoctor = (d) => this.setState({ doctorFilter: d });
+
+  handleTestChange = (e) => this.setState({ testChatInput: e.target.value });
+  handleTestKeyDown = (e) => { if (e.key === 'Enter') this.testChatSend(); };
+
+  testChatSend = async () => {
+    const q = this.state.testChatInput.trim();
+    if (!q || this.state.testChatBusy) return;
+    const history = [...this.state.testChatMessages, { from:'user', text:q }];
+    this.setState({ testChatInput:'', testChatMessages: history, testChatBusy:true, testChatError:'' });
+
+    const messages = history.map(m => ({ role: m.from === 'user' ? 'user' : 'assistant', content: m.text }));
+
+    try {
+      if (!window.claude || !window.claude.complete) throw new Error('no-claude');
+      const answer = await window.claude.complete({
+        model: 'claude-haiku-4-5',
+        system: this.buildSystemPrompt(),
+        messages,
+        tools: this.testChatTools(),
+        max_tokens: 400
+      });
+      const raw = (typeof answer === 'string' ? answer : answer.text) || 'Уточню у администратора.';
+      this.setState(s => ({ testChatBusy:false, testChatMessages:[...s.testChatMessages, { from:'ai', text: this.stripMd(raw) }] }));
+    } catch (e) {
+      const lower = q.toLowerCase();
+      let answer;
+      if (/бол|сове|выпить|лечить|диагноз/.test(lower)) answer = 'Это лучше уточнить у врача — передаю вопрос администратору.';
+      else if (/цена|стоит|сколько|стоимост/.test(lower)) answer = 'Чистка — 25 000 ₸, имплантация — от 180 000 ₸. Что вас интересует?';
+      else if (/час|работ|открыт/.test(lower)) answer = 'Мы работаем ежедневно с 09:00 до 20:00.';
+      else answer = 'Уточню у администратора и вернусь с ответом.';
+      this.setState(s => ({ testChatBusy:false, testChatError:'Реальный AI недоступен — показан заготовленный ответ.', testChatMessages:[...s.testChatMessages, { from:'ai', text:answer }] }));
+    }
+  };
+
+  prevWeek = () => this.setState(s => ({ reportWeek: Math.max(0, s.reportWeek - 1) }));
+  nextWeek = () => this.setState(s => ({ reportWeek: Math.min(2, s.reportWeek + 1) }));
+
+  navStyleFor(tab) {
+    const active = this.state.activeTab === tab;
+    return `display:flex; align-items:center; gap:8px; text-align:left; width:100%; padding:9px 12px; border-radius:6px; border:none; background:${active ? '#F2FAF6' : 'transparent'}; color:${active ? '#087A56' : '#5C6470'}; font:${active ? '600' : '500'} 13px 'Golos Text',sans-serif;`;
+  }
+
+  filterBtnStyleFor(f) {
+    const active = this.state.filter === f;
+    return `font:500 12px 'Golos Text',sans-serif; border:none; border-radius:6px; padding:6px 12px; background:${active ? '#14171A' : '#EEF0F1'}; color:${active ? '#fff' : '#5C6470'};`;
+  }
+
+  renderVals() {
+    const s = this.state;
+    const conversations = s.conversations;
+    const selected = conversations.find(c => c.id === s.selectedConvId) || conversations[0];
+
+    const filtered = s.filter === 'attention' ? conversations.filter(c => c.status === 'attention') : conversations;
+    const convListView = filtered.map(c => {
+      const meta = this.statusMeta(c.status);
+      const isSel = c.id === selected.id;
+      return {
+        id: c.id, name: c.name, channel: c.channel,
+        preview: c.messages[c.messages.length - 1].text,
+        statusLabel: meta.label,
+        chipStyle: `font:500 10.5px 'Golos Text',sans-serif; background:${meta.bg}; color:${meta.color}; border:1px solid ${meta.border}; border-radius:14px; padding:2px 9px; display:inline-block;`,
+        rowStyle: `padding:10px 12px; border-radius:8px; margin-bottom:4px; cursor:pointer; background:${isSel ? '#F5F8F6' : 'transparent'}; border:1px solid ${isSel ? '#E4E7EA' : 'transparent'};`,
+        onSelect: () => this.selectConv(c.id)
+      };
+    });
+
+    const messagesView = selected.messages.map(m => {
+      if (m.from === 'system') {
+        return { justify:'center', bg:'#EEF0F1', border:'#EEF0F1', color:'#8A929E', radius:'12px', text: m.text, tag:'', tagAlign:'center', tagColor:'#8A929E' };
+      }
+      if (m.from === 'patient') {
+        return { justify:'flex-start', bg:'#fff', border:'#E4E7EA', color:'#14171A', radius:'18px 18px 18px 4px', text:m.text, tag:'', tagAlign:'left', tagColor:'#8A929E' };
+      }
+      if (m.from === 'admin') {
+        return { justify:'flex-end', bg:'#14171A', border:'#14171A', color:'#fff', radius:'18px 18px 4px 18px', text:m.text, tag:'', tagAlign:'right', tagColor:'#8A929E' };
+      }
+      // ai
+      const escalated = m.tag === 'эскалация';
+      return {
+        justify:'flex-end',
+        bg: escalated ? '#FBF3E4' : '#F2FAF6',
+        border: escalated ? 'rgba(176,120,24,.35)' : 'rgba(11,155,109,.3)',
+        color:'#14171A',
+        radius:'18px 18px 4px 18px',
+        text: m.text,
+        tag: m.tag ? (escalated ? '⚑ ' + m.tag : '✦ Айым · ' + m.tag) : (m === selected.messages[selected.messages.length-1] ? '✦ Айым' : ''),
+        tagAlign:'right',
+        tagColor: escalated ? '#B07818' : '#0B9B6D'
+      };
+    });
+
+    const selectedConv = {
+      id: selected.id, name: selected.name, phone: selected.phone, channel: selected.channel,
+      patientNote: selected.patientNote,
+      isHuman: selected.status === 'human',
+      isNotHuman: selected.status !== 'human',
+      messagesView
+    };
+
+    const doctors = ['Серикова', 'Ахметов'];
+    const doctorChips = doctors.map(d => ({
+      name: d,
+      onSelect: () => this.setDoctor(d),
+      style: `font:500 12.5px 'Golos Text',sans-serif; border:1px solid ${s.doctorFilter===d ? '#0B9B6D' : '#C9CED4'}; background:${s.doctorFilter===d ? '#F2FAF6' : '#fff'}; color:${s.doctorFilter===d ? '#087A56' : '#14171A'}; border-radius:16px; padding:6px 14px;`
+    }));
+    const slotsView = s.slots.filter(sl => sl.doctor === s.doctorFilter).map(sl => ({
+      time: sl.time,
+      label: sl.status === 'booked' ? (sl.patient || 'Занято') : 'Свободно',
+      chipStyle: `font:500 11px 'Golos Text',sans-serif; padding:3px 10px; border-radius:12px; background:${sl.status==='booked' ? '#F2FAF6' : '#EEF0F1'}; color:${sl.status==='booked' ? '#087A56' : '#5C6470'}; border:1px solid ${sl.status==='booked' ? 'rgba(11,155,109,.3)' : '#E4E7EA'};`,
+      onToggle: () => this.toggleSlot(sl.key)
+    }));
+
+    const patientsView = conversations.map(c => {
+      const meta = this.statusMeta(c.status);
+      return {
+        name: c.name, note: c.patientNote, statusLabel: meta.label,
+        chipStyle: `font:500 10.5px 'Golos Text',sans-serif; background:${meta.bg}; color:${meta.color}; border:1px solid ${meta.border}; border-radius:14px; padding:2px 9px;`,
+        onOpen: () => { this.setState({ activeTab:'dialogues', selectedConvId:c.id }); }
+      };
+    });
+
+    const knowledge = this.knowledgeBase;
+
+    const testChatView = s.testChatMessages.map(t => ({
+      justify: t.from === 'user' ? 'flex-end' : 'flex-start',
+      bg: t.from === 'user' ? '#14171A' : '#F2FAF6',
+      border: t.from === 'user' ? '#14171A' : 'rgba(11,155,109,.3)',
+      color: t.from === 'user' ? '#fff' : '#14171A',
+      text: t.text
+    }));
+
+    const weeks = [
+      { label:'22–28 июня', money:'₸ 610 000', count:19, noshow:'−22%' },
+      { label:'29 июня – 5 июля', money:'₸ 840 000', count:27, noshow:'−31%' },
+      { label:'6–12 июля', money:'₸ 905 000', count:29, noshow:'−34%' }
+    ];
+
+    const attentionCount = conversations.filter(c => c.status === 'attention').length;
+    const navItems = [
+      { tab:'dialogues', label:'Диалоги', badge: attentionCount },
+      { tab:'calendar', label:'Календарь', badge: 0 },
+      { tab:'patients', label:'Пациенты', badge: 0 },
+      { tab:'ai', label:'✦ Айым', badge: 0 },
+      { tab:'reports', label:'Отчёты', badge: 0 }
+    ].map(n => ({ ...n, style: this.navStyleFor(n.tab), onSelect: () => this.setTab(n.tab) }));
+
+    const filterButtons = [
+      { key:'attention', label:'Внимание' },
+      { key:'all', label:'Все' }
+    ].map(f => ({ ...f, style: this.filterBtnStyleFor(f.key), onSelect: () => this.setFilter(f.key) }));
+
+    return {
+      isDialogues: s.activeTab === 'dialogues',
+      isCalendar: s.activeTab === 'calendar',
+      isPatients: s.activeTab === 'patients',
+      isAi: s.activeTab === 'ai',
+      isReports: s.activeTab === 'reports',
+      attentionCount,
+      navItems, filterButtons,
+      convListView, selectedConv,
+      isTyping: s.typingConvId === selected.id,
+      inputText: s.inputText,
+      handleInputChange: this.handleInputChange,
+      handleKeyDown: this.handleKeyDown,
+      sendMessage: this.sendMessage,
+      takeover: this.takeover,
+      returnToAI: this.returnToAI,
+      doctorChips, slotsView,
+      patientsView,
+      knowledge,
+      testChatInput: s.testChatInput,
+      testChatView,
+      testChatBusy: s.testChatBusy,
+      testChatError: s.testChatError,
+      handleTestChange: this.handleTestChange,
+      handleTestKeyDown: this.handleTestKeyDown,
+      testChatSend: this.testChatSend,
+      reportData: weeks[s.reportWeek],
+      prevWeek: this.prevWeek,
+      nextWeek: this.nextWeek
+    };
+  }
+}
+</script>
+</body>
+</html>
