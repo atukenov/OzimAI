@@ -60,8 +60,13 @@ function splitOnDelimiter(line: string): [string, string] | null {
 }
 
 function parsePrice(text: string): number | null {
-  const cleaned = text.replace(PRICE_SUFFIX, '').replace(/[^\d.,]/g, '').replace(/,/g, '');
-  if (!cleaned) return null;
+  const withoutSuffix = text.replace(PRICE_SUFFIX, '').trim();
+  // The whole remaining string must be numeric (digits + thousands
+  // separators) — not just "contains digits somewhere". Stripping non-digit
+  // characters unconditionally used to turn "Ежедневно 09:00-20:00" into
+  // "09002000" (9 002 000 ₸!) by mashing the time range's digits together.
+  if (!/^\d[\d\s.,]*$/.test(withoutSuffix)) return null;
+  const cleaned = withoutSuffix.replace(/[\s.,]/g, '');
   const value = Number(cleaned);
   return Number.isFinite(value) && value > 0 ? value : null;
 }
