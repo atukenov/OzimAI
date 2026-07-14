@@ -1,8 +1,11 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { entities } from './database/data-source';
 import { SnakeNamingStrategy } from './database/snake-naming.strategy';
@@ -25,9 +28,26 @@ import { BillingModule } from './modules/billing/billing.module';
 import { ReportsModule } from './modules/reports/reports.module';
 import { HealthController } from './health.controller';
 
+// Single-service deployment (Railway): the backend also serves the built
+// frontend SPA. Same relative depth from src/ (ts-node dev) and dist/
+// (compiled prod), so this path works in both. When the frontend hasn't
+// been built (typical local dev — Vite serves it on :5173 instead), the
+// module is simply omitted.
+const FRONTEND_DIST = join(__dirname, '../../frontend/dist');
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    ...(existsSync(FRONTEND_DIST)
+      ? [
+          ServeStaticModule.forRoot({
+            rootPath: FRONTEND_DIST,
+            // API, webhooks, health, and the WS handshake must never fall
+            // through to the SPA's index.html.
+            exclude: ['/api/(.*)', '/webhooks/(.*)', '/health', '/socket.io/(.*)'],
+          }),
+        ]
+      : []),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({

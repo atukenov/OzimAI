@@ -23,11 +23,18 @@ export class InitSchema1735500000000 implements MigrationInterface {
     // regardless of FORCE ROW LEVEL SECURITY. The running app must connect as
     // a normal, non-superuser role instead, or every RLS policy below is a
     // no-op — this is exactly what test/tenant/rls-isolation.spec.ts checks.
+    // Password comes from APP_DB_PASSWORD in deployed environments (Railway's
+    // Postgres is reachable over a public TCP proxy — a well-known hardcoded
+    // password would be an open door). Falls back to the dev password only
+    // for local docker-compose. Single-quotes escaped for SQL-literal safety.
+    // Editing this already-applied migration is safe: it never re-runs on
+    // existing databases, and this block changes no schema.
+    const appDbPassword = (process.env.APP_DB_PASSWORD || 'ozimai_app_dev').replace(/'/g, "''");
     await q.query(`
       DO $$
       BEGIN
         IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'ozimai_app') THEN
-          CREATE ROLE ozimai_app WITH LOGIN PASSWORD 'ozimai_app_dev' NOSUPERUSER NOBYPASSRLS;
+          CREATE ROLE ozimai_app WITH LOGIN PASSWORD '${appDbPassword}' NOSUPERUSER NOBYPASSRLS;
         END IF;
       END
       $$;

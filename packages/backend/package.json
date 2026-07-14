@@ -7,6 +7,7 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/main.js",
     "migrate": "typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
+    "migrate:prod": "typeorm migration:run -d dist/database/data-source.js",
     "migrate:revert": "typeorm-ts-node-commonjs migration:revert -d src/database/data-source.ts",
     "seed": "ts-node -r tsconfig-paths/register src/seed/seed.ts",
     "test": "jest --runInBand"
@@ -20,6 +21,7 @@
     "@nestjs/platform-express": "^10.4.4",
     "@nestjs/platform-socket.io": "^10.4.4",
     "@nestjs/schedule": "^4.1.1",
+    "@nestjs/serve-static": "^4.0.2",
     "@nestjs/typeorm": "^10.0.2",
     "@nestjs/websockets": "^10.4.4",
     "@ozimai/shared": "*",
