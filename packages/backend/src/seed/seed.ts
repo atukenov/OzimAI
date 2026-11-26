@@ -46,6 +46,7 @@ async function main() {
     const org = await orgRepo.save(
       orgRepo.create({
         name: 'Стоматология «Айгуль»',
+        publicSlug: 'aigul', // demo web chat: /c/aigul
         plan: 'start',
         locale: 'ru',
         billingStatus: BillingStatus.Trial,

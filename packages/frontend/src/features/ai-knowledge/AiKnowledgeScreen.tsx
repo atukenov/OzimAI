@@ -5,6 +5,7 @@ import { api } from '../../lib/api';
 import { Button } from '../../design-system/Button';
 import { Input } from '../../design-system/Field';
 import { Chip } from '../../design-system/Chip';
+import { WebChatSettingsCard } from '../webchat/WebChatSettingsCard';
 
 interface TestChatMessage {
   from: 'user' | 'ai';
@@ -22,9 +23,12 @@ interface TestChatResponse {
 
 export function AiKnowledgeScreen() {
   return (
-    <div style={{ padding: '28px 32px', display: 'flex', gap: 28 }}>
-      <KnowledgePanel />
-      <TestChatPanel />
+    <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', gap: 28 }}>
+      <WebChatSettingsCard />
+      <div style={{ display: 'flex', gap: 28 }}>
+        <KnowledgePanel />
+        <TestChatPanel />
+      </div>
     </div>
   );
 }

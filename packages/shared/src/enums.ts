@@ -47,6 +47,8 @@ export enum LeadStatus {
 export enum Channel {
   WhatsApp = 'whatsapp',
   Instagram = 'instagram',
+  /** Embeddable website widget / hosted chat page (no WhatsApp account needed). */
+  Web = 'web',
   DevMock = 'dev_mock',
 }
 

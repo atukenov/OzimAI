@@ -1,6 +1,11 @@
 import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Channel, LeadStatus } from '@ozimai/shared';
 
+export interface WebPushSubscription {
+  endpoint: string;
+  keys: { p256dh: string; auth: string };
+}
+
 @Entity('patient')
 @Index(['orgId'])
 @Index(['orgId', 'phone'], { unique: true })
@@ -25,6 +30,10 @@ export class PatientEntity {
 
   @Column({ type: 'text', nullable: true })
   lastNote: string | null;
+
+  /** Browser Web Push subscription (web chat patients who allowed notifications). */
+  @Column({ type: 'jsonb', nullable: true })
+  pushSubscription: WebPushSubscription | null;
 
   @CreateDateColumn()
   createdAt: Date;

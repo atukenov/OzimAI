@@ -9,6 +9,7 @@ import { PatientsScreen } from '../features/patients/PatientsScreen';
 import { AiKnowledgeScreen } from '../features/ai-knowledge/AiKnowledgeScreen';
 import { ReportsScreen } from '../features/reports/ReportsScreen';
 import { OnboardingWizard } from '../features/onboarding/OnboardingWizard';
+import { WebChatScreen } from '../features/webchat/WebChatScreen';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -22,6 +23,8 @@ export function App() {
     <Routes>
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/auth/verify" element={<VerifyScreen />} />
+      {/* Public patient chat (shareable link + widget iframe) — no panel auth. */}
+      <Route path="/c/:slug" element={<WebChatScreen />} />
       <Route
         path="/onboarding"
         element={

@@ -43,10 +43,17 @@ export class OrchestratorService {
     private readonly channels: ChannelAdapterRegistry,
   ) {}
 
-  /** Real channel path: WhatsApp webhook or the dev-mock "simulate inbound" harness. */
-  async handleInboundMessage(params: { phone: string; text: string; channel: Channel; nameGuess?: string }): Promise<OrchestratorReply> {
+  /** Real channel path: WhatsApp webhook, web chat widget, or the dev-mock "simulate inbound" harness. */
+  async handleInboundMessage(params: {
+    phone: string;
+    text: string;
+    channel: Channel;
+    nameGuess?: string;
+    /** Web chat only: browser session that owns the conversation. */
+    webSessionId?: string;
+  }): Promise<OrchestratorReply> {
     const patient = await this.crm.upsertByPhone(params.phone, params.nameGuess ?? null, params.channel);
-    const conversation = await this.dialogues.getOrCreateOpenConversation(patient.id, params.channel);
+    const conversation = await this.dialogues.getOrCreateOpenConversation(patient.id, params.channel, params.webSessionId);
 
     await this.dialogues.appendMessage(conversation.id, MessageSenderType.Patient, params.text);
 
