@@ -10,6 +10,7 @@ import { AiKnowledgeScreen } from '../features/ai-knowledge/AiKnowledgeScreen';
 import { ReportsScreen } from '../features/reports/ReportsScreen';
 import { OnboardingWizard } from '../features/onboarding/OnboardingWizard';
 import { WebChatScreen } from '../features/webchat/WebChatScreen';
+import { LandingPage } from '../features/landing/LandingPage';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -21,6 +22,7 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
 export function App() {
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/auth/verify" element={<VerifyScreen />} />
       {/* Public patient chat (shareable link + widget iframe) — no panel auth. */}
@@ -34,14 +36,12 @@ export function App() {
         }
       />
       <Route
-        path="/"
         element={
           <RequireAuth>
             <AppLayout />
           </RequireAuth>
         }
       >
-        <Route index element={<Navigate to="/dialogues" replace />} />
         <Route path="dialogues" element={<DialoguesScreen />} />
         <Route path="dialogues/:conversationId" element={<DialoguesScreen />} />
         <Route path="calendar" element={<CalendarScreen />} />
