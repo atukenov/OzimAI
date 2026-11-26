@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { DevMockChannelAdapter } from './adapters/dev-mock-channel.adapter';
 import { WhatsAppCloudAdapter } from './adapters/whatsapp-cloud.adapter';
+import { WebChatAdapter } from './adapters/web-chat.adapter';
 import { ChannelAdapterRegistry } from './adapters/channel-adapter-registry.service';
 
 /**
@@ -11,7 +12,7 @@ import { ChannelAdapterRegistry } from './adapters/channel-adapter-registry.serv
  */
 @Global()
 @Module({
-  providers: [DevMockChannelAdapter, WhatsAppCloudAdapter, ChannelAdapterRegistry],
-  exports: [DevMockChannelAdapter, WhatsAppCloudAdapter, ChannelAdapterRegistry],
+  providers: [DevMockChannelAdapter, WhatsAppCloudAdapter, WebChatAdapter, ChannelAdapterRegistry],
+  exports: [DevMockChannelAdapter, WhatsAppCloudAdapter, WebChatAdapter, ChannelAdapterRegistry],
 })
 export class ChannelAdapterModule {}

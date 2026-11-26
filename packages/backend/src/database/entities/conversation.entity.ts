@@ -17,6 +17,14 @@ export class ConversationEntity {
   @Column({ type: 'enum', enum: Channel, default: Channel.WhatsApp })
   channel: Channel;
 
+  /**
+   * Web chat only: the browser session that owns this conversation. Web
+   * visitors are not phone-verified, so history is scoped to the session
+   * that wrote it, never to "whoever typed this phone number".
+   */
+  @Column({ type: 'uuid', nullable: true })
+  webSessionId: string | null;
+
   @Column({ type: 'enum', enum: ConversationStatus, default: ConversationStatus.Ai })
   status: ConversationStatus;
 

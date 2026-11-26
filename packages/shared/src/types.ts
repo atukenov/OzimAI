@@ -17,6 +17,8 @@ export interface OrganizationDto {
   locale: 'ru' | 'kk';
   billingStatus: BillingStatus;
   trialEndsAt: string | null;
+  /** Web chat address: /c/<publicSlug> */
+  publicSlug: string;
   createdAt: string;
 }
 

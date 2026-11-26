@@ -3,15 +3,17 @@ import { Channel } from '@ozimai/shared';
 import { ChannelAdapter } from './channel-adapter.interface';
 import { DevMockChannelAdapter } from './dev-mock-channel.adapter';
 import { WhatsAppCloudAdapter } from './whatsapp-cloud.adapter';
+import { WebChatAdapter } from './web-chat.adapter';
 
 @Injectable()
 export class ChannelAdapterRegistry {
   private readonly adapters: Map<Channel, ChannelAdapter>;
 
-  constructor(devMock: DevMockChannelAdapter, whatsapp: WhatsAppCloudAdapter) {
+  constructor(devMock: DevMockChannelAdapter, whatsapp: WhatsAppCloudAdapter, web: WebChatAdapter) {
     this.adapters = new Map<Channel, ChannelAdapter>([
       [Channel.DevMock, devMock],
       [Channel.WhatsApp, whatsapp],
+      [Channel.Web, web],
     ]);
   }
 

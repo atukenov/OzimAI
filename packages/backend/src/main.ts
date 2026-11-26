@@ -1,10 +1,14 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: false });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: false });
+  // Railway (and most PaaS) terminate TLS at a proxy: trust its X-Forwarded-For
+  // so per-IP rate limits on the public web chat see the real visitor IP.
+  app.set('trust proxy', 1);
   app.enableCors({
     origin: process.env.CORS_ORIGIN?.split(',') ?? true,
     credentials: true,

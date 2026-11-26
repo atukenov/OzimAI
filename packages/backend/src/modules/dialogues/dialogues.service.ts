@@ -18,11 +18,30 @@ export class DialoguesService {
     private readonly channels: ChannelAdapterRegistry,
   ) {}
 
-  async getOrCreateOpenConversation(patientId: string, channel: Channel): Promise<ConversationEntity> {
+  /**
+   * Web chat conversations are keyed by the browser session (`webSessionId`),
+   * never by phone alone: web visitors aren't phone-verified, so typing
+   * someone else's number must not reveal or continue their thread.
+   * Phone-verified channels (WhatsApp, dev-mock) keep the original
+   * one-conversation-per-patient behaviour.
+   */
+  async getOrCreateOpenConversation(patientId: string, channel: Channel, webSessionId?: string): Promise<ConversationEntity> {
     const repo = this.tenant.repo(ConversationEntity);
-    let conversation = await repo.findOne({ where: { orgId: this.tenant.orgId, patientId }, order: { updatedAt: 'DESC' } });
+    const where =
+      channel === Channel.Web
+        ? { orgId: this.tenant.orgId, patientId, channel, webSessionId: webSessionId ?? '00000000-0000-0000-0000-000000000000' }
+        : { orgId: this.tenant.orgId, patientId };
+    let conversation = await repo.findOne({ where, order: { updatedAt: 'DESC' } });
     if (!conversation) {
-      conversation = await repo.save(repo.create({ orgId: this.tenant.orgId, patientId, channel, status: ConversationStatus.Ai }));
+      conversation = await repo.save(
+        repo.create({
+          orgId: this.tenant.orgId,
+          patientId,
+          channel,
+          status: ConversationStatus.Ai,
+          webSessionId: channel === Channel.Web ? (webSessionId ?? null) : null,
+        }),
+      );
     }
     return conversation;
   }

@@ -29,6 +29,13 @@ export class OrganizationEntity {
   @Column({ nullable: true, unique: true })
   whatsappPhoneNumberId?: string;
 
+  /**
+   * Public, non-guessable-enough handle for the web chat (`/c/<slug>`) and
+   * widget embed code. Filled by a DB default on insert; owners can change it.
+   */
+  @Column({ type: 'text', unique: true })
+  publicSlug: string;
+
   @Column({ nullable: true })
   aiName?: string;
 

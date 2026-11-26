@@ -1,4 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { Not } from 'typeorm';
 import { TenantContextService } from '../../common/tenant/tenant-context.service';
 import { OrganizationEntity } from '../../database/entities/organization.entity';
 import { BranchEntity } from '../../database/entities/branch.entity';
@@ -17,6 +18,9 @@ export class OrganizationsService {
   async updateMyOrg(dto: UpdateOrganizationDto): Promise<OrganizationEntity> {
     const repo = this.tenant.manager.getRepository(OrganizationEntity);
     const org = await repo.findOneByOrFail({ id: this.tenant.orgId });
+    if (dto.publicSlug && (await repo.existsBy({ publicSlug: dto.publicSlug, id: Not(org.id) }))) {
+      throw new ConflictException('Этот адрес чата уже занят');
+    }
     Object.assign(org, dto);
     return repo.save(org);
   }

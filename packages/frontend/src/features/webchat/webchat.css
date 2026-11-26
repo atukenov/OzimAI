@@ -1,0 +1,163 @@
+.wc-root {
+  height: 100dvh;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  color: var(--text-ink);
+  font-family: var(--font-ui);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.wc-root.wc-embedded {
+  max-width: none;
+  border: 0;
+}
+.wc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.wc-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-600);
+  color: var(--on-accent);
+  font-weight: 600;
+  flex: none;
+}
+.wc-title {
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wc-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.wc-close {
+  border: 0;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.wc-center {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+}
+.wc-start {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+.wc-intro {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--accent-050);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.wc-consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.wc-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--bg-page);
+}
+.wc-msg {
+  max-width: 82%;
+  padding: 9px 13px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.wc-msg-clinic {
+  align-self: flex-start;
+  background: var(--accent-050);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  border-bottom-left-radius: 4px;
+}
+.wc-msg-patient {
+  align-self: flex-end;
+  background: var(--text-ink);
+  color: var(--on-ink);
+  border-bottom-right-radius: 4px;
+}
+.wc-msg-author {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-700);
+  margin-bottom: 2px;
+}
+.wc-system {
+  align-self: center;
+  font-size: 12px;
+  color: var(--text-faint);
+  padding: 4px 0;
+}
+.wc-push {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  background: var(--info-bg);
+  color: var(--info-text);
+  border-top: 1px solid var(--border);
+}
+.wc-error {
+  padding: 8px 16px;
+  font-size: 13px;
+  color: var(--danger-600);
+  border-top: 1px solid var(--border);
+}
+.wc-composer {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+.wc-composer .field-input {
+  font-size: 16px; /* >=16px stops iOS Safari from zooming on focus */
+}
+.wc-footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-faint);
+  padding: 6px 0 8px;
+  background: var(--surface);
+}

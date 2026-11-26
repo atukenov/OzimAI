@@ -26,6 +26,8 @@ import { ChannelAdapterModule } from './modules/channels/channel-adapter.module'
 import { ChannelsModule } from './modules/channels/channels.module';
 import { BillingModule } from './modules/billing/billing.module';
 import { ReportsModule } from './modules/reports/reports.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
+import { WebChatModule } from './modules/webchat/webchat.module';
 import { HealthController } from './health.controller';
 
 // Single-service deployment (Railway): the backend also serves the built
@@ -76,6 +78,7 @@ const FRONTEND_DIST = join(__dirname, '../../frontend/dist');
     RedisModule,
     AuditModule,
     ChannelAdapterModule,
+    NotificationsModule,
     AuthModule,
     OrganizationsModule,
     CrmModule,
@@ -84,6 +87,7 @@ const FRONTEND_DIST = join(__dirname, '../../frontend/dist');
     DialoguesModule,
     AiModule,
     ChannelsModule,
+    WebChatModule,
     BillingModule,
     ReportsModule,
   ],

@@ -1,4 +1,4 @@
-import { IsIn, IsOptional, IsString, MinLength } from 'class-validator';
+import { IsIn, IsOptional, IsString, Matches, MinLength } from 'class-validator';
 
 export class UpdateOrganizationDto {
   @IsOptional()
@@ -17,6 +17,11 @@ export class UpdateOrganizationDto {
   @IsOptional()
   @IsString()
   aiTone?: string;
+
+  /** Web chat address: /c/<publicSlug>. Lowercase latin, digits and dashes. */
+  @IsOptional()
+  @Matches(/^[a-z0-9](?:[a-z0-9-]{1,38}[a-z0-9])$/, { message: 'Адрес: 3–40 символов, латиница, цифры и дефис' })
+  publicSlug?: string;
 }
 
 export class CreateBranchDto {
