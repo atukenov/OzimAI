@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Ip, Post } from '@nestjs/common';
 import { Public } from '../../common/auth/public.decorator';
 import { CurrentUser } from '../../common/auth/current-user.decorator';
 import { JwtPayload } from '../../common/auth/jwt-payload.interface';
@@ -6,8 +6,7 @@ import { TenantContextService } from '../../common/tenant/tenant-context.service
 import { OrganizationEntity } from '../../database/entities/organization.entity';
 import { AppUserEntity } from '../../database/entities/app-user.entity';
 import { AuthService } from './auth.service';
-import { RequestMagicLinkDto } from './dto/request-magic-link.dto';
-import { VerifyMagicLinkDto } from './dto/verify-magic-link.dto';
+import { RequestCodeDto, VerifyCodeDto } from './dto/auth.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -17,15 +16,15 @@ export class AuthController {
   ) {}
 
   @Public()
-  @Post('magic-link')
-  requestMagicLink(@Body() dto: RequestMagicLinkDto) {
-    return this.auth.requestMagicLink(dto.email, dto.orgName);
+  @Post('request-code')
+  requestCode(@Body() dto: RequestCodeDto, @Ip() ip: string) {
+    return this.auth.requestLoginCode(dto.email, dto.orgName, ip || 'unknown');
   }
 
   @Public()
   @Post('verify')
-  async verify(@Body() dto: VerifyMagicLinkDto) {
-    const { accessToken, user, org } = await this.auth.verifyMagicLink(dto.token);
+  async verify(@Body() dto: VerifyCodeDto) {
+    const { accessToken, user, org } = await this.auth.verifyLoginCode(dto.email, dto.code);
     return {
       accessToken,
       user: { id: user.id, email: user.email, role: user.role, displayName: user.displayName },

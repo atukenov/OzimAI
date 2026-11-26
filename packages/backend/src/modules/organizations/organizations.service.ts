@@ -1,18 +1,25 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Not } from 'typeorm';
+import { ConfigService } from '@nestjs/config';
 import { TenantContextService } from '../../common/tenant/tenant-context.service';
 import { OrganizationEntity } from '../../database/entities/organization.entity';
 import { BranchEntity } from '../../database/entities/branch.entity';
 import { PractitionerEntity } from '../../database/entities/practitioner.entity';
 import { ServiceEntity } from '../../database/entities/service.entity';
+import { smsPeriod, usedThisMonth } from '../notifications/sms/sms-quota';
 import { CreateBranchDto, CreatePractitionerDto, CreateServiceDto, UpdateOrganizationDto } from './dto/organization.dto';
 
 @Injectable()
 export class OrganizationsService {
-  constructor(private readonly tenant: TenantContextService) {}
+  constructor(
+    private readonly tenant: TenantContextService,
+    private readonly config: ConfigService,
+  ) {}
 
-  async getMyOrg(): Promise<OrganizationEntity> {
-    return this.tenant.manager.getRepository(OrganizationEntity).findOneByOrFail({ id: this.tenant.orgId });
+  async getMyOrg(): Promise<OrganizationEntity & { smsUsedThisMonth: number }> {
+    const org = await this.tenant.manager.getRepository(OrganizationEntity).findOneByOrFail({ id: this.tenant.orgId });
+    const period = smsPeriod(new Date(), this.config.get<string>('CLINIC_TIMEZONE') || 'Asia/Almaty');
+    return Object.assign(org, { smsUsedThisMonth: usedThisMonth(org, period) });
   }
 
   async updateMyOrg(dto: UpdateOrganizationDto): Promise<OrganizationEntity> {

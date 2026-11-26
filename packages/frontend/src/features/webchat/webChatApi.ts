@@ -2,6 +2,8 @@
  * Visitor-side API for the public web chat. Deliberately separate from
  * lib/api.ts: it must never send (or clear) the clinic panel's admin token.
  */
+import { API_ORIGIN } from '../../lib/apiOrigin';
+
 export interface ClinicInfo {
   clinicName: string;
   aiName: string;
@@ -48,7 +50,7 @@ export class ChatApiError extends Error {
 }
 
 async function call<T>(slug: string, path: string, token: string | null, init: RequestInit = {}): Promise<T> {
-  const res = await fetch(`/api/public/chat/${encodeURIComponent(slug)}${path}`, {
+  const res = await fetch(`${API_ORIGIN}/api/public/chat/${encodeURIComponent(slug)}${path}`, {
     ...init,
     headers: {
       'Content-Type': 'application/json',

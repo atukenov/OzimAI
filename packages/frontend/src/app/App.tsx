@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from '../features/auth/AuthContext';
 import { LoginScreen } from '../features/auth/LoginScreen';
-import { VerifyScreen } from '../features/auth/VerifyScreen';
 import { AppLayout } from './AppLayout';
 import { DialoguesScreen } from '../features/dialogues/DialoguesScreen';
 import { CalendarScreen } from '../features/calendar/CalendarScreen';
@@ -24,7 +23,7 @@ export function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginScreen />} />
-      <Route path="/auth/verify" element={<VerifyScreen />} />
+      <Route path="/auth/verify" element={<Navigate to="/login" replace />} />
       {/* Public patient chat (shareable link + widget iframe) — no panel auth. */}
       <Route path="/c/:slug" element={<WebChatScreen />} />
       <Route

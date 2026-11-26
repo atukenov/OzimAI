@@ -139,7 +139,7 @@ async function main() {
     ]);
 
     // eslint-disable-next-line no-console
-    console.log('Seeded demo org:', org.id, '— log in with owner@aigul.demo (magic link).');
+    console.log('Seeded demo org:', org.id, '— log in with owner@aigul.demo (4-digit email code; printed in the backend log in dev).');
   });
 
   await AppDataSource.destroy();

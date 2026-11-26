@@ -19,7 +19,8 @@ export class WeeklyReportSenderService {
     private readonly reports: ReportsService,
   ) {}
 
-  @Cron('0 8 * * 1') // Monday 08:00
+  // Monday 08:00 Kazakhstan time (server clocks on Railway run in UTC).
+  @Cron('0 8 * * 1', { timeZone: process.env.CLINIC_TIMEZONE || 'Asia/Almaty' })
   async sendWeeklyReports() {
     await this.runner.forEachOrg(async (orgId) => {
       const report = await this.reports.getWeekly(-1);

@@ -1,4 +1,5 @@
-import { Body, Controller, Get, HttpCode, Logger, Post, Query } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, Get, Headers, HttpCode, Logger, Post, Query, RawBodyRequest, Req } from '@nestjs/common';
+import { createHmac, timingSafeEqual } from 'node:crypto';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
@@ -34,7 +35,20 @@ export class ChannelsController {
   @Public()
   @Post()
   @HttpCode(200)
-  async receive(@Body() payload: unknown) {
+  async receive(
+    @Body() payload: unknown,
+    @Req() req: RawBodyRequest<{ rawBody?: Buffer }>,
+    @Headers('x-hub-signature-256') signature?: string,
+  ) {
+    // WhatsApp stays off until WHATSAPP_APP_SECRET is set: without it nothing
+    // can prove a payload came from Meta, so inbound events are dropped.
+    const secret = this.config.get<string>('WHATSAPP_APP_SECRET');
+    if (!secret) return { ok: true };
+    if (!WhatsAppWebhookSignature.isValid(secret, req.rawBody, signature)) {
+      this.logger.warn('Rejected WhatsApp webhook with a missing or invalid X-Hub-Signature-256');
+      throw new ForbiddenException('Invalid signature');
+    }
+
     const inbound = this.whatsapp.parseInbound(payload);
     if (!inbound) return { ok: true };
 
@@ -57,3 +71,13 @@ export class ChannelsController {
     return { ok: true };
   }
 }
+
+export const WhatsAppWebhookSignature = {
+  /** Meta signs the raw request body: `sha256=<hex HMAC-SHA256 with the app secret>`. */
+  isValid(secret: string, rawBody: Buffer | undefined, header: string | undefined): boolean {
+    if (!rawBody || !header?.startsWith('sha256=')) return false;
+    const expected = Buffer.from(createHmac('sha256', secret).update(rawBody).digest('hex'), 'hex');
+    const given = Buffer.from(header.slice('sha256='.length), 'hex');
+    return given.length === expected.length && timingSafeEqual(given, expected);
+  },
+};
