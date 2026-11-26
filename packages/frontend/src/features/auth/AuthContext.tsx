@@ -7,8 +7,8 @@ interface AuthState {
   user: Pick<AppUserDto, 'id' | 'email' | 'role' | 'displayName'> | null;
   org: Pick<OrganizationDto, 'id' | 'name' | 'plan' | 'locale' | 'billingStatus'> | null;
   loading: boolean;
-  requestMagicLink: (email: string, orgName?: string) => Promise<{ devMagicLink: string }>;
-  verify: (token: string) => Promise<void>;
+  requestCode: (email: string, orgName?: string) => Promise<{ sent: true; devCode?: string }>;
+  verify: (email: string, code: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -40,10 +40,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
-  const requestMagicLink = (email: string, orgName?: string) => api.post<{ devMagicLink: string }>('/auth/magic-link', { email, orgName });
+  const requestCode = (email: string, orgName?: string) =>
+    api.post<{ sent: true; devCode?: string }>('/auth/request-code', { email, orgName });
 
-  const verify = async (token: string) => {
-    const res = await api.post<{ accessToken: string; user: AuthState['user']; org: AuthState['org'] }>('/auth/verify', { token });
+  const verify = async (email: string, code: string) => {
+    const res = await api.post<{ accessToken: string; user: AuthState['user']; org: AuthState['org'] }>('/auth/verify', { email, code });
     setToken(res.accessToken);
     reconnectSocketWithToken();
     setUser(res.user);
@@ -57,5 +58,5 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     reconnectSocketWithToken();
   };
 
-  return <AuthContext.Provider value={{ user, org, loading, requestMagicLink, verify, logout }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, org, loading, requestCode, verify, logout }}>{children}</AuthContext.Provider>;
 }

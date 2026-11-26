@@ -44,6 +44,10 @@ export function WebChatSettingsCard() {
         Пациенты пишут {org.name ? `в «${org.name}»` : 'в клинику'} без WhatsApp: ссылка для Instagram и кнопка чата для сайта. Диалоги появляются в «Диалогах»,
         напоминания о записи уходят по SMS или push.
       </p>
+      <p className="type-small" style={{ margin: '0 0 14px' }}>
+        SMS в этом месяце: {org.smsUsedThisMonth ?? 0} из {org.smsMonthlyLimit ?? 500}
+        {(org.smsUsedThisMonth ?? 0) >= (org.smsMonthlyLimit ?? 500) ? ' — лимит исчерпан, напоминания по SMS не отправляются' : ''}
+      </p>
 
       <div className="field-label">Ссылка на чат (Instagram, 2GIS, визитки)</div>
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 12, flexWrap: 'wrap' }}>

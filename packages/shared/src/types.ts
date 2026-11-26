@@ -19,6 +19,10 @@ export interface OrganizationDto {
   trialEndsAt: string | null;
   /** Web chat address: /c/<publicSlug> */
   publicSlug: string;
+  /** SMS segments allowed per calendar month (default 500). */
+  smsMonthlyLimit: number;
+  /** SMS segments already used this month. */
+  smsUsedThisMonth: number;
   createdAt: string;
 }
 

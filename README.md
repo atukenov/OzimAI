@@ -44,3 +44,10 @@ npm run migrate && npm run seed
 npm run dev:backend         # :3000
 npm run dev:frontend        # :5173 — demo chat at /c/aigul
 ```
+
+## Deployment
+
+- **Backend → Railway** (`railway.json`): one service from the repo root, plus Postgres with pgvector and Redis. Migrations run on start. Keep 1 replica (crons and rate limits run in-process). Custom domain: `api.ozimai.kz`.
+- **Frontend → Vercel** (`vercel.json`): build settings and SPA fallback are in the file. Set `VITE_API_ORIGIN=https://api.ozimai.kz` so the browser talks to Railway directly (real WebSockets). Domain: `ozimai.kz`.
+- Login is a 4-digit email code via Resend (`RESEND_API_KEY`, `MAIL_FROM`).
+- SMS reminders are capped per clinic per month (`organization.sms_monthly_limit`, default 500 segments).

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build -w @ozimai/shared && npm run build -w @ozimai/frontend",
+  "outputDirectory": "packages/frontend/dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://api.ozimai.kz/api/:path*" },
+    { "source": "/socket.io/:path*", "destination": "https://api.ozimai.kz/socket.io/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+    { "source": "/widget.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }] }
+  ]
+}

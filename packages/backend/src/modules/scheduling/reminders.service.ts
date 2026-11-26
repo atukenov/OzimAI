@@ -15,7 +15,7 @@ import { PractitionerEntity } from '../../database/entities/practitioner.entity'
 
 const WINDOW_MIN = 15; // wider than the 5-min cron cadence so no appointment is skipped between runs
 
-export type ReminderRoute = 'chat' | 'push' | 'sms';
+export type ReminderRoute = 'chat' | 'push' | 'sms' | 'sms_failed' | 'sms_quota_exceeded';
 
 /**
  * 24h / 2h appointment reminders, routed per patient:
@@ -123,7 +123,7 @@ export class RemindersService {
     // Kept short on purpose: Cyrillic SMS segments are only 70 chars (67 when
     // concatenated), and each segment is billed separately.
     const text = `${org.name}: запись ${info.label} ${info.when}${doctor}.${link ? ` Подтвердить/перенести: ${link}` : ''}`;
-    await this.sms.send(patient.phone, text);
-    return 'sms';
+    const sent = await this.sms.sendForOrg(org.id, patient.phone, text);
+    return sent === 'sent' ? 'sms' : sent === 'quota_exceeded' ? 'sms_quota_exceeded' : 'sms_failed';
   }
 }

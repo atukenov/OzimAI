@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { getToken } from './api';
+import { API_ORIGIN } from './apiOrigin';
 
 let socket: Socket | null = null;
 
 function getSocket(): Socket {
   if (!socket) {
-    socket = io('/conversations/stream', { path: '/socket.io', auth: { token: getToken() } });
+    socket = io(`${API_ORIGIN}/conversations/stream`, { path: '/socket.io', auth: { token: getToken() } });
   }
   return socket;
 }

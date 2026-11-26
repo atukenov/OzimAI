@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn } from 
 import { UserRole } from '@ozimai/shared';
 
 /**
- * Also exempt from RLS (see organization.entity.ts): magic-link login has to
+ * Also exempt from RLS (see organization.entity.ts): email-code login has to
  * resolve a user by email before any org context exists. Contains no patient
  * data, so this does not weaken the tenant-isolation guarantee that matters.
  */

@@ -42,6 +42,17 @@ export class OrganizationEntity {
   @Column({ nullable: true })
   aiTone?: string;
 
+  /** SMS segments a clinic may send per calendar month (reminders). */
+  @Column({ type: 'int', default: 500 })
+  smsMonthlyLimit: number;
+
+  /** Segments used in `smsPeriod` ('YYYY-MM'); stale once the month changes. */
+  @Column({ type: 'int', default: 0 })
+  smsUsed: number;
+
+  @Column({ type: 'text', nullable: true })
+  smsPeriod: string | null;
+
   @CreateDateColumn()
   createdAt: Date;
 }

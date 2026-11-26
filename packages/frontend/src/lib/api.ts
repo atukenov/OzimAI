@@ -1,3 +1,5 @@
+import { API_ORIGIN } from './apiOrigin';
+
 const TOKEN_KEY = 'ozimai_token';
 
 export function getToken(): string | null {
@@ -20,7 +22,7 @@ class ApiError extends Error {
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getToken();
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_ORIGIN}/api${path}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
