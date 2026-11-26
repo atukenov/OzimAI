@@ -6,6 +6,8 @@ import { API_ORIGIN } from '../../lib/apiOrigin';
 
 export interface ClinicInfo {
   clinicName: string;
+  /** Company logo (data: URL) set by the platform super admin, or null. */
+  logo: string | null;
   aiName: string;
   locale: 'ru' | 'kk';
   available: boolean;

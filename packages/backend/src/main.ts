@@ -11,6 +11,8 @@ async function bootstrap() {
   // TRUST_PROXY = number of proxy hops in front of the app (Railway = 1; set
   // 2 only if traffic is also proxied through e.g. Vercel rewrites).
   app.set('trust proxy', Number(process.env.TRUST_PROXY) || 1);
+  // Company logos are uploaded as data: URLs (up to ~150 KB of text).
+  app.useBodyParser('json', { limit: '300kb' });
   app.enableCors({
     origin: process.env.CORS_ORIGIN?.split(',') ?? true,
     credentials: true,

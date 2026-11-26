@@ -39,6 +39,17 @@ export class OrganizationEntity {
   @Column({ nullable: true })
   aiName?: string;
 
+  /** IANA zone of the clinic's wall clock (slots, AI replies, reminders). */
+  @Column({ type: 'text', default: 'Asia/Almaty' })
+  timeZone: string;
+
+  /**
+   * Small image as a data: URL, shown in the patient chat and the panel.
+   * Set only by the platform super admin, like `name`.
+   */
+  @Column({ type: 'text', nullable: true })
+  logo: string | null;
+
   @Column({ nullable: true })
   aiTone?: string;
 

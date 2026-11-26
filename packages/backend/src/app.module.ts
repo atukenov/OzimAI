@@ -37,6 +37,8 @@ import { HealthController } from './health.controller';
 // module is simply omitted.
 const FRONTEND_DIST = join(__dirname, '../../frontend/dist');
 
+import { SuperAdminModule } from './modules/super-admin/super-admin.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -90,6 +92,7 @@ const FRONTEND_DIST = join(__dirname, '../../frontend/dist');
     WebChatModule,
     BillingModule,
     ReportsModule,
+    SuperAdminModule,
   ],
   controllers: [HealthController],
   providers: [

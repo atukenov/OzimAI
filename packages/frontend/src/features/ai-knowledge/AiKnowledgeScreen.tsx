@@ -6,6 +6,7 @@ import { Button } from '../../design-system/Button';
 import { Input } from '../../design-system/Field';
 import { Chip } from '../../design-system/Chip';
 import { WebChatSettingsCard } from '../webchat/WebChatSettingsCard';
+import { ClinicSetupCard } from '../clinic/ClinicSetupCard';
 
 interface TestChatMessage {
   from: 'user' | 'ai';
@@ -25,6 +26,7 @@ export function AiKnowledgeScreen() {
   return (
     <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', gap: 28 }}>
       <WebChatSettingsCard />
+      <ClinicSetupCard />
       <div style={{ display: 'flex', gap: 28 }}>
         <KnowledgePanel />
         <TestChatPanel />

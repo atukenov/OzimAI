@@ -70,8 +70,8 @@ async function main() {
     const branch = await manager.getRepository(BranchEntity).save({ orgId: org.id, name: 'Алматы, Достык 89', address: 'г. Алматы, ул. Достык 89' });
 
     const [serikova, akhmetov] = await manager.getRepository(PractitionerEntity).save([
-      { orgId: org.id, branchId: branch.id, name: 'Серикова', workingHours: ALL_DAYS_9_20 },
-      { orgId: org.id, branchId: branch.id, name: 'Ахметов', workingHours: ALL_DAYS_9_20 },
+      { orgId: org.id, branchId: branch.id, name: 'Серикова', specialty: 'терапевт, гигиенист', workingHours: ALL_DAYS_9_20, breakTime: ['13:00', '14:00'] },
+      { orgId: org.id, branchId: branch.id, name: 'Ахметов', specialty: 'хирург-имплантолог', workingHours: ALL_DAYS_9_20 },
     ]);
 
     const [cleaning, implant] = await manager.getRepository(ServiceEntity).save([

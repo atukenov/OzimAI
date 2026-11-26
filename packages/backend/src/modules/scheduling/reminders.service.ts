@@ -12,6 +12,8 @@ import { AppointmentEntity } from '../../database/entities/appointment.entity';
 import { OrganizationEntity } from '../../database/entities/organization.entity';
 import { PatientEntity } from '../../database/entities/patient.entity';
 import { PractitionerEntity } from '../../database/entities/practitioner.entity';
+import { DEFAULT_TIME_ZONE } from './clinic-time';
+import { TEST_CHAT_PHONE } from './test-chat';
 
 const WINDOW_MIN = 15; // wider than the 5-min cron cadence so no appointment is skipped between runs
 
@@ -49,8 +51,8 @@ export class RemindersService {
     });
   }
 
-  private get timeZone(): string {
-    return this.config.get<string>('CLINIC_TIMEZONE') || 'Asia/Almaty';
+  private timeZone(org: OrganizationEntity): string {
+    return org.timeZone || this.config.get<string>('CLINIC_TIMEZONE') || DEFAULT_TIME_ZONE;
   }
 
   chatLink(org: OrganizationEntity): string | null {
@@ -77,16 +79,21 @@ export class RemindersService {
     for (const appt of due) {
       const patient = await this.tenant.repo(PatientEntity).findOneBy({ id: appt.patientId, orgId: this.tenant.orgId });
       const practitioner = await this.tenant.repo(PractitionerEntity).findOneBy({ id: appt.practitionerId, orgId: this.tenant.orgId });
-      if (!patient) continue;
+      if (!patient || patient.phone === TEST_CHAT_PHONE) {
+        await repo.update({ id: appt.id }, { [field]: new Date() });
+        continue;
+      }
 
-      const when = appt.slotStart.toLocaleString('ru-RU', {
+      const kk = org.locale === 'kk';
+      const when = appt.slotStart.toLocaleString(kk ? 'kk-KZ' : 'ru-RU', {
         day: 'numeric',
         month: 'short',
         hour: '2-digit',
         minute: '2-digit',
-        timeZone: this.timeZone,
+        timeZone: this.timeZone(org),
       });
-      const label = minutesAhead >= 60 * 24 ? 'завтра' : 'сегодня';
+      const tomorrow = minutesAhead >= 60 * 24;
+      const label = kk ? (tomorrow ? 'ертең' : 'бүгін') : tomorrow ? 'завтра' : 'сегодня';
       const route = await this.deliver(org, patient, { label, when, doctor: practitioner?.name ?? null });
       await repo.update({ id: appt.id }, { [field]: new Date() });
       this.logger.log(`Sent ${field} reminder for appointment ${appt.id} via ${route}`);
@@ -100,10 +107,13 @@ export class RemindersService {
   ): Promise<ReminderRoute> {
     const doctor = info.doctor ? `, ${info.doctor}` : '';
     const link = this.chatLink(org);
+    const kk = org.locale === 'kk';
 
     const viaChat = patient.sourceChannel === Channel.DevMock || (patient.sourceChannel === Channel.WhatsApp && this.whatsapp.isConfigured);
     if (viaChat) {
-      const text = `Напоминаем: у вас запись ${info.label} (${info.when})${doctor ? ` к ${info.doctor}` : ''}. Ответьте "подтверждаю", "перенести" или "отменить".`;
+      const text = kk
+        ? `Еске саламыз: ${info.label} (${info.when}) жазылуыңыз бар${doctor}. "Растаймын", "ауыстыру" немесе "болдырмау" деп жауап беріңіз.`
+        : `Напоминаем: у вас запись ${info.label} (${info.when})${doctor ? ` к ${info.doctor}` : ''}. Ответьте "подтверждаю", "перенести" или "отменить".`;
       await this.channels.send(patient.sourceChannel, patient.phone, text, org.whatsappPhoneNumberId);
       return 'chat';
     }
@@ -111,7 +121,9 @@ export class RemindersService {
     if (patient.sourceChannel === Channel.Web && patient.pushSubscription) {
       const result = await this.push.send(patient.pushSubscription, {
         title: org.name,
-        body: `Запись ${info.label} ${info.when}${doctor}. Нажмите, чтобы подтвердить или перенести.`,
+        body: kk
+          ? `Жазылу ${info.label} ${info.when}${doctor}. Растау немесе ауыстыру үшін басыңыз.`
+          : `Запись ${info.label} ${info.when}${doctor}. Нажмите, чтобы подтвердить или перенести.`,
         url: link ?? undefined,
       });
       if (result === 'sent') return 'push';
@@ -122,7 +134,9 @@ export class RemindersService {
 
     // Kept short on purpose: Cyrillic SMS segments are only 70 chars (67 when
     // concatenated), and each segment is billed separately.
-    const text = `${org.name}: запись ${info.label} ${info.when}${doctor}.${link ? ` Подтвердить/перенести: ${link}` : ''}`;
+    const text = kk
+      ? `${org.name}: жазылу ${info.label} ${info.when}${doctor}.${link ? ` Растау/ауыстыру: ${link}` : ''}`
+      : `${org.name}: запись ${info.label} ${info.when}${doctor}.${link ? ` Подтвердить/перенести: ${link}` : ''}`;
     const sent = await this.sms.sendForOrg(org.id, patient.phone, text);
     return sent === 'sent' ? 'sms' : sent === 'quota_exceeded' ? 'sms_quota_exceeded' : 'sms_failed';
   }

@@ -10,6 +10,7 @@ import { ReportsScreen } from '../features/reports/ReportsScreen';
 import { OnboardingWizard } from '../features/onboarding/OnboardingWizard';
 import { WebChatScreen } from '../features/webchat/WebChatScreen';
 import { LandingPage } from '../features/landing/LandingPage';
+import { SuperAdminScreen } from '../features/super-admin/SuperAdminScreen';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -47,6 +48,7 @@ export function App() {
         <Route path="patients" element={<PatientsScreen />} />
         <Route path="ai" element={<AiKnowledgeScreen />} />
         <Route path="reports" element={<ReportsScreen />} />
+        <Route path="super-admin" element={<SuperAdminScreen />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

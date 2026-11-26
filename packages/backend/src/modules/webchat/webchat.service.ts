@@ -49,6 +49,7 @@ export class WebChatService {
     const org = await this.resolveOrg(slug);
     return {
       clinicName: org.name,
+      logo: org.logo,
       aiName: org.aiName || 'Айым',
       locale: org.locale,
       available: org.billingStatus !== BillingStatus.ReadOnly,

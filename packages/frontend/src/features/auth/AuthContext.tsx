@@ -4,8 +4,8 @@ import { api, getToken, setToken } from '../../lib/api';
 import { reconnectSocketWithToken } from '../../lib/useConversationsSocket';
 
 interface AuthState {
-  user: Pick<AppUserDto, 'id' | 'email' | 'role' | 'displayName'> | null;
-  org: Pick<OrganizationDto, 'id' | 'name' | 'plan' | 'locale' | 'billingStatus'> | null;
+  user: (Pick<AppUserDto, 'id' | 'email' | 'role' | 'displayName'> & { isSuperAdmin?: boolean }) | null;
+  org: Pick<OrganizationDto, 'id' | 'name' | 'logo' | 'plan' | 'locale' | 'billingStatus'> | null;
   loading: boolean;
   requestCode: (email: string, orgName?: string) => Promise<{ sent: true; devCode?: string }>;
   verify: (email: string, code: string) => Promise<void>;

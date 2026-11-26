@@ -4,6 +4,13 @@
 
 export interface CheckAvailabilityInput {
   doctor?: string;
+  specialty?: string;
+  service?: string;
+  /** Clinic-local date 'YYYY-MM-DD'. */
+  date?: string;
+  /** Clinic-local 'HH:MM' window for the start time. */
+  timeFrom?: string;
+  timeTo?: string;
 }
 
 export interface CheckAvailabilityResult {
@@ -14,6 +21,17 @@ export interface BookAppointmentInput {
   doctor: string;
   time: string; // ISO datetime
   patientName: string;
+  service?: string;
+}
+
+export interface AppointmentRefInput {
+  appointmentId: string;
+}
+
+export interface RescheduleAppointmentInput {
+  appointmentId: string;
+  time: string; // ISO datetime from check_availability
+  doctor?: string;
 }
 
 export interface BookAppointmentResult {
@@ -32,5 +50,13 @@ export interface EscalateResult {
   message: string;
 }
 
-export const AI_TOOL_NAMES = ['check_availability', 'book_appointment', 'escalate'] as const;
+export const AI_TOOL_NAMES = [
+  'check_availability',
+  'book_appointment',
+  'list_my_appointments',
+  'confirm_appointment',
+  'reschedule_appointment',
+  'cancel_appointment',
+  'escalate',
+] as const;
 export type AiToolName = (typeof AI_TOOL_NAMES)[number];
