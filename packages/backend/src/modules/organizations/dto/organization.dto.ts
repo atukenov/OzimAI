@@ -1,11 +1,10 @@
-import { IsIn, IsOptional, IsString, Matches, MinLength } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsIn, IsInt, IsOptional, IsString, Matches, Max, Min, MinLength } from 'class-validator';
 
+/**
+ * What a clinic's owner/admin may change. Name and logo are deliberately not
+ * here: only the platform super admin sets them (see SuperAdminController).
+ */
 export class UpdateOrganizationDto {
-  @IsOptional()
-  @IsString()
-  @MinLength(2)
-  name?: string;
-
   @IsOptional()
   @IsIn(['ru', 'kk'])
   locale?: 'ru' | 'kk';
@@ -17,6 +16,11 @@ export class UpdateOrganizationDto {
   @IsOptional()
   @IsString()
   aiTone?: string;
+
+  /** IANA zone, e.g. 'Asia/Almaty' (validated in the service). */
+  @IsOptional()
+  @IsString()
+  timeZone?: string;
 
   /** Web chat address: /c/<publicSlug>. Lowercase latin, digits and dashes. */
   @IsOptional()
@@ -49,6 +53,39 @@ export class CreatePractitionerDto {
 
   @IsOptional()
   workingHours?: Record<number, [string, string] | null>;
+
+  @IsOptional()
+  @IsString()
+  specialty?: string;
+}
+
+const HM = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+export class UpdatePractitionerDto {
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  name?: string;
+
+  /** Empty string clears it. */
+  @IsOptional()
+  @IsString()
+  specialty?: string;
+
+  /** ["13:00","14:00"], or null for no break. */
+  @IsOptional()
+  @IsArray()
+  @ArrayMinSize(2)
+  @ArrayMaxSize(2)
+  @Matches(HM, { each: true, message: 'Перерыв: время в формате ЧЧ:ММ' })
+  breakTime?: [string, string] | null;
+
+  /** Local dates 'YYYY-MM-DD'. */
+  @IsOptional()
+  @IsArray()
+  @ArrayMaxSize(366)
+  @Matches(/^\d{4}-\d{2}-\d{2}$/, { each: true, message: 'Выходные: даты в формате ГГГГ-ММ-ДД' })
+  daysOff?: string[];
 }
 
 export class CreateServiceDto {
@@ -56,8 +93,32 @@ export class CreateServiceDto {
   @MinLength(1)
   name: string;
 
+  @IsInt()
+  @Min(0)
   price: number;
 
+  /** Visit length; the calendar blocks this many minutes. */
   @IsOptional()
+  @IsInt()
+  @Min(5)
+  @Max(600)
+  durationMin?: number;
+}
+
+export class UpdateServiceDto {
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  name?: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  price?: number;
+
+  @IsOptional()
+  @IsInt()
+  @Min(5)
+  @Max(600)
   durationMin?: number;
 }

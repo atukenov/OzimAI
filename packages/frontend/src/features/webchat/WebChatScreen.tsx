@@ -33,7 +33,11 @@ export function WebChatScreen() {
   return (
     <div className={`wc-root ${embedded ? 'wc-embedded' : ''}`}>
       <header className="wc-header">
-        <div className="wc-avatar">{(info?.aiName ?? '✦')[0]}</div>
+        {info?.logo ? (
+          <img className="wc-avatar" src={info.logo} alt="" style={{ objectFit: 'contain', background: '#fff' }} />
+        ) : (
+          <div className="wc-avatar">{(info?.aiName ?? '✦')[0]}</div>
+        )}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div className="wc-title">{info?.clinicName ?? ' '}</div>
           <div className="wc-subtitle">{info ? `${info.aiName} · онлайн-администратор` : ' '}</div>

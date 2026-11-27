@@ -14,9 +14,12 @@ import { AI_TOOL_DEFS } from './ai-tools';
 import { ToolExecutorService } from './tool-executor.service';
 import { buildSystemPrompt } from './prompt-builder';
 import { containsMedicalAdviceLeak, stripMarkdown } from './guardrails';
+import { TEST_CHAT_PHONE } from '../scheduling/test-chat';
+import { SchedulingService } from '../scheduling/scheduling.service';
+import { DEFAULT_TIME_ZONE } from '../scheduling/clinic-time';
+import { ServiceEntity } from '../../database/entities/service.entity';
 
-const MAX_TOOL_ITERATIONS = 4;
-const TEST_CHAT_PHONE = 'test-chat';
+const MAX_TOOL_ITERATIONS = 6;
 
 export interface OrchestratorReply {
   conversationId?: string;
@@ -41,6 +44,7 @@ export class OrchestratorService {
     private readonly router: LlmRouterService,
     private readonly toolExecutor: ToolExecutorService,
     private readonly channels: ChannelAdapterRegistry,
+    private readonly scheduling: SchedulingService,
   ) {}
 
   /** Real channel path: WhatsApp webhook, web chat widget, or the dev-mock "simulate inbound" harness. */
@@ -101,7 +105,11 @@ export class OrchestratorService {
     const start = Date.now();
     const org = await this.tenant.manager.getRepository(OrganizationEntity).findOneByOrFail({ id: this.tenant.orgId });
     const knowledge = await this.knowledge.listPublished();
-    const system = buildSystemPrompt(org, knowledge);
+    const practitioners = await this.scheduling.listPractitioners();
+    const services = await this.tenant.repo(ServiceEntity).find({ where: { orgId: this.tenant.orgId }, order: { name: 'ASC' } });
+    const system = buildSystemPrompt(org, { knowledge, practitioners, services, now: new Date() });
+    const toolCtx = { patientId, timeZone: org.timeZone || DEFAULT_TIME_ZONE, locale: org.locale };
+    const fallback = org.locale === 'kk' ? 'Әкімшіден нақтылап, жауап беремін.' : 'Уточню у администратора и вернусь с ответом.';
 
     const turns: LlmTurn[] = [...priorTurns, { role: 'user', text: newMessage }];
     const toolCallLog: { name: string; input: unknown; output: unknown }[] = [];
@@ -116,7 +124,7 @@ export class OrchestratorService {
       usedFallback = completion.usedFallback;
 
       if (!completion.toolCalls.length) {
-        finalText = completion.text ?? 'Уточню у администратора и вернусь с ответом.';
+        finalText = completion.text ?? fallback;
         break;
       }
 
@@ -124,7 +132,7 @@ export class OrchestratorService {
 
       const toolResults = [];
       for (const call of completion.toolCalls) {
-        const outcome = await this.toolExecutor.execute(call, { patientId });
+        const outcome = await this.toolExecutor.execute(call, toolCtx);
         toolCallLog.push({ name: call.name, input: call.input, output: outcome.content });
         toolResults.push({ toolCallId: outcome.toolCallId, content: outcome.content });
         if (outcome.escalated) {
@@ -143,10 +151,13 @@ export class OrchestratorService {
       }
     }
 
-    let reply = stripMarkdown(finalText ?? 'Уточню у администратора и вернусь с ответом.');
+    let reply = stripMarkdown(finalText ?? fallback);
     if (!escalated && containsMedicalAdviceLeak(reply)) {
       this.logger.warn('Guardrail caught a medical-advice leak in the final response; forcing escalation.');
-      reply = 'Это лучше уточнить у врача — передаю ваш вопрос администратору клиники.';
+      reply =
+        org.locale === 'kk'
+          ? 'Мұны дәрігерден нақтылаған дұрыс — сұрағыңызды клиника әкімшісіне жіберемін.'
+          : 'Это лучше уточнить у врача — передаю ваш вопрос администратору клиники.';
       escalated = true;
       toolCallLog.push({ name: 'escalate', input: { reason: 'post-filter: medical advice leak' }, output: reply });
     }

@@ -23,6 +23,10 @@ export class AppointmentEntity {
   @Column({ type: 'timestamptz' })
   slotStart: Date;
 
+  /** Visit length; the slot is busy for [slotStart, slotStart + durationMin). */
+  @Column({ type: 'int', default: 30 })
+  durationMin: number;
+
   @Column({ type: 'enum', enum: AppointmentStatus, default: AppointmentStatus.Held })
   status: AppointmentStatus;
 

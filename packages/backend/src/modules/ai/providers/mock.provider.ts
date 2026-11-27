@@ -8,6 +8,8 @@ const CONFIRM_RE = /(давайте|хорошо|подходит|согласе
 const TIME_RE = /\d{1,2}[:.]\d{2}/;
 const NAME_RE = /зовут\s+([А-ЯЁ][а-яё]+)/i;
 const PRICE_RE = /(сколько стоит|цена|стоимост)/i;
+const CONFIRM_VISIT_RE = /подтвержда/i;
+const CHANGE_VISIT_RE = /(отмен|перенес|перенест)/i;
 
 interface OfferedSlot {
   doctor: string;
@@ -38,6 +40,14 @@ export class MockProvider implements LlmProvider {
       if (calledTool === 'escalate') {
         return { text: 'Передаю ваш вопрос администратору клиники — ответят в течение часа.', toolCalls: [], model: this.name };
       }
+      if (calledTool === 'list_my_appointments') {
+        const lastPatientText = [...request.turns].reverse().find((t) => t.role === 'user' && t.text)?.text ?? '';
+        const id = resultText.match(/appointmentId=([0-9a-f-]{36})/i)?.[1];
+        if (id && CONFIRM_VISIT_RE.test(lastPatientText)) {
+          return { text: null, toolCalls: [{ id: randomUUID(), name: 'confirm_appointment', input: { appointmentId: id } }], model: this.name };
+        }
+        return { text: resultText.replace(/appointmentId=\S+:\s*/g, ''), toolCalls: [], model: this.name };
+      }
       if (calledTool === 'check_availability') {
         return { text: `Свободное время: ${resultText}. Какое вам подходит?`, toolCalls: [], model: this.name };
       }
@@ -45,6 +55,18 @@ export class MockProvider implements LlmProvider {
     }
 
     const text = lastTurn?.role === 'user' ? lastTurn.text ?? '' : '';
+
+    if (CONFIRM_VISIT_RE.test(text)) {
+      return { text: null, toolCalls: [{ id: randomUUID(), name: 'list_my_appointments', input: {} }], model: this.name };
+    }
+    // The heuristic fallback does not negotiate a new time; a human does.
+    if (CHANGE_VISIT_RE.test(text)) {
+      return {
+        text: null,
+        toolCalls: [{ id: randomUUID(), name: 'escalate', input: { reason: 'Пациент хочет перенести или отменить запись' } }],
+        model: this.name,
+      };
+    }
 
     if (MEDICAL_RE.test(text)) {
       return {
@@ -75,7 +97,8 @@ export class MockProvider implements LlmProvider {
     }
 
     if (BOOKING_INTENT_RE.test(text)) {
-      const doctorMatch = text.match(/(?:к|у)\s+([А-ЯЁ][а-яё]+)/i);
+      // Capitalised word after a standalone "к"/"у" ("к Сериковой"), not the "у" ending of "хочу".
+      const doctorMatch = text.match(/(?:^|\s)(?:к|у)\s+(?:доктору?\s+|врачу?\s+)?([А-ЯЁ][а-яё]+)/);
       return {
         text: null,
         toolCalls: [{ id: randomUUID(), name: 'check_availability', input: doctorMatch ? { doctor: doctorMatch[1] } : {} }],
@@ -125,13 +148,14 @@ function findKnowledgeLine(system: string, question: string): string | null {
 
 /**
  * check_availability's tool output looks like
- * "Серикова — 2026-07-10T07:00:00.000Z (10 июля в 12:00); Ахметов — ...ISO... (...)"
+ * "Серикова (терапевт) — time=2026-07-10T07:00:00.000Z — пятница, 10 июля, 12:00; Ахметов — time=... — ..."
  * — scan backward for the most recent one so a follow-up message like
  * "Давайте к Серикова в 12:00" can be resolved to the exact ISO slot instead
  * of a bare, unparseable "12:00" string.
  */
 function findOfferedSlots(turns: LlmTurn[]): OfferedSlot[] {
-  const SLOT_RE = /([А-ЯЁ][а-яё]+)\s*—\s*(\S+)\s*\(([^)]+)\)/g;
+  // "Доктор Серикова (ортодонт) — time=2026-07-10T07:00:00.000Z — пятница, 10 июля, 12:00"
+  const SLOT_RE = /^\s*([^;—()\n]+?)(?:\s*\([^)\n]*\))?\s*—\s*time=(\S+)\s*—\s*([^;\n]+?);?\s*$/gm;
   for (let i = turns.length - 1; i >= 0; i--) {
     const turn = turns[i];
     // Real single-request loop: the raw check_availability tool output.

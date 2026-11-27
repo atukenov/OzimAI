@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Roles } from '../../common/auth/roles.decorator';
 import { UserRole } from '@ozimai/shared';
 import { OrganizationsService } from './organizations.service';
-import { CreateBranchDto, CreatePractitionerDto, CreateServiceDto, UpdateOrganizationDto } from './dto/organization.dto';
+import { CreateBranchDto, CreatePractitionerDto, CreateServiceDto, UpdateOrganizationDto, UpdatePractitionerDto, UpdateServiceDto } from './dto/organization.dto';
 
 @Controller('organizations')
 export class OrganizationsController {
@@ -47,9 +47,21 @@ export class OrganizationsController {
     return this.service.updatePractitionerHours(id, workingHours);
   }
 
+  @Roles(UserRole.Owner, UserRole.Admin)
+  @Patch('practitioners/:id')
+  updatePractitioner(@Param('id') id: string, @Body() dto: UpdatePractitionerDto) {
+    return this.service.updatePractitioner(id, dto);
+  }
+
   @Get('services')
   listServices() {
     return this.service.listServices();
+  }
+
+  @Roles(UserRole.Owner, UserRole.Admin)
+  @Patch('services/:id')
+  updateService(@Param('id') id: string, @Body() dto: UpdateServiceDto) {
+    return this.service.updateService(id, dto);
   }
 
   @Roles(UserRole.Owner, UserRole.Admin)

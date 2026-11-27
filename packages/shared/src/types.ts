@@ -23,6 +23,10 @@ export interface OrganizationDto {
   smsMonthlyLimit: number;
   /** SMS segments already used this month. */
   smsUsedThisMonth: number;
+  /** IANA zone of the clinic's wall clock, e.g. 'Asia/Almaty'. */
+  timeZone: string;
+  /** Logo as a data: URL; set only by the platform super admin. */
+  logo: string | null;
   createdAt: string;
 }
 
@@ -51,7 +55,12 @@ export interface PractitionerDto {
   orgId: string;
   branchId: string;
   name: string;
+  specialty: string | null;
   workingHours: WorkingHours;
+  /** Daily break, e.g. ["13:00","14:00"]. */
+  breakTime: [string, string] | null;
+  /** Local dates 'YYYY-MM-DD' off work. */
+  daysOff: string[];
 }
 
 export interface ServiceDto {
@@ -111,6 +120,7 @@ export interface AppointmentDto {
   practitionerName: string;
   serviceId: string | null;
   slotStart: string;
+  durationMin: number;
   status: AppointmentStatus;
   createdBy: CreatedBy;
 }

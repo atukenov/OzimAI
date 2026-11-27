@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { KnowledgeDocDto, KnowledgeSourceType } from '@ozimai/shared';
 import { api } from '../../lib/api';
+import { useAuth } from '../auth/AuthContext';
 import { Button } from '../../design-system/Button';
 import { Input, Textarea } from '../../design-system/Field';
 import { Card } from '../../design-system/Card';
@@ -68,13 +69,12 @@ function StepFooter({ onBack, onNext, nextLabel = 'Далее', nextDisabled }: 
 
 function ClinicStep({ onNext }: { onNext: () => void }) {
   const queryClient = useQueryClient();
-  const [name, setName] = useState('');
+  const { org } = useAuth();
   const [address, setAddress] = useState('');
   const [doctorName, setDoctorName] = useState('');
 
   const save = useMutation({
     mutationFn: async () => {
-      if (name) await api.patch('/organizations/me', { name });
       const branch = await api.post<{ id: string }>('/organizations/branches', { name: address || 'Основной филиал', address });
       if (doctorName) {
         await api.post('/organizations/practitioners', { branchId: branch.id, name: doctorName });
@@ -92,7 +92,11 @@ function ClinicStep({ onNext }: { onNext: () => void }) {
         Шаг 1 · Клиника
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Input label="Название клиники" value={name} onChange={(e) => setName(e.target.value)} placeholder="Стоматология «Айгуль»" />
+        <div>
+          <div className="field-label">Клиника</div>
+          <div style={{ fontWeight: 600 }}>{org?.name}</div>
+          <div className="type-small">Название и логотип настраивает команда OzimAI — напишите нам, если нужно изменить.</div>
+        </div>
         <Input label="Адрес" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="г. Алматы, ул. Достык 89" />
         <Input label="Врач (можно добавить ещё позже)" value={doctorName} onChange={(e) => setDoctorName(e.target.value)} placeholder="Доктор Серикова" />
       </div>
